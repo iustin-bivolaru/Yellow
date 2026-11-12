@@ -1,0 +1,17 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.env
+
+# Build output (deployed by CI, never committed)
+site/
+
+# IDE / local tooling
+.idea/
+.mcp.json
+.claude/settings.local.json
+.claude/.review-state/
