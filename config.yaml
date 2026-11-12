@@ -1,0 +1,57 @@
+# Yellow configuration. No secrets here: ANTHROPIC_API_KEY / GITHUB_TOKEN come from the environment.
+
+timezone: Europe/Bucharest   # used for display and the 9 AM gate; all stored times are UTC
+run_hour: 9                  # local hour at which the scheduled run is allowed to publish
+
+site:
+  title: Yellow
+  base_url: ""               # set to "/<repo-name>/" for GitHub Pages project sites
+  archive_days: 30
+
+http:
+  user_agent: "YellowDigest/0.1 (daily news digest; +https://github.com/)"
+  timeout_seconds: 20
+
+llm:
+  model: claude-haiku-5-5    # alternative: claude-sonnet-5-5 (never Opus)
+  effort: low
+  max_tokens: 16000
+  max_items: 150             # items sent to Claude per run
+  snippet_chars: 300
+
+caps:
+  lookback_hours: 26         # how far back sources look
+  max_items_per_source: 40
+  seen_retention_days: 30    # how long data/seen.json remembers an item
+
+categories:
+  - AI Models & Releases
+  - AI Agents & Tools
+  - AI Research
+  - Dev Tools & Frameworks
+  - Open Source
+  - Cloud & Infra
+  - Security
+  - Industry & Funding
+  - Other Tech
+
+sources:
+  hackernews:
+    enabled: true
+    min_points: 50
+  reddit:
+    enabled: true
+    subreddits: [MachineLearning, LocalLLaMA, artificial, programming]
+  arxiv:
+    enabled: true
+    categories: [cs.AI, cs.CL, cs.LG]
+    max_items: 15
+  huggingface:
+    enabled: true
+  github_trending:
+    enabled: true
+  x:
+    enabled: false           # paid API; needs X_BEARER_TOKEN
+  rss:
+    enabled: true
+    feeds: []                # filled in build step 4 after each URL is verified

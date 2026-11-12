@@ -16,6 +16,10 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 ### How to build
 - Build the **interface** (templates/, style.css, app.js, PWA files; build step 7) with a **separate agent** (user's request), briefed with the `yellow-ui` skill and the `render.py` data contract.
 
+### Carried over from code review (do in the named step)
+- ~~Per-source config models with `extra="forbid"`~~: done in `config.py` (`SourcesConfig`). A new source must add its model there.
+- Step 5: `analyze.py` coerces any `category` not in `config.categories` to "Other Tech" (with a test). `importance` is already clamped to 1..5 in `models.py`.
+
 ## What the user wants
 
 An app that delivers **IT news every morning at 9 AM**, with a strong focus on **AI**. It should:
