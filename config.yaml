@@ -54,4 +54,14 @@ sources:
     enabled: false           # paid API; needs X_BEARER_TOKEN
   rss:
     enabled: true
-    feeds: []                # filled in build step 4 after each URL is verified
+    # Each URL verified 2026-11-12. Anthropic and Meta AI publish no RSS feed, so they're omitted.
+    feeds:
+      - {name: OpenAI, url: "https://openai.com/news/rss.xml"}
+      - {name: Google DeepMind, url: "https://deepmind.google/blog/rss.xml"}
+      - {name: Hugging Face, url: "https://huggingface.co/blog/feed.xml"}
+      - {name: Mistral AI, url: "https://mistral.ai/rss.xml"}
+      - {name: Microsoft Research, url: "https://www.microsoft.com/en-us/research/feed/"}
+      - {name: TechCrunch AI, url: "https://techcrunch.com/category/artificial-intelligence/feed/"}
+      - {name: The Verge AI, url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml"}
+      - {name: Ars Technica, url: "https://feeds.arstechnica.com/arstechnica/technology-lab"}
+      - {name: InfoQ AI, url: "https://feed.infoq.com/ai-ml-data-eng/"}

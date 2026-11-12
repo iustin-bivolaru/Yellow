@@ -9,3 +9,10 @@ FIXTURES = Path(__file__).resolve().parent / "fixtures"
 @pytest.fixture
 def repo_root() -> Path:
     return REPO
+
+
+@pytest.fixture
+def cfg():
+    from yellow.config import load_config
+
+    return load_config(REPO / "config.yaml")

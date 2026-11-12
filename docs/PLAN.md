@@ -6,7 +6,9 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 
 - [x] Plan agreed with the user
 - [x] Claude Code setup: `CLAUDE.md`, skills (`run-digest`, `add-source`, `yellow-ui`), the `code-reviewer` agent (Sonnet), and a Stop hook that runs it automatically. `.gitignore` added.
-- [ ] **Next: implement the app**, following the build order below. No app code exists yet.
+- [x] Build step 1: package skeleton, `config.py` (strict), `models.py`, tests (pushed as 91a01fc)
+- [x] Build step 2: `sources/base.py`, Hacker News, RSS (9 verified feeds), `text.py` (canonical URLs), fixtures + tests
+- [ ] **Next: build step 3** (`collect.py`), then continue the build order below.
 - [ ] One-time setup by the user, after the code works (see "Deployment setup")
 
 ### Answered questions
@@ -84,7 +86,7 @@ Then update `CLAUDE.md` if anything differs from what's written there.
 - **arXiv**: cs.AI, cs.CL, cs.LG (heavily capped)
 - **Hugging Face**: daily papers, trending models
 - **GitHub**: new, fast-rising AI repos (search API; use `GITHUB_TOKEN` in Actions for rate limits)
-- **RSS blogs**: OpenAI, Anthropic, Google DeepMind, Meta AI, Hugging Face, Mistral, Microsoft Research, TechCrunch AI, The Verge AI, Ars Technica, InfoQ. Verify each feed URL works before adding it; drop any that don't exist.
+- **RSS blogs**: OpenAI, Google DeepMind, Hugging Face, Mistral, Microsoft Research, TechCrunch AI, The Verge AI, Ars Technica, InfoQ (all verified 2026-11-12). Anthropic and Meta AI have no RSS feed, so they were dropped.
 
 Rules: a failing source logs a warning and returns `[]`. Use a generic User-Agent (no personal info). No ToS-violating scraping.
 

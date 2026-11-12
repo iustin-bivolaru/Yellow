@@ -93,3 +93,18 @@ def test_technology_json_round_trip() -> None:
         items=["abc"],
     )
     assert Technology.model_validate_json(t.model_dump_json()) == t
+
+
+@pytest.mark.parametrize("url", ["javascript:alert(1)", "data:text/html,x", "/relative"])
+def test_item_rejects_non_http_urls(url: str) -> None:
+    from pydantic import ValidationError
+
+    with pytest.raises(ValidationError):
+        Item(
+            id="x",
+            title="t",
+            url=url,
+            source="s",
+            source_name="S",
+            published=datetime(2026, 11, 12),
+        )

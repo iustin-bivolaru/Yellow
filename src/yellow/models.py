@@ -12,6 +12,9 @@ from typing import Annotated
 
 from pydantic import AfterValidator, BaseModel, BeforeValidator, Field
 
+from yellow.config import FALLBACK_CATEGORY
+from yellow.text import is_http_url
+
 
 def _to_utc(v: datetime) -> datetime:
     """Naive datetimes are taken as UTC; aware ones are converted to UTC."""
@@ -34,7 +37,14 @@ def _clamp_importance(v: object) -> object:
     return v
 
 
+def _http_only(v: str | None) -> str | None:
+    if v is not None and not is_http_url(v):
+        raise ValueError("only absolute http(s) URLs are allowed")
+    return v
+
+
 UtcDatetime = Annotated[datetime, AfterValidator(_to_utc)]
+HttpUrlStr = Annotated[str, AfterValidator(_http_only)]
 Importance = Annotated[int, BeforeValidator(_clamp_importance)]
 
 
@@ -48,7 +58,7 @@ class Item(BaseModel):
 
     id: Annotated[str, Field(description="Stable 12-char id: sha1 of the canonical URL.")]
     title: Annotated[str, Field(description="Headline as published by the source (untrusted).")]
-    url: Annotated[str, Field(description="Link to the story itself.")]
+    url: Annotated[HttpUrlStr, Field(description="Link to the story itself (http/https only).")]
     source: Annotated[
         str, Field(description='Machine name of the adapter, e.g. "hackernews", "reddit", "rss".')
     ]
@@ -65,7 +75,7 @@ class Item(BaseModel):
         int | None, Field(description="Points / upvotes / stars, when the source has them.")
     ] = None
     discussion_url: Annotated[
-        str | None, Field(description="Comments page (HN thread, Reddit post), if separate.")
+        HttpUrlStr | None, Field(description="Comments page (HN thread, Reddit post), if separate.")
     ] = None
 
 
@@ -92,7 +102,7 @@ class ItemAnalysis(BaseModel):
 class DigestItem(Item):
     """An item enriched with its analysis, as rendered."""
 
-    category: Annotated[str, Field(description="Assigned category.")] = "Other Tech"
+    category: Annotated[str, Field(description="Assigned category.")] = FALLBACK_CATEGORY
     summary: Annotated[
         str | None, Field(description="1-2 sentence summary; None if not analyzed.")
     ] = None
