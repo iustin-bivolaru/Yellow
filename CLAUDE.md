@@ -67,4 +67,10 @@ python -m http.server -d site 8000          # preview at http://localhost:8000
 - `/run-digest`: run and preview the pipeline locally.
 - `/add-source`: add a new news source adapter end to end.
 - `/yellow-ui`: design tokens and component rules for the phone UI.
-- `code-reviewer` agent: an independent reviewer. A Stop hook (`.claude/hooks/review-on-stop.sh`) runs it automatically on uncommitted code changes. It gets **no conversation context** on purpose and reviews only what's on disk.
+- `/ship`: finish a build step: tests + lint, **one** `code-reviewer` pass, fix, update `docs/PLAN.md`, commit (no attribution), push.
+- `code-reviewer` agent (Sonnet): independent reviewer with **no conversation context**; reviews only what's on disk. Runs once per build step via `/ship`, not after every turn (usage limits matter).
+- `ui-builder` agent (Sonnet): builds the phone UI (templates/, CSS, JS, PWA) at build step 7, following `yellow-ui`.
+- PostToolUse hook `.claude/hooks/ruff-on-edit.sh`: `ruff format` + `ruff check --fix` on every edited `.py` file; unfixable lint errors come back to Claude.
+
+## Working economically
+The user is on a Claude subscription with a 5-hour usage window. Batch work into few turns, prefer deterministic scripts/hooks over agent runs, don't spawn agents for things a command can check, and don't re-run the reviewer unless a blocker fix was substantial.
