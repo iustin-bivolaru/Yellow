@@ -51,6 +51,9 @@
       "git fetch *",
       "git pull *"
     ],
+    "filesystem": {
+      "allowRead": [".env.example"]
+    },
     "credentials": {
       "files": [
         {

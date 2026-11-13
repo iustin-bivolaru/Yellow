@@ -67,13 +67,18 @@ python -m http.server -d site 8000          # preview at http://localhost:8000
 
 ## Project skills and agents
 
+**How a task flows (branch → implementer → checks → review → commit → PR → user merges) is in
+`.claude/WORKFLOW.md`. Follow it.**
+
 - `/run-digest`: run and preview the pipeline locally.
 - `/add-source`: add a new news source adapter end to end.
 - `/yellow-ui`: design tokens and component rules for the phone UI.
-- `/ship`: finish a build step: tests + lint, **one** `code-reviewer` pass, fix, update `docs/PLAN.md`, commit (no attribution), push.
-- `code-reviewer` agent (Sonnet): independent reviewer with **no conversation context**; reviews only what's on disk. Runs once per build step via `/ship`, not after every turn (usage limits matter).
-- `ui-builder` agent (Sonnet): builds the phone UI (templates/, CSS, JS, PWA) at build step 7, following `yellow-ui`.
-- PostToolUse hook `.claude/hooks/ruff-on-edit.sh`: `ruff format` + `ruff check --fix` on every edited `.py` file; unfixable lint errors come back to Claude.
+- `/ship`: run a task end to end: implementer, checks, **one** `code-reviewer` pass, fixes, `docs/PLAN.md`, commit on the task branch, push, PR.
+- `implementer` agent (Sonnet): writes the code and tests for one task from the main session's brief. Never commits or switches branches.
+- `code-reviewer` agent (Opus): independent reviewer with **no conversation context**; reviews only what's on disk. Runs once per task via `/ship`, not after every turn (usage limits matter).
+- `ui-builder` agent (Sonnet): the implementer for the phone UI (templates/, CSS, JS, PWA) at build step 7, following `yellow-ui`.
+- PostToolUse hook `.claude/hooks/ruff-on-edit.sh`: `ruff check --fix` then `ruff format` on every edited `.py` file; unfixable lint errors come back to Claude.
+- PreToolUse hook `.claude/hooks/no-commit-on-main.sh`: blocks `git commit`/`git push` on `main`.
 
 ## Working economically
 The user is on a Claude subscription with a 5-hour usage window. Batch work into few turns, prefer deterministic scripts/hooks over agent runs, don't spawn agents for things a command can check, and don't re-run the reviewer unless a blocker fix was substantial.
