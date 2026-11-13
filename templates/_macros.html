@@ -1,0 +1,39 @@
+{% macro dots(n) -%}
+<span class="dots" role="img" aria-label="Importance {{ n }} of 5">{% for i in range(1, 6) %}<span class="dot{% if i <= n %} on{% endif %}"></span>{% endfor %}</span>
+{%- endmacro %}
+
+{% macro card(item, root, tech_slugs, day, big=false, rank=0) %}
+<article class="card{% if big %} card-big{% endif %}" data-cat="{{ item.category }}">
+  <h3 class="card-title">{% if rank %}<span class="rank" aria-hidden="true">{{ rank }}</span>{% endif %}<a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a></h3>
+  {% if item.summary %}<p class="card-text">{{ item.summary }}</p>
+  {% elif item.snippet %}<p class="card-text">{{ item.snippet | truncate(200) }}</p>{% endif %}
+  <div class="meta">
+    <span class="badge">{{ item.source_name }}</span>
+    {{ dots(item.importance) }}
+    <span class="time">{{ item.published | localtime(day) }}</span>
+    {% if item.discussion_url %}<a class="discuss" href="{{ item.discussion_url }}" target="_blank" rel="noopener">discuss</a>{% endif %}
+  </div>
+  {% if item.technologies %}
+  <div class="tags">
+    {%- for name in item.technologies %}
+    {%- set slug = slugify(name) %}
+    {%- if slug in tech_slugs %}<a class="tag" href="{{ root }}tech/{{ slug }}.html"><span>{{ name }}</span></a>
+    {%- else %}<span class="tag"><span>{{ name }}</span></span>{% endif %}
+    {%- endfor %}
+  </div>
+  {% endif %}
+</article>
+{% endmacro %}
+
+{% macro archive_footer(archive, root, current) %}
+<footer class="site-footer" id="archive">
+  <h2>Archive</h2>
+  {% if archive %}
+  <ul class="archive">
+    {%- for d in archive %}
+    <li><a href="{{ root }}day/{{ d }}.html"{% if d == current %} aria-current="page"{% endif %}>{{ d }}</a></li>
+    {%- endfor %}
+  </ul>
+  {% else %}<p class="muted">No days yet.</p>{% endif %}
+</footer>
+{% endmacro %}

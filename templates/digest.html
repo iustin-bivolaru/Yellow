@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% from "_macros.html" import card, archive_footer %}
+{% block title %}{{ site_title }} - {{ digest.date.isoformat() }}{% endblock %}
+{% block header_date %}{{ digest.date.strftime('%a %d %b %Y') }}{% endblock %}
+{% block main %}
+<h1 class="sr-only">{{ site_title }}: {{ digest.date.strftime('%A %d %B %Y') }}</h1>
+{% if not is_today %}<p class="notice">Archive: <a href="{{ root }}index.html">back to today</a></p>{% endif %}
+
+{% if digest.nutshell %}
+<section class="nutshell" aria-labelledby="h-nut">
+  <h2 id="h-nut">AI in a nutshell</h2>
+  <p>{{ digest.nutshell }}</p>
+</section>
+{% endif %}
+
+{% if not digest.items %}
+<section class="empty">
+  <h2>Quiet day</h2>
+  <p>Nothing new made it into this digest. Check back tomorrow.</p>
+</section>
+{% else %}
+
+{% if top %}
+<section class="block" aria-labelledby="h-top">
+  <h2 id="h-top">Top 5</h2>
+  {% for item in top %}{{ card(item, root, tech_slugs, digest.date, big=true, rank=loop.index) }}{% endfor %}
+</section>
+{% endif %}
+
+{% if digest.new_tech %}
+<section class="block" aria-labelledby="h-new">
+  <h2 id="h-new">New on radar</h2>
+  <div class="scroller">
+    {%- for t in digest.new_tech %}
+    {%- if t.slug in tech_slugs %}<a class="chip radar" href="{{ root }}tech/{{ t.slug }}.html">{{ t.name }}</a>
+    {%- else %}<span class="chip radar">{{ t.name }}</span>{% endif %}
+    {%- endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if digest.trending_tech %}
+<section class="block" aria-labelledby="h-trend">
+  <h2 id="h-trend">Trending</h2>
+  <div class="scroller">
+    {%- for t in digest.trending_tech %}
+    {%- if t.slug in tech_slugs %}<a class="chip radar" href="{{ root }}tech/{{ t.slug }}.html">{{ t.name }} <span class="count">{{ t.count_today }}</span></a>
+    {%- else %}<span class="chip radar">{{ t.name }} <span class="count">{{ t.count_today }}</span></span>{% endif %}
+    {%- endfor %}
+  </div>
+</section>
+{% endif %}
+
+<nav class="chipbar" id="cats" aria-label="Filter by category" hidden>
+  <button type="button" class="chip filter" data-cat="" aria-pressed="true">All</button>
+  {%- for c in categories %}
+  <button type="button" class="chip filter" data-cat="{{ c }}" aria-pressed="false">{{ c }}</button>
+  {%- endfor %}
+</nav>
+
+<section class="block feed" id="feed" aria-labelledby="h-feed">
+  <h2 id="h-feed">Feed</h2>
+  {% for item in feed %}{{ card(item, root, tech_slugs, digest.date) }}{% endfor %}
+</section>
+{% endif %}
+{% endblock %}
+{% block footer %}{{ archive_footer(archive, root, digest.date.isoformat()) }}{% endblock %}

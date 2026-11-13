@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "_macros.html" import archive_footer %}
+{% block title %}{{ tech.name }} - {{ site_title }}{% endblock %}
+{% block header_date %}Technology{% endblock %}
+{% block main %}
+<p class="notice"><a href="{{ root }}index.html">Back to today</a></p>
+<section class="block">
+  <h1 class="tech-name">{{ tech.name }}</h1>
+  <dl class="facts">
+    <div><dt>First seen</dt><dd>{{ tech.first_seen.isoformat() }}</dd></div>
+    <div><dt>Last seen</dt><dd>{{ tech.last_seen.isoformat() }}</dd></div>
+    <div><dt>Mentions</dt><dd>{{ total }}</dd></div>
+  </dl>
+</section>
+<section class="block" aria-labelledby="h-stories">
+  <h2 id="h-stories">Stories</h2>
+  {% for s in stories %}
+  <article class="card">
+    <h3 class="card-title"><a href="{{ s.item.url }}" target="_blank" rel="noopener">{{ s.item.title }}</a></h3>
+    <div class="meta">
+      <span class="badge">{{ s.item.source_name }}</span>
+      <a class="discuss" href="{{ root }}day/{{ s.day }}.html">{{ s.day }}</a>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}
+{% block footer %}{{ archive_footer(archive, root, "") }}{% endblock %}

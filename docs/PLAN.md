@@ -14,7 +14,8 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 - [x] Build step 5: `analyze.py`: fair per-source selection (≤ `llm.max_items`), keyword fallback (`--no-llm`), one streamed Claude call with structured output, stop_reason checks, cost log. Tested with a fake client; **not yet run against the real API** (no key locally).
 - [x] Build step 6: `tech_registry.py` (slug-keyed registry; `C++`/`C#`/`.NET` keep distinct slugs; per-day `counts` and `items` overwritten so same-day reruns are idempotent; New on radar + trending from `config.yaml` `registry`), tests
 - [x] CI (2026-11-13): `.github/workflows/ci.yml` runs ruff format/check + pytest on every PR and on pushes to `main`. Later: a GitHub ruleset on `main` that requires a PR and this check (see the step 9 note below).
-- [ ] **Next: build step 7** (`render.py` + templates via the `ui-builder` agent), then continue the build order below.
+- [x] Build step 7: `render.py` (save/load digests, `render_site`: index, `day/`, `tech/<slug>`, PWA files, stdlib PNG icons) + `templates/` (yellow-ui), tests. Relative links (Pages subpath); SW cache id = digest time + templates hash; offline navigation to an uncached page redirects home. **Not checked by eye yet at 390×844 / dark mode**: the user previews `site/` (`python3 -m http.server -d site 8000`).
+- [ ] **Next: build step 8** (`main.py` wiring, then `/run-digest`), then continue the build order below.
 - [ ] One-time setup by the user, after the code works (see "Deployment setup")
 
 ### Answered questions
@@ -32,6 +33,7 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 - Step 8: `main.py` must call `collect(..., today=<local date>)` and only `mark_seen` + `prune_seen` + `save_seen` **after** the digest is built successfully. `filter_seen` keeps items first seen *today*, so same-day reruns rebuild the same digest.
 - First real Claude run (step 8 or with a key): check that 150 items fit in `max_tokens` 32k with room to spare (log shows output tokens), and that summaries/categories look right.
 - Step 8: load the registry, pass `known_names(registry)` to `analyze`, then `update_registry` + `annotate_digest` and save the registry only after the digest is built (same rule as seen.json).
+- Step 8: after the digest is built: `save_digest(data/digests, digest)`, then `render_site(site/, load_digests(data/digests, 30), registry, cfg)`. `cfg.site.base_url` is unused (all links are relative); drop it or use it for the manifest only.
 - `collect._rank` compares scores across scales (stars vs points) when merging duplicates; only affects which copy is shown. Revisit if it looks wrong in the UI.
 
 ## What the user wants
