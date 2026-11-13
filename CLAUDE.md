@@ -4,7 +4,7 @@ Guidance for Claude Code when working in this repository.
 
 ## Start here
 
-**Status:** planning and Claude Code setup are done; **no app code exists yet**. The full agreed spec, the decisions already made with the user, the open questions and the build order are in **`docs/PLAN.md`**. Read it before doing anything, and continue from its "Status" section.
+**Status:** build steps 1–5 are done (sources, collector, analyzer). The full agreed spec, the decisions already made with the user, the open questions and the build order are in **`docs/PLAN.md`**. Read it before doing anything, and continue from its "Status" section.
 
 ## What this is
 
@@ -17,43 +17,22 @@ Guidance for Claude Code when working in this repository.
 
 The focus is **AI**. X/Twitter is deliberately **disabled** (its API is paid). `sources/x.py` is a stub that stays off until there's a token.
 
-## Layout
-
-```
-config.yaml                  # timezone, sources, categories, llm.model, caps (no secrets)
-src/yellow/
-  models.py                  # pydantic: Item, Digest, Technology
-  sources/                   # one module per source; each implements Source.fetch(since) -> list[Item]
-  collect.py                 # parallel fetch, dedupe, data/seen.json filter
-  analyze.py                 # the single Claude API call -> Digest
-  tech_registry.py           # data/tech_registry.json: first_seen, daily counts, trending
-  render.py                  # Jinja2 -> site/
-  main.py                    # CLI entry: python -m yellow run
-templates/                   # HTML/CSS/JS/PWA assets (yellow theme)
-data/                        # state committed by CI: seen.json, tech_registry.json, digests/
-site/                        # build output (gitignored, deployed by CI)
-tests/                       # pytest, fixture-based, no network
-.github/workflows/daily.yml
-```
-
 ## Commands
 
+Call the venv binaries directly (`.venv/bin/pytest`, `.venv/bin/ruff`, `.venv/bin/python`); the
+planned file layout is in `docs/PLAN.md`.
+
 ```bash
-source .venv/bin/activate
-pip install -e ".[dev]"                     # install with dev deps
-pytest                                      # all tests (offline, fixtures only)
-pytest tests/test_registry.py -k trending   # single test
-ruff check . && ruff format .               # lint + format
 python -m yellow run --dry-run --no-llm     # full pipeline, no API cost, writes site/
 python -m yellow run                        # real run (needs ANTHROPIC_API_KEY)
-python -m http.server -d site 8000          # preview at http://localhost:8000
+python -m http.server -d site 8000          # preview: the sandbox blocks local ports, so the user runs this with `!`
 ```
 
 ## Rules
 
 - **LLM cost matters.** Use exactly one Claude call per run, through `analyze.py`. The model comes from `config.yaml` (`llm.model`); the default is `claude-haiku-5-5`, and the alternative is `claude-sonnet-5-5`. Don't hardcode a model, add per-item calls, or add agent loops without asking.
 - Use the official `anthropic` Python SDK with a Pydantic `output_format`, streamed (`client.messages.stream(...)` + `get_final_message()`, which returns the parsed message) because `llm.max_tokens` is 32k and the SDK refuses long non-streaming calls. Always check `stop_reason` before using the output, and fall back to the keyword-only digest on refusal or error so the site still builds.
-- **Git workflow (user's request):** one branch per task (`<type>/<short-name>`), never commit or push to `main` (blocked by the PreToolUse hook `.claude/hooks/no-commit-on-main.sh`). Commit messages follow Conventional Commits (`feat(scope): summary`; details in the `ship` skill). Push the branch, open a PR with `gh pr create`; **the user merges**.
+- **Git workflow (user's request):** one branch per task (`<type>/<short-name>`), never commit or push to `main` (blocked by the PreToolUse hook `.claude/hooks/no-commit-on-main.py`). Commit messages follow Conventional Commits (`feat(scope): summary`; details in the `ship` skill). Push the branch, open a PR with `gh pr create`; **the user merges**.
 - **No Claude attribution** in git: no `Co-Authored-By: Claude` trailers or "Generated with Claude Code" lines in commits or PRs (the user's request; also set via `attribution` in `.claude/settings.json`).
 - **Never** commit secrets. `ANTHROPIC_API_KEY` lives in the environment or GitHub Secrets only.
 - Sources must not throw and break the run. A failing source logs a warning and returns `[]`.
@@ -67,13 +46,12 @@ python -m http.server -d site 8000          # preview at http://localhost:8000
 
 ## Project skills and agents
 
-- `/run-digest`: run and preview the pipeline locally.
-- `/add-source`: add a new news source adapter end to end.
-- `/yellow-ui`: design tokens and component rules for the phone UI.
-- `/ship`: finish a build step: tests + lint, **one** `code-reviewer` pass, fix, update `docs/PLAN.md`, commit (no attribution), push.
-- `code-reviewer` agent (Sonnet): independent reviewer with **no conversation context**; reviews only what's on disk. Runs once per build step via `/ship`, not after every turn (usage limits matter).
-- `ui-builder` agent (Sonnet): builds the phone UI (templates/, CSS, JS, PWA) at build step 7, following `yellow-ui`.
-- PostToolUse hook `.claude/hooks/ruff-on-edit.sh`: `ruff format` + `ruff check --fix` on every edited `.py` file; unfixable lint errors come back to Claude.
+**How a task flows (branch → implementer → checks → review → commit → PR → user merges) is in
+`.claude/WORKFLOW.md`. Follow it.**
+
+- Skills and agents are listed in every session; their roles in the flow are in `WORKFLOW.md`. The `code-reviewer` runs **once per task**, not after every turn (usage limits matter).
+- PostToolUse hook `.claude/hooks/ruff-on-edit.sh`: `ruff check --fix` then `ruff format` on every edited `.py` file; unfixable lint errors come back to Claude.
+- PreToolUse hook `.claude/hooks/no-commit-on-main.py`: blocks `git commit`/`git push` on `main`.
 
 ## Working economically
 The user is on a Claude subscription with a 5-hour usage window. Batch work into few turns, prefer deterministic scripts/hooks over agent runs, don't spawn agents for things a command can check, and don't re-run the reviewer unless a blocker fix was substantial.

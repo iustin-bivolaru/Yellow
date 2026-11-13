@@ -5,7 +5,8 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 ## Status (2026-11-13)
 
 - [x] Plan agreed with the user
-- [x] Claude Code setup: `CLAUDE.md`, skills (`run-digest`, `add-source`, `yellow-ui`), the `code-reviewer` agent (Sonnet), and a Stop hook that runs it automatically. `.gitignore` added.
+- [x] Claude Code setup: `CLAUDE.md`, skills (`run-digest`, `add-source`, `yellow-ui`, `ship`), agents (`implementer` Sonnet, `code-reviewer` Opus, `ui-builder` Sonnet), ruff and no-commit-on-main hooks, Bash sandbox with secret files blocked. `.gitignore` added. (The early auto-review Stop hook was removed to save usage.)
+- [x] Workflow (2026-11-13, PRs #1, #2, #4): one branch per task, Conventional Commits, PRs merged by the user; implementer → checks → one Opus review per task. See `.claude/WORKFLOW.md`.
 - [x] Build step 1: package skeleton, `config.py` (strict), `models.py`, tests (pushed as 91a01fc)
 - [x] Build step 2: `sources/abstract_source.py`, Hacker News, RSS (9 verified feeds), `text.py` (canonical URLs), fixtures + tests
 - [x] Build step 3: `collect.py` (parallel fetch, transitive dedupe by canonical URL + normalized title, `data/seen.json` filter/mark/prune), tests
@@ -19,7 +20,9 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 2. `CLAUDE.md` and `.claude/` are version-controlled: the user said yes, so they were removed from `.git/info/exclude` and committed (2026-11-12).
 
 ### How to build
-- Build the **interface** (templates/, style.css, app.js, PWA files; build step 7) with a **separate agent** (user's request), briefed with the `yellow-ui` skill and the `render.py` data contract.
+- Every step follows `.claude/WORKFLOW.md`: task branch → `implementer` agent (Sonnet) from a brief → checks → one `code-reviewer` pass (Opus) → commit → PR → the user merges.
+- Build the **interface** (templates/, style.css, app.js, PWA files; build step 7) with the `ui-builder` agent instead of `implementer` (user's request), briefed with the `yellow-ui` skill and the `render.py` data contract.
+- Step 9's daily GitHub Action commits `data/` to `main` as the github-actions bot. That's the one allowed exception to "no direct commits to main" (state, not code). If GitHub branch protection is ever added, the Action needs a bypass or its own branch.
 
 ### Carried over from code review (do in the named step)
 - ~~Per-source config models with `extra="forbid"`~~: done in `config.py` (`SourcesConfig`). A new source must add its model there.
