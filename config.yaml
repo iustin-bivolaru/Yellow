@@ -24,6 +24,13 @@ caps:
   max_items_per_source: 40
   seen_retention_days: 30    # how long data/seen.json remembers an item
 
+registry:
+  trending_factor: 2.0       # trending = today's mentions >= factor * average of the window
+  trending_min_count: 2      # ...and at least this many mentions today
+  trending_window_days: 7    # days before today the average covers (missing days count as 0)
+  max_new: 20
+  max_trending: 10
+
 categories:
   - AI Models & Releases
   - AI Agents & Tools

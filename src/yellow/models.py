@@ -142,7 +142,10 @@ class Digest(BaseModel):
     ]
     trending_tech: Annotated[
         list[TechRef],
-        Field(default_factory=list, description="Technologies at >= 2x their 7-day average."),
+        Field(
+            default_factory=list,
+            description="Technologies trending per the `registry` config thresholds.",
+        ),
     ]
 
 
@@ -158,5 +161,9 @@ class Technology(BaseModel):
         Field(default_factory=dict, description='Mentions per local day, keyed "YYYY-MM-DD".'),
     ]
     items: Annotated[
-        list[str], Field(default_factory=list, description="Ids of items that mentioned it.")
+        dict[str, list[str]],
+        Field(
+            default_factory=dict,
+            description='Ids of the items that mentioned it, per local day "YYYY-MM-DD".',
+        ),
     ]
