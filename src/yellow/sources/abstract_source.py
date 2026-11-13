@@ -28,9 +28,12 @@ def make_client(cfg: Config) -> httpx.Client:
 
 
 class Source(ABC):
+    """A news source. Subclasses set `name` and implement `_fetch`."""
+
     name: str  # machine name, matches the key under `sources:` in config.yaml
 
     def __init__(self, cfg: Config, client: httpx.Client) -> None:
+        """Store the config and the shared HTTP client."""
         self.cfg = cfg
         self.client = client
 
@@ -39,6 +42,7 @@ class Source(ABC):
         """Return items published at or after `since` (UTC). May raise."""
 
     def fetch(self, since: datetime) -> list[Item]:
+        """Return items published since `since`, or [] (with a warning) if the source fails."""
         try:
             items = self._fetch(since)
         except Exception as e:  # a source must never break the run

@@ -11,16 +11,19 @@ import feedparser
 
 from yellow.config import RssFeed
 from yellow.models import Item, item_id
-from yellow.sources.base import Source
+from yellow.sources.abstract_source import Source
 from yellow.text import canonical_url, html_to_text, is_http_url
 
 log = logging.getLogger(__name__)
 
 
 class RssSource(Source):
+    """All RSS/Atom feeds listed under sources.rss.feeds, fetched in parallel."""
+
     name = "rss"
 
     def _fetch(self, since: datetime) -> list[Item]:
+        """Fetch every configured feed in parallel and combine the results."""
         feeds = self.cfg.sources.rss.feeds
         if not feeds:
             return []
@@ -42,7 +45,10 @@ class RssSource(Source):
 
 
 def _entry_time(entry: feedparser.FeedParserDict) -> datetime | None:
-    # feedparser normalizes *_parsed to a UTC struct_time
+    """Return the entry's publish (or update) time in UTC, or None if it has none.
+
+    feedparser normalizes *_parsed fields to a UTC struct_time.
+    """
     for key in ("published_parsed", "updated_parsed"):
         st = entry.get(key)
         if st:
@@ -51,6 +57,7 @@ def _entry_time(entry: feedparser.FeedParserDict) -> datetime | None:
 
 
 def parse(content: bytes | str, feed_name: str, since: datetime) -> list[Item]:
+    """Turn RSS/Atom content into Items published at or after `since`."""
     parsed = feedparser.parse(content)
     if parsed.bozo and not parsed.entries:
         raise ValueError(f"unparseable feed: {parsed.get('bozo_exception')}")

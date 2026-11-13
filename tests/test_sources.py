@@ -9,7 +9,7 @@ from tests.conftest import FIXTURES
 from yellow.config import Config, RssFeed
 from yellow.models import Item
 from yellow.sources import enabled_sources, hackernews, rss
-from yellow.sources.base import Source
+from yellow.sources.abstract_source import Source
 
 SINCE = datetime(2026, 11, 10, tzinfo=UTC)
 

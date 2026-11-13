@@ -61,6 +61,8 @@ python -m http.server -d site 8000          # preview at http://localhost:8000
 - Times are stored in UTC. They are converted to `config.yaml` `timezone` only for display and for the 9 AM gate.
 - The UI is static HTML + vanilla JS with no framework or build step. Follow the `yellow-ui` skill.
 - Python 3.12+, type hints everywhere, `ruff` clean.
+- **Every module, class and function in `src/` has a docstring**, private and nested ones included (user's request). Enforced by ruff `D` rules (Google convention, via the edit hook) and `tests/test_docstrings.py`. Tests are exempt; their names describe them.
+- Pydantic model fields (in `models.py` and `config.py`) are written as `name: Annotated[type, Field(..., description="...")] = default`, with constraints and `default_factory` inside `Field`.
 
 ## Project skills and agents
 

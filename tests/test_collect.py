@@ -12,7 +12,7 @@ from yellow.collect import (
     title_key,
 )
 from yellow.models import Item, item_id
-from yellow.sources.base import Source
+from yellow.sources.abstract_source import Source
 from yellow.text import canonical_url
 
 NOW = datetime(2026, 11, 13, 7, tzinfo=UTC)

@@ -10,7 +10,7 @@ description: Add a new news source (API, RSS feed, or site) to Yellow end to end
 - If the source is just an RSS feed, **don't write code**. Add it to `config.yaml` under `sources.rss.feeds` with `name`, `url` and `weight`, and skip to step 4.
 
 ## 1. Adapter: `src/yellow/sources/<name>.py`
-- Implement the `Source` protocol from `sources/base.py`: `name: str` and `fetch(since: datetime) -> list[Item]`.
+- Implement the `Source` protocol from `sources/abstract_source.py`: `name: str` and `fetch(since: datetime) -> list[Item]`.
 - Use the shared `httpx` client with a timeout of 15s or less and the project User-Agent.
 - Map into `Item` with: `title`, `url` (canonical, no tracking params), `source`, `published_at` (an **aware UTC** datetime), `snippet` (≤ 500 chars, stripped of HTML), and `score` (popularity signal, if the source has one).
 - Return only items newer than `since`, and cap them at `config.max_items`.

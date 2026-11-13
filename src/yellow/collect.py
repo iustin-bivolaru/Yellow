@@ -21,7 +21,7 @@ from pathlib import Path
 from pydantic import BaseModel, Field
 
 from yellow.models import Item
-from yellow.sources.base import Source
+from yellow.sources.abstract_source import Source
 
 log = logging.getLogger(__name__)
 
@@ -75,6 +75,7 @@ def dedupe(items: Iterable[Item]) -> list[Item]:
     parent = list(range(len(items)))
 
     def find(i: int) -> int:
+        """Return the root of item `i`'s group, compressing the path as it goes."""
         while parent[i] != i:
             parent[i] = parent[parent[i]]
             i = parent[i]

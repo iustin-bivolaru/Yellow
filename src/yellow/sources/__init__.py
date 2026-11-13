@@ -7,7 +7,7 @@ import logging
 import httpx
 
 from yellow.config import Config
-from yellow.sources.base import Source
+from yellow.sources.abstract_source import Source
 from yellow.sources.hackernews import HackerNewsSource
 from yellow.sources.rss import RssSource
 
@@ -20,6 +20,7 @@ REGISTRY: dict[str, type[Source]] = {
 
 
 def enabled_sources(cfg: Config, client: httpx.Client) -> list[Source]:
+    """Instantiate every source that is enabled in config and implemented."""
     sources: list[Source] = []
     for name in type(cfg.sources).model_fields:
         if not cfg.source_enabled(name):

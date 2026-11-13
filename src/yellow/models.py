@@ -38,6 +38,7 @@ def _clamp_importance(v: object) -> object:
 
 
 def _http_only(v: str | None) -> str | None:
+    """Reject URLs that aren't absolute http(s); None passes through."""
     if v is not None and not is_http_url(v):
         raise ValueError("only absolute http(s) URLs are allowed")
     return v

@@ -7,7 +7,7 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 - [x] Plan agreed with the user
 - [x] Claude Code setup: `CLAUDE.md`, skills (`run-digest`, `add-source`, `yellow-ui`), the `code-reviewer` agent (Sonnet), and a Stop hook that runs it automatically. `.gitignore` added.
 - [x] Build step 1: package skeleton, `config.py` (strict), `models.py`, tests (pushed as 91a01fc)
-- [x] Build step 2: `sources/base.py`, Hacker News, RSS (9 verified feeds), `text.py` (canonical URLs), fixtures + tests
+- [x] Build step 2: `sources/abstract_source.py`, Hacker News, RSS (9 verified feeds), `text.py` (canonical URLs), fixtures + tests
 - [x] Build step 3: `collect.py` (parallel fetch, transitive dedupe by canonical URL + normalized title, `data/seen.json` filter/mark/prune), tests
 - [ ] **Next: build step 4** (remaining sources: Reddit, arXiv, Hugging Face, GitHub trending, X stub), then continue the build order below.
 - [ ] One-time setup by the user, after the code works (see "Deployment setup")
@@ -60,7 +60,7 @@ config.yaml             # timezone, sources + feed URLs, categories, llm.model/e
 src/yellow/
   __main__.py, main.py  # CLI: python -m yellow run [--dry-run] [--no-llm]
   models.py             # Item, ItemAnalysis, Technology, Digest (pydantic)
-  sources/base.py       # Source protocol: name, fetch(since) -> list[Item]
+  sources/abstract_source.py # Source protocol: name, fetch(since) -> list[Item]
   sources/__init__.py   # registry of enabled sources
   sources/hackernews.py # Algolia HN API: stories from the last 24h above a points threshold
   sources/rss.py        # generic RSS/Atom; feed list in config.yaml
@@ -132,7 +132,7 @@ Rules: a failing source logs a warning and returns `[]`. Use a generic User-Agen
 ## Build order
 
 1. `pyproject.toml`, package skeleton, `models.py`, `config.yaml`
-2. `sources/base.py` + Hacker News + RSS, with fixtures and tests
+2. `sources/abstract_source.py` + Hacker News + RSS, with fixtures and tests
 3. `collect.py` (dedupe, seen filter), with tests
 4. Remaining sources, with fixtures and tests
 5. `analyze.py`: keyword fallback first (`--no-llm`), then the Claude call

@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import UTC, datetime
 
 from yellow.models import Item, item_id
-from yellow.sources.base import Source
+from yellow.sources.abstract_source import Source
 from yellow.text import canonical_url, html_to_text, is_http_url
 
 API_URL = "https://hn.algolia.com/api/v1/search"
@@ -13,9 +13,12 @@ ITEM_URL = "https://news.ycombinator.com/item?id={}"
 
 
 class HackerNewsSource(Source):
+    """Hacker News stories from the Algolia API above `min_points`."""
+
     name = "hackernews"
 
     def _fetch(self, since: datetime) -> list[Item]:
+        """Query Algolia for stories since `since` and parse the response."""
         scfg = self.cfg.sources.hackernews
         resp = self.client.get(
             API_URL,
@@ -31,6 +34,7 @@ class HackerNewsSource(Source):
 
 
 def parse(data: dict, since: datetime) -> list[Item]:
+    """Turn an Algolia search response into Items published at or after `since`."""
     items: list[Item] = []
     for hit in data.get("hits", []):
         title = (hit.get("title") or "").strip()

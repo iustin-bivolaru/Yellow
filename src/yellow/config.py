@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
-from typing import Literal
+from typing import Annotated, Literal
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 import yaml
@@ -22,73 +22,134 @@ def project_root() -> Path:
 
 
 class _Strict(BaseModel):
+    """Base for all config models: unknown keys are rejected."""
+
     model_config = ConfigDict(extra="forbid")
 
 
 class SiteConfig(_Strict):
-    title: str = "Yellow"
-    base_url: str = ""
-    archive_days: int = Field(default=30, gt=0)
+    """Settings for the generated site (title, base URL, archive length)."""
+
+    title: Annotated[str, Field(description="Site name shown in the header and manifest.")] = (
+        "Yellow"
+    )
+    base_url: Annotated[
+        str, Field(description='Path prefix, e.g. "/<repo-name>/" for a GitHub Pages project site.')
+    ] = ""
+    archive_days: Annotated[
+        int, Field(gt=0, description="How many past days the archive section lists.")
+    ] = 30
 
 
 class HttpConfig(_Strict):
-    user_agent: str = "YellowDigest/0.1 (daily news digest)"
-    timeout_seconds: float = Field(default=20, gt=0)
+    """Settings for the shared HTTP client used by all sources."""
+
+    user_agent: Annotated[
+        str, Field(description="Generic User-Agent sent to every source (no personal info).")
+    ] = "YellowDigest/0.1 (daily news digest)"
+    timeout_seconds: Annotated[
+        float, Field(gt=0, description="Per-request timeout in seconds.")
+    ] = 20
 
 
 class LLMConfig(_Strict):
-    model: str = "claude-haiku-5-5"
-    effort: Literal["low", "medium", "high"] = "low"
-    max_tokens: int = Field(default=16000, gt=0)
-    max_items: int = Field(default=150, gt=0)
-    snippet_chars: int = Field(default=300, gt=0)
+    """Settings for the single Claude call made by analyze.py."""
+
+    model: Annotated[
+        str, Field(description="Claude model id: claude-haiku-5-5 or claude-sonnet-5-5.")
+    ] = "claude-haiku-5-5"
+    effort: Annotated[
+        Literal["low", "medium", "high"], Field(description="Reasoning effort for the call.")
+    ] = "low"
+    max_tokens: Annotated[int, Field(gt=0, description="Output token limit for the call.")] = 16000
+    max_items: Annotated[int, Field(gt=0, description="Most items sent to Claude in one run.")] = (
+        150
+    )
+    snippet_chars: Annotated[
+        int, Field(gt=0, description="Snippets are truncated to this length before sending.")
+    ] = 300
 
     @field_validator("model")
     @classmethod
     def no_opus(cls, v: str) -> str:
+        """Reject Opus models, which are too expensive for a daily digest."""
         if "opus" in v.lower():
             raise ValueError("Opus is not allowed for Yellow; use claude-haiku-5-5 or sonnet")
         return v
 
 
 class CapsConfig(_Strict):
-    lookback_hours: int = Field(default=26, gt=0)
-    max_items_per_source: int = Field(default=40, gt=0)
-    seen_retention_days: int = Field(default=30, gt=0)
+    """Limits on how far back sources look and how much data is kept."""
+
+    lookback_hours: Annotated[
+        int, Field(gt=0, description="Sources return items published within this many hours.")
+    ] = 26
+    max_items_per_source: Annotated[
+        int, Field(gt=0, description="Most items one source (or one RSS feed) may return.")
+    ] = 40
+    seen_retention_days: Annotated[
+        int, Field(gt=0, description="Days data/seen.json remembers a published item.")
+    ] = 30
 
 
 # --- per-source settings -------------------------------------------------------------------
 
 
 class SourceConfig(_Strict):
-    enabled: StrictBool = False  # StrictBool: the string "false" is an error, not truthy
+    """Settings common to every source: just the on/off switch."""
+
+    enabled: Annotated[
+        StrictBool,  # StrictBool: the string "false" is an error, not truthy
+        Field(description="Whether this source runs."),
+    ] = False
 
 
 class HackerNewsConfig(SourceConfig):
-    min_points: int = Field(default=50, ge=0)
+    """Hacker News settings: minimum points for a story to be included."""
+
+    min_points: Annotated[
+        int, Field(ge=0, description="Stories below this many points are skipped.")
+    ] = 50
 
 
 class RedditConfig(SourceConfig):
-    subreddits: list[str] = Field(default_factory=list)
+    """Reddit settings: which subreddits to read."""
+
+    subreddits: Annotated[
+        list[str], Field(default_factory=list, description='Subreddit names without "r/".')
+    ]
 
 
 class ArxivConfig(SourceConfig):
-    categories: list[str] = Field(default_factory=list)
-    max_items: int = Field(default=15, gt=0)
+    """arXiv settings: which categories to read and how many papers to keep."""
+
+    categories: Annotated[
+        list[str], Field(default_factory=list, description='arXiv categories, e.g. "cs.AI".')
+    ]
+    max_items: Annotated[int, Field(gt=0, description="Most papers kept per run.")] = 15
 
 
 class RssFeed(_Strict):
-    name: str
-    url: str
+    """One RSS/Atom feed: display name and URL."""
+
+    name: Annotated[str, Field(description="Display name shown as the item's source badge.")]
+    url: Annotated[str, Field(description="Feed URL (RSS or Atom).")]
 
 
 class RssConfig(SourceConfig):
-    feeds: list[RssFeed] = Field(default_factory=list)
+    """RSS settings: the list of feeds to read."""
+
+    feeds: Annotated[
+        list[RssFeed], Field(default_factory=list, description="Feeds to read, in any order.")
+    ]
 
 
 class XConfig(SourceConfig):
+    """X/Twitter settings. Disabled by default because the API is paid."""
+
     @model_validator(mode="after")
     def needs_token(self) -> XConfig:
+        """Require X_BEARER_TOKEN in the environment when the X source is enabled."""
         if self.enabled and not os.environ.get("X_BEARER_TOKEN"):
             raise ValueError("sources.x is enabled but X_BEARER_TOKEN is not set")
         return self
@@ -97,31 +158,48 @@ class XConfig(SourceConfig):
 class SourcesConfig(_Strict):
     """Known sources only: an unknown or misspelled source name is a validation error."""
 
-    hackernews: HackerNewsConfig = Field(default_factory=HackerNewsConfig)
-    reddit: RedditConfig = Field(default_factory=RedditConfig)
-    arxiv: ArxivConfig = Field(default_factory=ArxivConfig)
-    huggingface: SourceConfig = Field(default_factory=SourceConfig)
-    github_trending: SourceConfig = Field(default_factory=SourceConfig)
-    x: XConfig = Field(default_factory=XConfig)
-    rss: RssConfig = Field(default_factory=RssConfig)
+    hackernews: Annotated[
+        HackerNewsConfig, Field(default_factory=HackerNewsConfig, description="Hacker News.")
+    ]
+    reddit: Annotated[RedditConfig, Field(default_factory=RedditConfig, description="Reddit RSS.")]
+    arxiv: Annotated[ArxivConfig, Field(default_factory=ArxivConfig, description="arXiv papers.")]
+    huggingface: Annotated[
+        SourceConfig,
+        Field(default_factory=SourceConfig, description="Hugging Face papers and models."),
+    ]
+    github_trending: Annotated[
+        SourceConfig,
+        Field(default_factory=SourceConfig, description="Fast-rising new GitHub AI repos."),
+    ]
+    x: Annotated[XConfig, Field(default_factory=XConfig, description="X/Twitter (paid; off).")]
+    rss: Annotated[RssConfig, Field(default_factory=RssConfig, description="RSS/Atom feeds.")]
 
 
 # --- top level -----------------------------------------------------------------------------
 
 
 class Config(_Strict):
-    timezone: str
-    run_hour: int = Field(default=9, ge=0, le=23)
-    site: SiteConfig = Field(default_factory=SiteConfig)
-    http: HttpConfig = Field(default_factory=HttpConfig)
-    llm: LLMConfig = Field(default_factory=LLMConfig)
-    caps: CapsConfig = Field(default_factory=CapsConfig)
-    categories: list[str]
-    sources: SourcesConfig = Field(default_factory=SourcesConfig)
+    """The whole of config.yaml, validated."""
+
+    timezone: Annotated[str, Field(description="IANA timezone for display and the run-hour gate.")]
+    run_hour: Annotated[
+        int, Field(ge=0, le=23, description="Local hour at which the scheduled run publishes.")
+    ] = 9
+    site: Annotated[SiteConfig, Field(default_factory=SiteConfig, description="Site output.")]
+    http: Annotated[HttpConfig, Field(default_factory=HttpConfig, description="HTTP client.")]
+    llm: Annotated[LLMConfig, Field(default_factory=LLMConfig, description="The Claude call.")]
+    caps: Annotated[CapsConfig, Field(default_factory=CapsConfig, description="Limits.")]
+    categories: Annotated[
+        list[str], Field(description="News categories; must include the fallback category.")
+    ]
+    sources: Annotated[
+        SourcesConfig, Field(default_factory=SourcesConfig, description="Per-source settings.")
+    ]
 
     @field_validator("timezone")
     @classmethod
     def valid_tz(cls, v: str) -> str:
+        """Reject timezone names that zoneinfo doesn't know."""
         try:
             ZoneInfo(v)
         except (ZoneInfoNotFoundError, ValueError) as e:
@@ -131,6 +209,7 @@ class Config(_Strict):
     @field_validator("categories")
     @classmethod
     def valid_categories(cls, v: list[str]) -> list[str]:
+        """Require unique categories that include the fallback category."""
         if len(set(v)) != len(v):
             raise ValueError("categories must be unique")
         if FALLBACK_CATEGORY not in v:
@@ -139,12 +218,15 @@ class Config(_Strict):
 
     @property
     def tz(self) -> ZoneInfo:
+        """The configured timezone as a ZoneInfo."""
         return ZoneInfo(self.timezone)
 
     def source_enabled(self, name: str) -> bool:
+        """Return whether the source called `name` is enabled in config."""
         return getattr(self.sources, name).enabled
 
 
 def load_config(path: Path | None = None) -> Config:
+    """Load and validate config.yaml (default: the one at the project root)."""
     with open(path or project_root() / "config.yaml", encoding="utf-8") as f:
         return Config.model_validate(yaml.safe_load(f))
