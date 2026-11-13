@@ -15,7 +15,8 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 - [x] Build step 6: `tech_registry.py` (slug-keyed registry; `C++`/`C#`/`.NET` keep distinct slugs; per-day `counts` and `items` overwritten so same-day reruns are idempotent; New on radar + trending from `config.yaml` `registry`), tests
 - [x] CI (2026-11-13): `.github/workflows/ci.yml` runs ruff format/check + pytest on every PR and on pushes to `main`. Later: a GitHub ruleset on `main` that requires a PR and this check (see the step 9 note below).
 - [x] Build step 7: `render.py` (save/load digests, `render_site`: index, `day/`, `tech/<slug>`, PWA files, stdlib PNG icons) + `templates/` (yellow-ui), tests. Relative links (Pages subpath); SW cache id = digest time + templates hash; offline navigation to an uncached page redirects home. **Not checked by eye yet at 390×844 / dark mode**: the user previews `site/` (`python3 -m http.server -d site 8000`).
-- [ ] **Next: build step 8** (`main.py` wiring, then `/run-digest`), then continue the build order below.
+- [x] Build step 8: `main.py` CLI (`run --dry-run --no-llm --scheduled --data-dir --site-dir`); state (digest, registry, seen) saved only after render and never on `--dry-run`; empty collection keeps an existing digest; 9 AM gate. Live dry run: 197 collected, 192 new, 150 analyzed, no source warnings.
+- [ ] **Next: build step 9** (GitHub workflow; decide data-branch vs commit-to-main with the user first).
 - [ ] One-time setup by the user, after the code works (see "Deployment setup")
 
 ### Answered questions
@@ -30,10 +31,7 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 
 ### Carried over from code review (do in the named step)
 - ~~Per-source config models with `extra="forbid"`~~: done in `config.py` (`SourcesConfig`). A new source must add its model there.
-- Step 8: `main.py` must call `collect(..., today=<local date>)` and only `mark_seen` + `prune_seen` + `save_seen` **after** the digest is built successfully. `filter_seen` keeps items first seen *today*, so same-day reruns rebuild the same digest.
-- First real Claude run (step 8 or with a key): check that 150 items fit in `max_tokens` 32k with room to spare (log shows output tokens), and that summaries/categories look right.
-- Step 8: load the registry, pass `known_names(registry)` to `analyze`, then `update_registry` + `annotate_digest` and save the registry only after the digest is built (same rule as seen.json).
-- Step 8: after the digest is built: `save_digest(data/digests, digest)`, then `render_site(site/, load_digests(data/digests, 30), registry, cfg)`. `cfg.site.base_url` is unused (all links are relative); drop it or use it for the manifest only.
+- First real Claude run (with a key): check that 150 items fit in `max_tokens` 32k with room to spare (log shows output tokens), and that summaries/categories look right.
 - `collect._rank` compares scores across scales (stars vs points) when merging duplicates; only affects which copy is shown. Revisit if it looks wrong in the UI.
 
 ## What the user wants
@@ -129,7 +127,7 @@ Rules: a failing source logs a warning and returns `[]`. Use a generic User-Agen
 
 ## Scheduling (`.github/workflows/daily.yml`)
 
-- GitHub cron runs in UTC with no daylight-saving support. Schedule **two** crons, one hour apart, covering 9 AM local in both summer and winter time. The job exits early unless the current local hour in `config.yaml` `timezone` is 9 **and** today's digest doesn't exist yet. Add `workflow_dispatch` for manual runs.
+- GitHub cron runs in UTC with no daylight-saving support. Schedule **two** crons, one hour apart, covering 9 AM local in both summer and winter time. The job exits early unless the current local hour in `config.yaml` `timezone` is **at least** `run_hour` (9) **and** today's digest doesn't exist yet (GitHub crons run late, and the second cron is the retry; the digest file is saved last, as the "done" marker). Add `workflow_dispatch` for manual runs.
 - Steps: checkout → setup Python 3.12 → `pip install .` → `python -m yellow run` → commit `data/` (as the github-actions bot) → `actions/upload-pages-artifact` with `site/` → `actions/deploy-pages`.
 - Permissions: `contents: write`, `pages: write`, `id-token: write`. Secret: `ANTHROPIC_API_KEY`.
 
