@@ -20,13 +20,12 @@ from typing import Any
 
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
-from yellow.config import Config
+from yellow.config import Config, project_root
 from yellow.models import Digest, DigestItem, Technology
 from yellow.tech_registry import slugify
 
 log = logging.getLogger(__name__)
 
-TEMPLATES_DIR = Path(__file__).parents[2] / "templates"
 _STATIC_FILES = ("style.css", "app.js", "icon.svg")
 _SAFE_SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 _YELLOW_RGB = (0xFF, 0xD4, 0x00)
@@ -61,13 +60,18 @@ def load_digests(dir: Path, limit: int = 30) -> list[Digest]:
     return sorted(out, key=lambda d: d.date, reverse=True)
 
 
+def templates_dir() -> Path:
+    """Return `<project root>/templates`, resolved at call time (works for `pip install .`)."""
+    return project_root() / "templates"
+
+
 # --- helpers -------------------------------------------------------------------------------
 
 
 def _env(cfg: Config) -> Environment:
     """Jinja environment: autoescape on, strict undefined, plus the local-time filter."""
     env = Environment(
-        loader=FileSystemLoader(TEMPLATES_DIR),
+        loader=FileSystemLoader(templates_dir()),
         autoescape=True,
         undefined=StrictUndefined,
     )
@@ -170,9 +174,10 @@ def _remove(path: Path) -> None:
 def _templates_hash() -> str:
     """Short hash of every file in templates/, so a code-only redeploy gets a new SW cache."""
     h = hashlib.sha1()
-    for f in sorted(TEMPLATES_DIR.rglob("*")):
+    root = templates_dir()
+    for f in sorted(root.rglob("*")):
         if f.is_file():
-            h.update(f.relative_to(TEMPLATES_DIR).as_posix().encode())
+            h.update(f.relative_to(root).as_posix().encode())
             h.update(f.read_bytes())
     return h.hexdigest()[:8]
 
@@ -255,7 +260,7 @@ def render_site(
     )
     _write(out_dir / "manifest.json", _manifest(cfg))
     for name in _STATIC_FILES:
-        shutil.copyfile(TEMPLATES_DIR / name, out_dir / name)
+        shutil.copyfile(templates_dir() / name, out_dir / name)
     for size in (192, 512):
         (out_dir / f"icon-{size}.png").write_bytes(_png(size))
     log.info(

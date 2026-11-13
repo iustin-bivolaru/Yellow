@@ -5,7 +5,6 @@ on:
   pull_request:
   push:
     branches: [main]
-    paths-ignore: ["data/**"]   # the daily bot's state commits don't need a test run
   workflow_dispatch:
 
 permissions:
