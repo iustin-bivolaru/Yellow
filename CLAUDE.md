@@ -53,6 +53,7 @@ python -m http.server -d site 8000          # preview at http://localhost:8000
 
 - **LLM cost matters.** Use exactly one Claude call per run, through `analyze.py`. The model comes from `config.yaml` (`llm.model`); the default is `claude-haiku-5-5`, and the alternative is `claude-sonnet-5-5`. Don't hardcode a model, add per-item calls, or add agent loops without asking.
 - Use the official `anthropic` Python SDK with a Pydantic `output_format`, streamed (`client.messages.stream(...)` + `get_final_message()`, which returns the parsed message) because `llm.max_tokens` is 32k and the SDK refuses long non-streaming calls. Always check `stop_reason` before using the output, and fall back to the keyword-only digest on refusal or error so the site still builds.
+- **Git workflow (user's request):** one branch per task (`<type>/<short-name>`), never commit or push to `main` (blocked by the PreToolUse hook `.claude/hooks/no-commit-on-main.sh`). Commit messages follow Conventional Commits (`feat(scope): summary`; details in the `ship` skill). Push the branch, open a PR with `gh pr create`; **the user merges**.
 - **No Claude attribution** in git: no `Co-Authored-By: Claude` trailers or "Generated with Claude Code" lines in commits or PRs (the user's request; also set via `attribution` in `.claude/settings.json`).
 - **Never** commit secrets. `ANTHROPIC_API_KEY` lives in the environment or GitHub Secrets only.
 - Sources must not throw and break the run. A failing source logs a warning and returns `[]`.
