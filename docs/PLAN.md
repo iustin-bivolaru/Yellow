@@ -12,8 +12,9 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 - [x] Build step 3: `collect.py` (parallel fetch, transitive dedupe by canonical URL + normalized title, `data/seen.json` filter/mark/prune), tests
 - [x] Build step 4: Reddit (one combined request + 429 retry), arXiv, Hugging Face (papers + new trending models), GitHub (new repos by stars), X stub; real fixtures + tests. Live run: ~170 items/day after dedupe.
 - [x] Build step 5: `analyze.py`: fair per-source selection (≤ `llm.max_items`), keyword fallback (`--no-llm`), one streamed Claude call with structured output, stop_reason checks, cost log. Tested with a fake client; **not yet run against the real API** (no key locally).
+- [x] Build step 6: `tech_registry.py` (slug-keyed registry; `C++`/`C#`/`.NET` keep distinct slugs; per-day `counts` and `items` overwritten so same-day reruns are idempotent; New on radar + trending from `config.yaml` `registry`), tests
 - [x] CI (2026-11-13): `.github/workflows/ci.yml` runs ruff format/check + pytest on every PR and on pushes to `main`. Later: a GitHub ruleset on `main` that requires a PR and this check (see the step 9 note below).
-- [ ] **Next: build step 6** (`tech_registry.py`: first_seen, counts, New on radar, trending), then continue the build order below.
+- [ ] **Next: build step 7** (`render.py` + templates via the `ui-builder` agent), then continue the build order below.
 - [ ] One-time setup by the user, after the code works (see "Deployment setup")
 
 ### Answered questions
@@ -30,6 +31,7 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 - ~~Per-source config models with `extra="forbid"`~~: done in `config.py` (`SourcesConfig`). A new source must add its model there.
 - Step 8: `main.py` must call `collect(..., today=<local date>)` and only `mark_seen` + `prune_seen` + `save_seen` **after** the digest is built successfully. `filter_seen` keeps items first seen *today*, so same-day reruns rebuild the same digest.
 - First real Claude run (step 8 or with a key): check that 150 items fit in `max_tokens` 32k with room to spare (log shows output tokens), and that summaries/categories look right.
+- Step 8: load the registry, pass `known_names(registry)` to `analyze`, then `update_registry` + `annotate_digest` and save the registry only after the digest is built (same rule as seen.json).
 - `collect._rank` compares scores across scales (stars vs points) when merging duplicates; only affects which copy is shown. Revisit if it looks wrong in the UI.
 
 ## What the user wants
@@ -112,7 +114,7 @@ Rules: a failing source logs a warning and returns `[]`. Use a generic User-Agen
 
 ## Technology tracking (`tech_registry.py`)
 
-- Per technology: `first_seen`, `last_seen`, `counts: {date: n}`, and `items` (ids/urls).
+- Per technology: `first_seen`, `last_seen`, `counts: {date: n}`, and `items: {date: [ids]}`.
 - **New on radar** = first seen today. **Trending** = today's mentions ≥ 2× the 7-day average (with a small minimum count).
 - Every technology gets a page listing all stories that mentioned it.
 

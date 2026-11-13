@@ -92,6 +92,27 @@ class CapsConfig(_Strict):
     ] = 30
 
 
+class RegistryConfig(_Strict):
+    """Thresholds for the technology registry (new / trending technologies)."""
+
+    trending_factor: Annotated[
+        float,
+        Field(gt=1, description="Trending = today's mentions >= factor * the window average."),
+    ] = 2.0
+    trending_min_count: Annotated[
+        int, Field(ge=1, description="A technology needs at least this many mentions to trend.")
+    ] = 2
+    trending_window_days: Annotated[
+        int, Field(ge=1, description="Days before today that the trending average covers.")
+    ] = 7
+    max_new: Annotated[
+        int, Field(ge=1, description="Most 'new on radar' technologies shown per digest.")
+    ] = 20
+    max_trending: Annotated[
+        int, Field(ge=1, description="Most trending technologies shown per digest.")
+    ] = 10
+
+
 # --- per-source settings -------------------------------------------------------------------
 
 
@@ -215,6 +236,10 @@ class Config(_Strict):
     http: Annotated[HttpConfig, Field(default_factory=HttpConfig, description="HTTP client.")]
     llm: Annotated[LLMConfig, Field(default_factory=LLMConfig, description="The Claude call.")]
     caps: Annotated[CapsConfig, Field(default_factory=CapsConfig, description="Limits.")]
+    registry: Annotated[
+        RegistryConfig,
+        Field(default_factory=RegistryConfig, description="Technology registry thresholds."),
+    ]
     categories: Annotated[
         list[str], Field(description="News categories; must include the fallback category.")
     ]
