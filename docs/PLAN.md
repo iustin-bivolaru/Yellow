@@ -16,7 +16,8 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 - [x] CI (2026-11-13): `.github/workflows/ci.yml` runs ruff format/check + pytest on every PR and on pushes to `main`. Later: a GitHub ruleset on `main` that requires a PR and this check (see the step 9 note below).
 - [x] Build step 7: `render.py` (save/load digests, `render_site`: index, `day/`, `tech/<slug>`, PWA files, stdlib PNG icons) + `templates/` (yellow-ui), tests. Relative links (Pages subpath); SW cache id = digest time + templates hash; offline navigation to an uncached page redirects home. **Not checked by eye yet at 390×844 / dark mode**: the user previews `site/` (`python3 -m http.server -d site 8000`).
 - [x] Build step 8: `main.py` CLI (`run --dry-run --no-llm --scheduled --data-dir --site-dir`); state (digest, registry, seen) saved only after render and never on `--dry-run`; empty collection keeps an existing digest; 9 AM gate. Live dry run: 197 collected, 192 new, 150 analyzed, no source warnings.
-- [ ] **Next: build step 9** (GitHub workflow; decide data-branch vs commit-to-main with the user first).
+- [x] Build step 9: `.github/workflows/daily.yml` (crons 06/07/09 UTC + `workflow_dispatch` with `force`/`no_llm`; state on the orphan `data` branch checked out at `./data`; build job then Pages deploy only if `site/index.html` exists), `tests/test_workflows.py`. **Not run on GitHub yet** (can't be tested locally).
+- [ ] **Next: Deployment setup with the user** (walk through "Deployment setup"), then add a `main` ruleset: require PR + `CI` check, block force push/deletion.
 - [ ] One-time setup by the user, after the code works (see "Deployment setup")
 
 ### Answered questions
@@ -26,8 +27,7 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 ### How to build
 - Every step follows `.claude/WORKFLOW.md`: task branch → `implementer` agent (Sonnet) from a brief → checks → one `code-reviewer` pass (Opus) → commit → PR → the user merges.
 - Build the **interface** (templates/, style.css, app.js, PWA files; build step 7) with the `ui-builder` agent instead of `implementer` (user's request), briefed with the `yellow-ui` skill and the `render.py` data contract.
-- Step 9's daily GitHub Action commits `data/` to `main` as the github-actions bot. That's the one allowed exception to "no direct commits to main" (state, not code). If GitHub branch protection is ever added, the Action needs a bypass or its own branch.
-- **Proposed for step 9 (not decided yet):** the daily Action writes `data/` to a separate `data` branch instead, so a ruleset can protect `main` (PR + passing `CI`) with no bypass. Keep the local no-commit-on-main hook too: it catches mistakes before a commit, the ruleset is the server-side lock.
+- The daily Action never commits to `main` (decided 2026-11-13). See Decisions: state lives on the `data` branch.
 
 ### Carried over from code review (do in the named step)
 - ~~Per-source config models with `extra="forbid"`~~: done in `config.py` (`SourcesConfig`). A new source must add its model there.
@@ -50,6 +50,7 @@ An app that delivers **IT news every morning at 9 AM**, with a strong focus on *
 | Scheduler | **GitHub Actions** cron, so it runs even when the Mac is off (decided). |
 | Summarizing | **Claude API, one call per run** (decided). Not the Claude Agent SDK, whose agent loop would use 10–50× more tokens. |
 | Model | **`claude-haiku-5-5` by default**, switchable to `claude-sonnet-5-5` via `config.yaml` `llm.model` (decided, to keep costs low). Don't use Opus. |
+| State storage | **Orphan `data` branch** (decided 2026-11-13). The daily bot pushes `seen.json`, `tech_registry.json` and `digests/` to `data` (checked out at `./data` during the run) and never commits to `main`. `main` stays code-only, so a ruleset (PR + passing `CI`, no bypass) can protect it. The local no-commit-on-main hook stays too: it catches mistakes before a commit, the ruleset is the server-side lock. `data/` is gitignored on `main`. |
 | Language | Python 3.12+ (the project has a `.venv` and is opened in PyCharm) |
 
 ## Architecture
@@ -59,7 +60,7 @@ GitHub Actions (cron ~9 AM local)
   → collect all sources in parallel → dedupe → drop items already in data/seen.json
   → ONE Claude call (summaries, categories, importance, technologies, top 5, intro)
   → update data/tech_registry.json (new on radar / trending)
-  → render site/ (Jinja2) → commit data/ → deploy site/ to GitHub Pages
+  → render site/ (Jinja2) → push data/ to the `data` branch → deploy site/ to GitHub Pages
 ```
 
 ## Files to create
@@ -84,7 +85,7 @@ src/yellow/
   tech_registry.py      # first_seen / last_seen / daily counts; new + trending
   render.py             # Jinja2 → site/ (index, per-day archive, tech pages, PWA files)
 templates/ index.html.j2, day.html.j2, tech.html.j2, style.css, app.js, manifest.json, sw.js, icon.svg (+ 192/512 PNG)
-data/                   # committed by CI: seen.json, tech_registry.json, digests/YYYY-MM-DD.json
+data/                   # the `data` branch (worktree), pushed by CI: seen.json, tech_registry.json, digests/YYYY-MM-DD.json
 tests/                  # pytest, fixtures in tests/fixtures/, no network
 .github/workflows/daily.yml
 ```
@@ -97,7 +98,7 @@ Then update `CLAUDE.md` if anything differs from what's written there.
 - **Reddit** RSS: r/MachineLearning, r/LocalLLaMA, r/artificial, r/programming
 - **arXiv**: cs.AI, cs.CL, cs.LG (heavily capped)
 - **Hugging Face**: daily papers, trending models
-- **GitHub**: new, fast-rising AI repos (search API; use `GITHUB_TOKEN` in Actions for rate limits)
+- **GitHub**: new, fast-rising AI repos (search API; `GITHUB_TOKEN` is optional; the daily Action runs unauthenticated, once a day)
 - **RSS blogs**: OpenAI, Google DeepMind, Hugging Face, Mistral, Microsoft Research, TechCrunch AI, The Verge AI, Ars Technica, InfoQ (all verified 2026-11-12). Anthropic and Meta AI have no RSS feed, so they were dropped.
 
 Rules: a failing source logs a warning and returns `[]`. Use a generic User-Agent (no personal info). No ToS-violating scraping.
@@ -127,9 +128,11 @@ Rules: a failing source logs a warning and returns `[]`. Use a generic User-Agen
 
 ## Scheduling (`.github/workflows/daily.yml`)
 
-- GitHub cron runs in UTC with no daylight-saving support. Schedule **two** crons, one hour apart, covering 9 AM local in both summer and winter time. The job exits early unless the current local hour in `config.yaml` `timezone` is **at least** `run_hour` (9) **and** today's digest doesn't exist yet (GitHub crons run late, and the second cron is the retry; the digest file is saved last, as the "done" marker). Add `workflow_dispatch` for manual runs.
-- Steps: checkout → setup Python 3.12 → `pip install .` → `python -m yellow run` → commit `data/` (as the github-actions bot) → `actions/upload-pages-artifact` with `site/` → `actions/deploy-pages`.
-- Permissions: `contents: write`, `pages: write`, `id-token: write`. Secret: `ANTHROPIC_API_KEY`.
+- GitHub cron runs in UTC with no daylight-saving support. Schedule crons at 06:00, 07:00 and 09:00 UTC: 06:00 is 9 AM Bucharest in summer, 07:00 in winter, and the two later ones are retries. The job exits early unless the current local hour in `config.yaml` `timezone` is **at least** `run_hour` (9) **and** today's digest doesn't exist yet (GitHub crons run late, and the second cron is the retry; the digest file is saved last, as the "done" marker). Add `workflow_dispatch` for manual runs.
+- Steps: checkout → setup Python 3.12 → `pip install .` → `python -m yellow run` → commit and push `data/` to the `data` branch (as the github-actions bot, only if it changed) → `actions/upload-pages-artifact` with `site/` (only if `site/index.html` exists; a scheduled skip renders nothing) → `actions/deploy-pages` in a separate job.
+- Three jobs keep the write token away from code that parses feeds: `build` (read-only; reads the `data` branch via `git archive`, runs the CLI without `GITHUB_TOKEN`, uploads the `data-state` artifact and the Pages artifact), `persist` (only `contents: write`; runs no project code, copies the artifact onto the `data` branch and pushes), `deploy` (Pages).
+- Before the first run the `data` branch doesn't exist; the workflow creates it as an orphan branch.
+- Permissions: top-level `contents: read`; build job `contents: read`; persist job `contents: write` (pushes `data` only); deploy job `pages: write`, `id-token: write`. `workflow_dispatch` inputs: `force` (skip the gate), `no_llm`. Secret: `ANTHROPIC_API_KEY`.
 
 ## Deployment setup (the user does this once; walk them through it)
 
@@ -137,7 +140,8 @@ Rules: a failing source logs a warning and returns `[]`. Use a generic User-Agen
 2. Create a GitHub repo and push this project. Pages on a free account needs a **public** repo; the content is public news anyway, and the key stays in Secrets.
 3. Repo Settings → Pages → Source: **GitHub Actions**.
 4. Repo Settings → Secrets → Actions: add `ANTHROPIC_API_KEY`.
-5. Run the workflow manually, open the Pages URL on the phone, then choose **Add to Home Screen**.
+5. Run the workflow manually (Actions → Daily digest → Run workflow, tick `force`; the first run creates the `data` branch), open the Pages URL on the phone, then choose **Add to Home Screen**.
+6. Add a `main` ruleset: require a PR and the `CI` check, block force push and deletion (no bypass needed, the bot only pushes to `data`).
 
 ## Build order
 

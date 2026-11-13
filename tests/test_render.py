@@ -4,7 +4,7 @@ from datetime import UTC, date, datetime
 from pathlib import Path
 
 from yellow.models import Digest, DigestItem, TechRef
-from yellow.render import TEMPLATES_DIR, load_digests, render_site, save_digest
+from yellow.render import load_digests, render_site, save_digest, templates_dir
 from yellow.tech_registry import annotate_digest, update_registry
 
 DAY = date(2026, 11, 13)
@@ -157,7 +157,7 @@ def test_corrupt_digest_is_skipped(tmp_path, caplog):
 
 
 def test_templates_never_use_safe_filter():
-    for path in TEMPLATES_DIR.iterdir():
+    for path in templates_dir().iterdir():
         assert "|safe" not in path.read_text().replace(" ", ""), path.name
 
 
@@ -200,3 +200,12 @@ def test_older_items_show_their_date(cfg):
     noon = datetime(2026, 11, 13, 10, 0, tzinfo=UTC)  # 12:00 in Europe/Bucharest
     assert localtime(noon, date(2026, 11, 13)) == "12:00"
     assert localtime(noon, date(2026, 11, 14)) == "13 Nov 12:00"
+
+
+def test_templates_come_from_project_root_not_file_location(tmp_path, cfg, monkeypatch):
+    repo = Path(__file__).resolve().parents[1]
+    monkeypatch.setenv("YELLOW_ROOT", str(repo))
+    monkeypatch.chdir(tmp_path)
+    assert templates_dir() == repo / "templates"
+    out = _build(tmp_path, cfg, [_digest()])
+    assert (out / "index.html").is_file()

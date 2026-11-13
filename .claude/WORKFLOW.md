@@ -74,9 +74,9 @@ Scopes: `sources`, `collect`, `analyze`, `registry`, `render`, `ui`, `cli`, `ci`
 
 ## Exceptions
 
-- **The daily CI bot commits to `main`.** From build step 9, the GitHub Action commits `data/`
-  (seen items, tech registry, digests) to `main` every morning. That's state, not code, and the
-  only allowed direct commit. The hook doesn't apply to it (it only guards Claude Code).
+- **The daily bot pushes only to the `data` branch.** From build step 9 the GitHub Action stores
+  state (seen items, tech registry, digests) on the orphan `data` branch. Nothing commits to `main`
+  outside PRs.
 
 ## Quirks to know
 
