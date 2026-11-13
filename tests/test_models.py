@@ -90,7 +90,7 @@ def test_technology_json_round_trip() -> None:
         first_seen=date(2026, 11, 10),
         last_seen=date(2026, 11, 12),
         counts={"2026-11-10": 1, "2026-11-12": 3},
-        items=["abc"],
+        items={"2026-11-12": ["abc"]},
     )
     assert Technology.model_validate_json(t.model_dump_json()) == t
 

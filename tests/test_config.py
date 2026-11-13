@@ -51,6 +51,11 @@ def test_unknown_timezone_is_validation_error(repo_root: Path) -> None:
         ("llm", "max_tokens", -1),
         ("llm", "effort", "lwo"),
         ("caps", "lookback_hours", 0),
+        ("registry", "trending_factor", 1),
+        ("registry", "trending_min_count", 0),
+        ("registry", "trending_window_days", 0),
+        ("registry", "max_new", 0),
+        ("registry", "max_trending", 0),
     ],
 )
 def test_bounds(repo_root: Path, section: str | None, key: str, value: object) -> None:
@@ -67,6 +72,7 @@ def test_bounds(repo_root: Path, section: str | None, key: str, value: object) -
         ("llm", "max_item"),
         ("caps", "lookback_hour"),
         ("site", "titel"),
+        ("registry", "max_trendin"),
         ("sources", "hackernews", "enabeld"),
         ("sources", "hackernwes"),
     ],
