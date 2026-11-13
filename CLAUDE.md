@@ -4,7 +4,7 @@ Guidance for Claude Code when working in this repository.
 
 ## Start here
 
-**Status:** planning and Claude Code setup are done; **no app code exists yet**. The full agreed spec, the decisions already made with the user, the open questions and the build order are in **`docs/PLAN.md`**. Read it before doing anything, and continue from its "Status" section.
+**Status:** build steps 1–5 are done (sources, collector, analyzer). The full agreed spec, the decisions already made with the user, the open questions and the build order are in **`docs/PLAN.md`**. Read it before doing anything, and continue from its "Status" section.
 
 ## What this is
 
@@ -17,36 +17,15 @@ Guidance for Claude Code when working in this repository.
 
 The focus is **AI**. X/Twitter is deliberately **disabled** (its API is paid). `sources/x.py` is a stub that stays off until there's a token.
 
-## Layout
-
-```
-config.yaml                  # timezone, sources, categories, llm.model, caps (no secrets)
-src/yellow/
-  models.py                  # pydantic: Item, Digest, Technology
-  sources/                   # one module per source; each implements Source.fetch(since) -> list[Item]
-  collect.py                 # parallel fetch, dedupe, data/seen.json filter
-  analyze.py                 # the single Claude API call -> Digest
-  tech_registry.py           # data/tech_registry.json: first_seen, daily counts, trending
-  render.py                  # Jinja2 -> site/
-  main.py                    # CLI entry: python -m yellow run
-templates/                   # HTML/CSS/JS/PWA assets (yellow theme)
-data/                        # state committed by CI: seen.json, tech_registry.json, digests/
-site/                        # build output (gitignored, deployed by CI)
-tests/                       # pytest, fixture-based, no network
-.github/workflows/daily.yml
-```
-
 ## Commands
 
+Call the venv binaries directly (`.venv/bin/pytest`, `.venv/bin/ruff`, `.venv/bin/python`); the
+planned file layout is in `docs/PLAN.md`.
+
 ```bash
-source .venv/bin/activate
-pip install -e ".[dev]"                     # install with dev deps
-pytest                                      # all tests (offline, fixtures only)
-pytest tests/test_registry.py -k trending   # single test
-ruff check . && ruff format .               # lint + format
 python -m yellow run --dry-run --no-llm     # full pipeline, no API cost, writes site/
 python -m yellow run                        # real run (needs ANTHROPIC_API_KEY)
-python -m http.server -d site 8000          # preview at http://localhost:8000
+python -m http.server -d site 8000          # preview: the sandbox blocks local ports, so the user runs this with `!`
 ```
 
 ## Rules
@@ -70,13 +49,7 @@ python -m http.server -d site 8000          # preview at http://localhost:8000
 **How a task flows (branch → implementer → checks → review → commit → PR → user merges) is in
 `.claude/WORKFLOW.md`. Follow it.**
 
-- `/run-digest`: run and preview the pipeline locally.
-- `/add-source`: add a new news source adapter end to end.
-- `/yellow-ui`: design tokens and component rules for the phone UI.
-- `/ship`: run a task end to end: implementer, checks, **one** `code-reviewer` pass, fixes, `docs/PLAN.md`, commit on the task branch, push, PR.
-- `implementer` agent (Sonnet): writes the code and tests for one task from the main session's brief. Never commits or switches branches.
-- `code-reviewer` agent (Opus): independent reviewer with **no conversation context**; reviews only what's on disk. Runs once per task via `/ship`, not after every turn (usage limits matter).
-- `ui-builder` agent (Sonnet): the implementer for the phone UI (templates/, CSS, JS, PWA) at build step 7, following `yellow-ui`.
+- Skills and agents are listed in every session; their roles in the flow are in `WORKFLOW.md`. The `code-reviewer` runs **once per task**, not after every turn (usage limits matter).
 - PostToolUse hook `.claude/hooks/ruff-on-edit.sh`: `ruff check --fix` then `ruff format` on every edited `.py` file; unfixable lint errors come back to Claude.
 - PreToolUse hook `.claude/hooks/no-commit-on-main.py`: blocks `git commit`/`git push` on `main`.
 
