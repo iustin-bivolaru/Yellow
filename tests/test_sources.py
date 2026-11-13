@@ -161,9 +161,10 @@ def test_failing_source_returns_empty_list(cfg: Config) -> None:
 
 
 def test_enabled_sources_only_returns_implemented_enabled(cfg: Config) -> None:
+    all_on = {"hackernews", "reddit", "arxiv", "huggingface", "github_trending", "rss"}
     names = {s.name for s in enabled_sources(cfg, _client(lambda r: httpx.Response(200)))}
-    assert names == {"hackernews", "rss"}
+    assert names == all_on  # x is off in config.yaml
     cfg = cfg.model_copy(deep=True)
     cfg.sources.hackernews.enabled = False
     names = {s.name for s in enabled_sources(cfg, _client(lambda r: httpx.Response(200)))}
-    assert names == {"rss"}
+    assert names == all_on - {"hackernews"}

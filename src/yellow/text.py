@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import html
 import re
+from datetime import UTC, datetime
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 _TAG_RE = re.compile(r"<[^>]+>")
@@ -48,3 +49,14 @@ def canonical_url(url: str) -> str:
     )
     path = parts.path.rstrip("/") or ""
     return urlunsplit(("https", host, path, urlencode(query), ""))
+
+
+def parse_iso_utc(value: object) -> datetime | None:
+    """Parse an ISO-8601 timestamp such as "2026-11-13T00:00:00Z" to UTC; None if missing/bad."""
+    if not isinstance(value, str) or not value:
+        return None
+    try:
+        dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    return dt.replace(tzinfo=UTC) if dt.tzinfo is None else dt.astimezone(UTC)

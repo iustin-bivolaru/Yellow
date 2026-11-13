@@ -129,6 +129,32 @@ class ArxivConfig(SourceConfig):
     max_items: Annotated[int, Field(gt=0, description="Most papers kept per run.")] = 15
 
 
+class HuggingFaceConfig(SourceConfig):
+    """Hugging Face settings: daily papers and new trending models."""
+
+    papers: Annotated[StrictBool, Field(description="Include Hugging Face daily papers.")] = True
+    models: Annotated[StrictBool, Field(description="Include new trending models.")] = True
+    model_max_age_days: Annotated[
+        int, Field(gt=0, description="Trending models older than this many days are skipped.")
+    ] = 14
+    max_models: Annotated[int, Field(gt=0, description="Most trending models kept per run.")] = 10
+
+
+class GithubTrendingConfig(SourceConfig):
+    """GitHub settings: recently created AI repos that gained stars fast."""
+
+    query: Annotated[
+        str, Field(description="GitHub search terms matched against name/description/README.")
+    ] = "llm OR agent OR ai"
+    min_stars: Annotated[
+        int, Field(ge=0, description="Repos below this many stars are skipped.")
+    ] = 100
+    created_within_days: Annotated[
+        int, Field(gt=0, description="Only repos created in the last N days are considered.")
+    ] = 7
+    max_items: Annotated[int, Field(gt=0, description="Most repos kept per run.")] = 15
+
+
 class RssFeed(_Strict):
     """One RSS/Atom feed: display name and URL."""
 
@@ -164,12 +190,12 @@ class SourcesConfig(_Strict):
     reddit: Annotated[RedditConfig, Field(default_factory=RedditConfig, description="Reddit RSS.")]
     arxiv: Annotated[ArxivConfig, Field(default_factory=ArxivConfig, description="arXiv papers.")]
     huggingface: Annotated[
-        SourceConfig,
-        Field(default_factory=SourceConfig, description="Hugging Face papers and models."),
+        HuggingFaceConfig,
+        Field(default_factory=HuggingFaceConfig, description="Hugging Face papers and models."),
     ]
     github_trending: Annotated[
-        SourceConfig,
-        Field(default_factory=SourceConfig, description="Fast-rising new GitHub AI repos."),
+        GithubTrendingConfig,
+        Field(default_factory=GithubTrendingConfig, description="Fast-rising new GitHub AI repos."),
     ]
     x: Annotated[XConfig, Field(default_factory=XConfig, description="X/Twitter (paid; off).")]
     rss: Annotated[RssConfig, Field(default_factory=RssConfig, description="RSS/Atom feeds.")]

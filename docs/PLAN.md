@@ -9,7 +9,8 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 - [x] Build step 1: package skeleton, `config.py` (strict), `models.py`, tests (pushed as 91a01fc)
 - [x] Build step 2: `sources/abstract_source.py`, Hacker News, RSS (9 verified feeds), `text.py` (canonical URLs), fixtures + tests
 - [x] Build step 3: `collect.py` (parallel fetch, transitive dedupe by canonical URL + normalized title, `data/seen.json` filter/mark/prune), tests
-- [ ] **Next: build step 4** (remaining sources: Reddit, arXiv, Hugging Face, GitHub trending, X stub), then continue the build order below.
+- [x] Build step 4: Reddit (one combined request + 429 retry), arXiv, Hugging Face (papers + new trending models), GitHub (new repos by stars), X stub; real fixtures + tests. Live run: ~170 items/day after dedupe.
+- [ ] **Next: build step 5** (`analyze.py`: keyword fallback first, then the Claude call), then continue the build order below.
 - [ ] One-time setup by the user, after the code works (see "Deployment setup")
 
 ### Answered questions
@@ -22,6 +23,8 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 ### Carried over from code review (do in the named step)
 - ~~Per-source config models with `extra="forbid"`~~: done in `config.py` (`SourcesConfig`). A new source must add its model there.
 - Step 8: `main.py` must call `collect(..., today=<local date>)` and only `mark_seen` + `prune_seen` + `save_seen` **after** the digest is built successfully. `filter_seen` keeps items first seen *today*, so same-day reruns rebuild the same digest.
+- Step 5: ~170 items/day arrive but `llm.max_items` is 150, so `analyze.py` must pick which to send (e.g. per-source quotas + score), not just truncate.
+- `collect._rank` compares scores across scales (stars vs points) when merging duplicates; only affects which copy is shown. Revisit if it looks wrong in the UI.
 - Step 5: `analyze.py` coerces any `category` not in `config.categories` to "Other Tech" (with a test). `importance` is already clamped to 1..5 in `models.py`.
 
 ## What the user wants

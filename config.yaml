@@ -48,8 +48,16 @@ sources:
     max_items: 15
   huggingface:
     enabled: true
+    papers: true
+    models: true
+    model_max_age_days: 14   # trending models are rarely < 1 day old; seen.json stops repeats
+    max_models: 10
   github_trending:
-    enabled: true
+    enabled: true            # uses GITHUB_TOKEN from the environment when set (higher rate limit)
+    query: "llm OR agent OR ai"
+    min_stars: 100
+    created_within_days: 7
+    max_items: 15
   x:
     enabled: false           # paid API; needs X_BEARER_TOKEN
   rss:

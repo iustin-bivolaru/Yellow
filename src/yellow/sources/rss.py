@@ -44,7 +44,7 @@ class RssSource(Source):
         return items[: self.cfg.caps.max_items_per_source]
 
 
-def _entry_time(entry: feedparser.FeedParserDict) -> datetime | None:
+def entry_time(entry: feedparser.FeedParserDict) -> datetime | None:
     """Return the entry's publish (or update) time in UTC, or None if it has none.
 
     feedparser normalizes *_parsed fields to a UTC struct_time.
@@ -65,7 +65,7 @@ def parse(content: bytes | str, feed_name: str, since: datetime) -> list[Item]:
     for entry in parsed.entries:
         title = html_to_text(entry.get("title"), limit=300)
         link = (entry.get("link") or "").strip()
-        published = _entry_time(entry)
+        published = entry_time(entry)
         if not title or not is_http_url(link) or published is None or published < since:
             continue  # unsafe/missing links and undated entries are skipped
         items.append(

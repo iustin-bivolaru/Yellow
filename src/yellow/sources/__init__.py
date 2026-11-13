@@ -8,14 +8,27 @@ import httpx
 
 from yellow.config import Config
 from yellow.sources.abstract_source import Source
+from yellow.sources.arxiv import ArxivSource
+from yellow.sources.github_trending import GithubTrendingSource
 from yellow.sources.hackernews import HackerNewsSource
+from yellow.sources.huggingface import HuggingFaceSource
+from yellow.sources.reddit import RedditSource
 from yellow.sources.rss import RssSource
+from yellow.sources.x import XSource
 
 log = logging.getLogger(__name__)
 
 REGISTRY: dict[str, type[Source]] = {
-    HackerNewsSource.name: HackerNewsSource,
-    RssSource.name: RssSource,
+    cls.name: cls
+    for cls in (
+        HackerNewsSource,
+        RedditSource,
+        ArxivSource,
+        HuggingFaceSource,
+        GithubTrendingSource,
+        XSource,
+        RssSource,
+    )
 }
 
 
