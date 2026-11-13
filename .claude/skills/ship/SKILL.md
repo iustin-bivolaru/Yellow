@@ -13,7 +13,7 @@ agents do. Keep it cheap: one implementer run, one reviewer run per task, few tu
 
 1. `git fetch origin` (as its own command), then `scripts/new-task.sh <type>/<short-name>`.
    Exit 3 means the switch touches sandbox-protected paths: give the user the printed
-   `git switch --no-track -c ...` line to run with `!`.
+   `git switch --no-track -c ...` line to run with `!`, then run `scripts/new-task.sh --tidy`.
 2. **Implement:** spawn `implementer` (or `ui-builder`) with a brief: goal, the `docs/PLAN.md`
    section, files, data contracts, edge cases, test expectations, the `docs/PLAN.md` status line to
    set (tick the step, set "Next"), and what's out of scope. Resolve open questions with the user
@@ -33,5 +33,6 @@ agents do. Keep it cheap: one implementer run, one reviewer run per task, few tu
    - Breaking change: `feat(analyze)!: ...` plus a `BREAKING CHANGE:` line in the body.
 5. **Push and open the PR:** run the two commands the script printed, **each as its own Bash call**
    (`git push origin <branch>`, then `gh pr create --base main --head <branch> ...`). No `-u`:
-   the sandbox protects `.git/config`. CI runs ruff + pytest on the PR. The **user merges**.
+   the sandbox protects `.git/config`. CI runs ruff + pytest on the PR. The **user merges**; afterwards
+   run `git fetch origin` then `scripts/new-task.sh --tidy` (or the next task's `new-task.sh`).
 6. Report in a few lines: what shipped, test count, review outcome, PR link, next step.
