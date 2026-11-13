@@ -12,6 +12,7 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 - [x] Build step 3: `collect.py` (parallel fetch, transitive dedupe by canonical URL + normalized title, `data/seen.json` filter/mark/prune), tests
 - [x] Build step 4: Reddit (one combined request + 429 retry), arXiv, Hugging Face (papers + new trending models), GitHub (new repos by stars), X stub; real fixtures + tests. Live run: ~170 items/day after dedupe.
 - [x] Build step 5: `analyze.py`: fair per-source selection (≤ `llm.max_items`), keyword fallback (`--no-llm`), one streamed Claude call with structured output, stop_reason checks, cost log. Tested with a fake client; **not yet run against the real API** (no key locally).
+- [x] CI (2026-11-13): `.github/workflows/ci.yml` runs ruff format/check + pytest on every PR and on pushes to `main`. Later: a GitHub ruleset on `main` that requires a PR and this check (see the step 9 note below).
 - [ ] **Next: build step 6** (`tech_registry.py`: first_seen, counts, New on radar, trending), then continue the build order below.
 - [ ] One-time setup by the user, after the code works (see "Deployment setup")
 
@@ -23,6 +24,7 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 - Every step follows `.claude/WORKFLOW.md`: task branch → `implementer` agent (Sonnet) from a brief → checks → one `code-reviewer` pass (Opus) → commit → PR → the user merges.
 - Build the **interface** (templates/, style.css, app.js, PWA files; build step 7) with the `ui-builder` agent instead of `implementer` (user's request), briefed with the `yellow-ui` skill and the `render.py` data contract.
 - Step 9's daily GitHub Action commits `data/` to `main` as the github-actions bot. That's the one allowed exception to "no direct commits to main" (state, not code). If GitHub branch protection is ever added, the Action needs a bypass or its own branch.
+- **Proposed for step 9 (not decided yet):** the daily Action writes `data/` to a separate `data` branch instead, so a ruleset can protect `main` (PR + passing `CI`) with no bypass. Keep the local no-commit-on-main hook too: it catches mistakes before a commit, the ruleset is the server-side lock.
 
 ### Carried over from code review (do in the named step)
 - ~~Per-source config models with `extra="forbid"`~~: done in `config.py` (`SourcesConfig`). A new source must add its model there.
