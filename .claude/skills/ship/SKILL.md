@@ -1,53 +1,38 @@
 ---
 name: ship
-description: Finish the current Yellow task - run tests and lint, one independent code review, fix findings, update docs/PLAN.md, commit on a task branch (Conventional Commits, no attribution), push it and open a pull request for the user to merge. Use when a build step's code is written, or when the user says ship / commit / push / move on.
+description: Finish the current Yellow task - one independent code review, fixes by the implementer, then scripts/ship.sh (checks, commit on the task branch with a Conventional Commits message, no attribution) and the printed push + PR commands. Use when a build step's code is written, or when the user says ship / commit / push / move on.
 ---
 
 # Ship a task
 
-Keep this cheap: one implementer run, one reviewer run per task, few turns. The whole flow is
-described in `.claude/WORKFLOW.md`.
+The whole flow, roles and quirks are in `.claude/WORKFLOW.md`. The main session does not edit code:
+agents do. Keep it cheap: one implementer run, one reviewer run per task, few turns.
 
 **Never commit or push to `main`** (a PreToolUse hook blocks it). One branch per task, named
-`<type>/<short-name>`, e.g. `feat/tech-registry`, `fix/hf-date-window`, `chore/ci-workflow`.
-Create it **before** the first edit of a task: `git switch main && git pull && git switch -c <branch>`.
+`<type>/<short-name>`, created **before** the first edit:
 
-0. **Implement (if not done yet):** spawn the `implementer` agent (Sonnet) with a brief: the goal,
-   the `docs/PLAN.md` section, the files to create/change, the data contracts (models, function
-   signatures), edge cases and test expectations, and what's out of scope. Resolve open questions
-   with the user **before** briefing. Read its report; send follow-ups to the same agent
-   (SendMessage) rather than starting a new one.
-
-1. **Checks (deterministic, free):**
-   `.venv/bin/ruff format . && .venv/bin/ruff check . && .venv/bin/pytest -q`
-   Fix any failure before going on. Don't call the reviewer on red tests.
-2. **Review once:** spawn the `code-reviewer` agent (Opus) with the prompt
-   "Review the uncommitted changes in this repository." Wait for its result.
-   - Fix every blocker/major finding, or explain to the user why it's wrong. Small fixes: do them
-     directly. Larger ones: send them to the implementer agent that wrote the code.
-   - Fix minor findings when the fix is small; otherwise add them to the
-     "Carried over from code review" list in `docs/PLAN.md`.
-   - Re-run the reviewer only if a blocker fix was substantial (at most once).
-3. Re-run the checks from step 1.
-4. **Update `docs/PLAN.md`:** tick the finished step in "Status", set "Next" to the following step.
-5. **Commit** on the task branch: `git add -A`, then a Conventional Commits message:
-   ```
-   <type>(<scope>): <summary, imperative, lowercase, no period, <= 72 chars>
-
-   <optional body: what changed and why, wrapped at ~72 chars>
-   ```
-   - type: `feat` (new behavior), `fix`, `refactor`, `perf`, `test`, `docs`, `chore`
-     (tooling/config), `ci`, `build` (deps/packaging).
-   - scope: the area, e.g. `sources`, `collect`, `analyze`, `registry`, `render`, `ui`, `cli`,
-     `claude` (Claude Code setup). Optional when the change is repo-wide.
+1. `git fetch origin` (as its own command), then `scripts/new-task.sh <type>/<short-name>`.
+   Exit 3 means the switch touches sandbox-protected paths: give the user the printed
+   `git switch --no-track -c ...` line to run with `!`, then run `scripts/new-task.sh --tidy`.
+2. **Implement:** spawn `implementer` (or `ui-builder`) with a brief: goal, the `docs/PLAN.md`
+   section, files, data contracts, edge cases, test expectations, the `docs/PLAN.md` status line to
+   set (tick the step, set "Next"), and what's out of scope. Resolve open questions with the user
+   **before** briefing. Send follow-ups to the same agent (SendMessage), not a new one.
+3. **Review once:** spawn `code-reviewer` with "Review the uncommitted changes in this repository."
+   - Decide per finding. Blocker/major: fix (or explain to the user why it's wrong). Minor: fix if
+     small, else add to "Carried over from code review" in `docs/PLAN.md`.
+   - Fixes go to the same implementer, not the main session. Re-review only if a blocker fix was
+     substantial (at most once).
+4. **Ship:** `scripts/ship.sh "<type>(<scope>): <summary>" ["<body>"]`. It runs
+   `ruff format --check`, `ruff check` and `pytest`, stages everything, refuses secret files,
+   validates the message (lowercase, no period, <= 72 chars, no attribution) and commits. If the
+   checks fail, send the failure to the implementer and re-run.
+   - type: `feat`, `fix`, `refactor`, `perf`, `test`, `docs`, `chore`, `ci`, `build`.
+   - scope: `sources`, `collect`, `analyze`, `registry`, `render`, `ui`, `cli`, `ci`, `claude`.
+     Optional when repo-wide.
    - Breaking change: `feat(analyze)!: ...` plus a `BREAKING CHANGE:` line in the body.
-   - Example: `feat(sources): add Reddit, arXiv, Hugging Face and GitHub adapters`
-   - **No** `Co-Authored-By` or "Generated with Claude Code" lines.
-6. **Push and open a PR:** `git push origin <branch>` (not `-u`: the sandbox protects
-   `.git/config`, so the upstream can't be saved), then, **as its own Bash call** (a `gh` command
-   only runs outside the sandbox when nothing is chained to it):
-   `gh pr create --base main --head <branch> --title "<the commit summary line>" --body "<what/why, test count, review outcome>"`.
-   Don't merge it: the **user merges** on GitHub. After they say it's merged:
-   `git switch main && git pull --ff-only && git branch -D <branch>` and
-   `git push origin --delete <branch>`.
-7. Report in a few lines: what shipped, test count, review outcome, PR link, next step.
+5. **Push and open the PR:** run the two commands the script printed, **each as its own Bash call**
+   (`git push origin <branch>`, then `gh pr create --base main --head <branch> ...`). No `-u`:
+   the sandbox protects `.git/config`. CI runs ruff + pytest on the PR. The **user merges**; afterwards
+   run `git fetch origin` then `scripts/new-task.sh --tidy` (or the next task's `new-task.sh`).
+6. Report in a few lines: what shipped, test count, review outcome, PR link, next step.

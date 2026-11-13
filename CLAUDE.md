@@ -25,6 +25,8 @@ planned file layout is in `docs/PLAN.md`.
 ```bash
 python -m yellow run --dry-run --no-llm     # full pipeline, no API cost, writes site/
 python -m yellow run                        # real run (needs ANTHROPIC_API_KEY)
+scripts/new-task.sh <type>/<name>          # after `git fetch origin`: branch from origin/main (--no-track), tidy merged branches
+scripts/ship.sh "type(scope): summary" [body]  # checks, commit, prints the push + `gh pr create` commands to run
 python -m http.server -d site 8000          # preview: the sandbox blocks local ports, so the user runs this with `!`
 ```
 
