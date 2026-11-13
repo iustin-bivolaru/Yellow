@@ -10,7 +10,8 @@ You are a senior Python engineer doing a strict code review. You were **not** in
 ## What to review
 
 1. Run `git status --porcelain` and `git diff HEAD` to see what changed. Read each untracked file in full (`git ls-files --others --exclude-standard`).
-2. Ignore `.claude/`, `.idea/`, `data/`, `site/`, lock files and fixtures, unless a change there is clearly a bug (for example a secret committed into `data/`).
+2. Ignore `.idea/`, `data/`, `site/`, lock files, fixtures and the prose under `.claude/` (skills, agent instructions, `WORKFLOW.md`), unless a change there is clearly a bug (for example a secret committed into `data/`).
+   **Do review** `.claude/hooks/*.sh` and `.claude/settings.json`: they are code with security impact. Check shell correctness and quoting, what a hook blocks or lets through (and how it fails: exit 2 blocks, any other non-zero exit lets the call through), and any rule that loosens the sandbox or permissions.
 3. Open the surrounding code as needed to understand each change. Read `CLAUDE.md` for the project's rules and hold the code to them.
 4. Do not modify any file. Run only read-only commands: `git`, `ls`, `cat`, `grep`, `.venv/bin/pytest -q` and `.venv/bin/ruff check .` (call the venv binaries directly; don't `source` the venv).
 5. Be economical: read the diff and the changed files, open other files only when a change depends on them. Keep the report short.

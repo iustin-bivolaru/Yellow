@@ -52,16 +52,29 @@ Scopes: `sources`, `collect`, `analyze`, `registry`, `render`, `ui`, `cli`, `ci`
 | What | Where | Effect |
 |---|---|---|
 | Ruff on every edit | PostToolUse hook `.claude/hooks/ruff-on-edit.sh` | Autofixes + formats each edited `.py` file; unfixable lint errors go back to the agent |
-| No commits to main | PreToolUse hook `.claude/hooks/no-commit-on-main.sh` | Blocks `git commit`/`git push` on `main` and pushes to `main` |
+| No commits to main | PreToolUse hook `.claude/hooks/no-commit-on-main.sh` | Blocks `git commit`/`git push` on `main` and pushes to `main`. It matches command text, so it stops mistakes, not deliberate workarounds (`git -c ... commit`, aliases). There is no GitHub branch protection (the user's choice) |
 | Docstrings | ruff `D` rules + `tests/test_docstrings.py` | Every module/class/function in `src/` needs one |
 | Secret files | deny rules + Bash sandbox in `.claude/settings.json` | `.env` files can't be read by any tool or shell command (the tracked `.env.example` is the only exception for the sandbox, so git works) |
-| Sandbox | `.claude/settings.json` `sandbox` | Every shell command runs in a macOS sandbox, network limited to the project's sources, PyPI, GitHub and the Anthropic API. `git push/fetch/pull` and `gh pr` run outside it (they need the keychain) and still ask permission |
+| Sandbox | `.claude/settings.json` `sandbox` | Every shell command runs in a macOS sandbox, network limited to the project's sources, PyPI, GitHub and the Anthropic API. `git push/fetch/pull` run outside it (they need the keychain) and still ask permission; so does `gh pr` after the one-time local setup below |
+| Review of Claude config | `code-reviewer` agent | Reviews `.claude/hooks/*.sh` and `.claude/settings.json` like code; skips prose (skills, agent text, this file) |
 
 ## Cost rules (5-hour usage window)
 
 - One implementer run and one review per task; follow-ups go to the same agent, not a new one.
 - Deterministic checks (ruff, pytest, hooks) instead of agent runs wherever possible.
 - The app itself makes exactly one Claude API call per daily run (see `CLAUDE.md`).
+
+## Exceptions
+
+- **The daily CI bot commits to `main`.** From build step 9, the GitHub Action commits `data/`
+  (seen items, tech registry, digests) to `main` every morning. That's state, not code, and the
+  only allowed direct commit. The hook doesn't apply to it (it only guards Claude Code).
+
+## One-time local setup (not in git)
+
+- `gh` needs the macOS keychain, which the sandbox blocks. Each machine runs once:
+  `/sandbox exclude "gh pr *"` (saved in the gitignored `.claude/settings.local.json`).
+  Without it, the main session prints the `gh pr create` command for the user to run with `!`.
 
 ## Quirks to know
 
