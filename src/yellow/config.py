@@ -61,7 +61,7 @@ class LLMConfig(_Strict):
     effort: Annotated[
         Literal["low", "medium", "high"], Field(description="Reasoning effort for the call.")
     ] = "low"
-    max_tokens: Annotated[int, Field(gt=0, description="Output token limit for the call.")] = 16000
+    max_tokens: Annotated[int, Field(gt=0, description="Output token limit for the call.")] = 32000
     max_items: Annotated[int, Field(gt=0, description="Most items sent to Claude in one run.")] = (
         150
     )

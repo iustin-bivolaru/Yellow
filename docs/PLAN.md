@@ -10,7 +10,8 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 - [x] Build step 2: `sources/abstract_source.py`, Hacker News, RSS (9 verified feeds), `text.py` (canonical URLs), fixtures + tests
 - [x] Build step 3: `collect.py` (parallel fetch, transitive dedupe by canonical URL + normalized title, `data/seen.json` filter/mark/prune), tests
 - [x] Build step 4: Reddit (one combined request + 429 retry), arXiv, Hugging Face (papers + new trending models), GitHub (new repos by stars), X stub; real fixtures + tests. Live run: ~170 items/day after dedupe.
-- [ ] **Next: build step 5** (`analyze.py`: keyword fallback first, then the Claude call), then continue the build order below.
+- [x] Build step 5: `analyze.py`: fair per-source selection (≤ `llm.max_items`), keyword fallback (`--no-llm`), one streamed Claude call with structured output, stop_reason checks, cost log. Tested with a fake client; **not yet run against the real API** (no key locally).
+- [ ] **Next: build step 6** (`tech_registry.py`: first_seen, counts, New on radar, trending), then continue the build order below.
 - [ ] One-time setup by the user, after the code works (see "Deployment setup")
 
 ### Answered questions
@@ -23,9 +24,8 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 ### Carried over from code review (do in the named step)
 - ~~Per-source config models with `extra="forbid"`~~: done in `config.py` (`SourcesConfig`). A new source must add its model there.
 - Step 8: `main.py` must call `collect(..., today=<local date>)` and only `mark_seen` + `prune_seen` + `save_seen` **after** the digest is built successfully. `filter_seen` keeps items first seen *today*, so same-day reruns rebuild the same digest.
-- Step 5: ~170 items/day arrive but `llm.max_items` is 150, so `analyze.py` must pick which to send (e.g. per-source quotas + score), not just truncate.
+- First real Claude run (step 8 or with a key): check that 150 items fit in `max_tokens` 32k with room to spare (log shows output tokens), and that summaries/categories look right.
 - `collect._rank` compares scores across scales (stars vs points) when merging duplicates; only affects which copy is shown. Revisit if it looks wrong in the UI.
-- Step 5: `analyze.py` coerces any `category` not in `config.categories` to "Other Tech" (with a test). `importance` is already clamped to 1..5 in `models.py`.
 
 ## What the user wants
 
@@ -97,7 +97,7 @@ Rules: a failing source logs a warning and returns `[]`. Use a generic User-Agen
 
 ## Claude analysis (`analyze.py`)
 
-- `anthropic` SDK, `client.messages.parse(model=cfg.llm.model, max_tokens=16000, output_config={"effort": "low"}, output_format=Digest, ...)`.
+- `anthropic` SDK, `client.messages.stream(model=cfg.llm.model, max_tokens=32000, output_config={"effort": "low"}, output_format=LLMOutput, ...)` + `get_final_message()` (streamed: 150 items need ~15-20k output tokens, too long for a non-streaming call).
 - With `claude-sonnet-5-5`, also send `betas=["server-side-fallback-2026-07-01"]` and `fallbacks="default"`. Haiku 5.5 has no server-side fallback.
 - Check `stop_reason` (`refusal`, `max_tokens`) before using `parsed_output`. On any failure, build the keyword-only digest so the site still builds.
 - Input: up to about 150 items, each with id, title, source, snippet (truncated) and score. Pass the existing tech-registry names so Claude normalizes them (for example "Llama-4" → "Llama 4").

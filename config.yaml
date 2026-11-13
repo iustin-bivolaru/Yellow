@@ -15,7 +15,7 @@ http:
 llm:
   model: claude-haiku-5-5    # alternative: claude-sonnet-5-5 (never Opus)
   effort: low
-  max_tokens: 16000
+  max_tokens: 32000          # ceiling, not spend: ~100-130 output tokens/item + thinking
   max_items: 150             # items sent to Claude per run
   snippet_chars: 300
 
