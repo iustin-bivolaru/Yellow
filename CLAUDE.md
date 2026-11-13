@@ -8,12 +8,7 @@ Guidance for Claude Code when working in this repository.
 
 ## What this is
 
-**Yellow** is a daily AI/IT news digest. Every morning at 9 AM (local time), a GitHub Actions job:
-1. collects news from free sources (Hacker News, Reddit, arXiv, Hugging Face, GitHub, AI lab and tech-press RSS),
-2. drops duplicates and anything already shown on a previous day,
-3. sends one batch to the Claude API to summarize, categorize and extract technologies,
-4. updates a technology registry (first-seen and trending tech),
-5. renders a yellow-themed, mobile-first static PWA and deploys it to GitHub Pages.
+**Yellow** is a daily AI/IT news digest: a 9 AM GitHub Actions job collects free sources, dedupes, makes one Claude call, updates a tech registry and deploys a yellow phone PWA to GitHub Pages (pipeline and architecture: `docs/PLAN.md`).
 
 The focus is **AI**. X/Twitter is deliberately **disabled** (its API is paid). `sources/x.py` is a stub that stays off until there's a token.
 
