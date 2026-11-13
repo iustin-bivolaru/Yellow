@@ -6,15 +6,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/no-commit-on-main.sh",
-            "timeout": 10
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/no-commit-on-main.py",
+            "timeout": 10,
+            "onFailure": "block"
           }
         ]
       }
     ],
     "PostToolUse": [
       {
-        "matcher": "Edit|Write",
+        "matcher": "Edit|Write|MultiEdit",
         "hooks": [
           {
             "type": "command",
@@ -37,6 +38,10 @@
       "Edit(**/.env)",
       "Edit(**/.env.*)",
       "Bash(*.env*)",
+      "Bash(git -c *)",
+      "Bash(git *--receive-pack*)",
+      "Bash(git *--upload-pack*)",
+      "Bash(git *--exec=*)",
       "mcp__pycharm"
     ]
   },

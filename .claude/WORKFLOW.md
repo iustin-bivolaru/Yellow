@@ -52,7 +52,7 @@ Scopes: `sources`, `collect`, `analyze`, `registry`, `render`, `ui`, `cli`, `ci`
 | What | Where | Effect |
 |---|---|---|
 | Ruff on every edit | PostToolUse hook `.claude/hooks/ruff-on-edit.sh` | Autofixes + formats each edited `.py` file; unfixable lint errors go back to the agent |
-| No commits to main | PreToolUse hook `.claude/hooks/no-commit-on-main.sh` | Blocks `git commit`/`git push` on `main` and pushes to `main`. It matches command text, so it stops mistakes, not deliberate workarounds (`git -c ... commit`, aliases). There is no GitHub branch protection (the user's choice) |
+| No commits to main | PreToolUse hook `.claude/hooks/no-commit-on-main.py` | Blocks `git commit`/`git push` on `main` and pushes to `main`. It matches command text, so it stops mistakes, not deliberate workarounds (`git -c ... commit`, aliases). There is no GitHub branch protection (the user's choice) |
 | Docstrings | ruff `D` rules + `tests/test_docstrings.py` | Every module/class/function in `src/` needs one |
 | Secret files | deny rules + Bash sandbox in `.claude/settings.json` | `.env` files can't be read by any tool or shell command (the tracked `.env.example` is the only exception for the sandbox, so git works) |
 | Sandbox | `.claude/settings.json` `sandbox` | Every shell command runs in a macOS sandbox, network limited to the project's sources, PyPI, GitHub and the Anthropic API. `git push/fetch/pull` run outside it (they need the keychain) and still ask permission; so does `gh pr` after the one-time local setup below |

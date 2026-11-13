@@ -11,9 +11,9 @@ ruff="$root/.venv/bin/ruff"
 [[ -x "$ruff" ]] || exit 0
 
 # Autofix first (e.g. drops unused imports), then format, so no stray blank lines are left.
-"$ruff" check -q --fix "$f" >/dev/null 2>&1
-"$ruff" format -q "$f" >/dev/null 2>&1
-if ! out="$("$ruff" check -q --output-format concise "$f" 2>&1)"; then
+"$ruff" check -q --force-exclude --fix "$f" >/dev/null 2>&1
+"$ruff" format -q --force-exclude "$f" >/dev/null 2>&1
+if ! out="$("$ruff" check -q --force-exclude --output-format concise "$f" 2>&1)"; then
   echo "ruff found issues it could not auto-fix in $f:" >&2
   echo "$out" | head -20 >&2
   exit 2
