@@ -2,13 +2,14 @@
 
 This is the agreed spec for Yellow. Decisions marked **(decided)** were made with the user, so don't reopen them unless the user asks. Read this file together with `CLAUDE.md`.
 
-## Status (2026-11-12)
+## Status (2026-11-13)
 
 - [x] Plan agreed with the user
 - [x] Claude Code setup: `CLAUDE.md`, skills (`run-digest`, `add-source`, `yellow-ui`), the `code-reviewer` agent (Sonnet), and a Stop hook that runs it automatically. `.gitignore` added.
 - [x] Build step 1: package skeleton, `config.py` (strict), `models.py`, tests (pushed as 91a01fc)
 - [x] Build step 2: `sources/base.py`, Hacker News, RSS (9 verified feeds), `text.py` (canonical URLs), fixtures + tests
-- [ ] **Next: build step 3** (`collect.py`), then continue the build order below.
+- [x] Build step 3: `collect.py` (parallel fetch, transitive dedupe by canonical URL + normalized title, `data/seen.json` filter/mark/prune), tests
+- [ ] **Next: build step 4** (remaining sources: Reddit, arXiv, Hugging Face, GitHub trending, X stub), then continue the build order below.
 - [ ] One-time setup by the user, after the code works (see "Deployment setup")
 
 ### Answered questions
@@ -20,6 +21,7 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 
 ### Carried over from code review (do in the named step)
 - ~~Per-source config models with `extra="forbid"`~~: done in `config.py` (`SourcesConfig`). A new source must add its model there.
+- Step 8: `main.py` must call `collect(..., today=<local date>)` and only `mark_seen` + `prune_seen` + `save_seen` **after** the digest is built successfully. `filter_seen` keeps items first seen *today*, so same-day reruns rebuild the same digest.
 - Step 5: `analyze.py` coerces any `category` not in `config.categories` to "Other Tech" (with a test). `importance` is already clamped to 1..5 in `models.py`.
 
 ## What the user wants
