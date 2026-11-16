@@ -1,4 +1,7 @@
+import json
+import subprocess
 from datetime import UTC, date, datetime, timedelta
+from pathlib import Path
 from types import SimpleNamespace
 from typing import Any
 
@@ -33,6 +36,51 @@ def _item(
         score=score,
         **kw,
     )
+
+
+@pytest.fixture
+def cfg(cfg: Config) -> Config:
+    """Config using the SDK ("api") backend, which the FakeClient tests below exercise."""
+    cfg = cfg.model_copy(deep=True)
+    cfg.llm.backend = "api"
+    return cfg
+
+
+@pytest.fixture
+def cli_cfg(cfg: Config) -> Config:
+    """Config using the default Claude Code CLI backend."""
+    cfg = cfg.model_copy(deep=True)
+    cfg.llm.backend = "claude-code"
+    return cfg
+
+
+class FakeRunner:
+    """Stands in for subprocess.run: records calls, returns a canned process or raises."""
+
+    def __init__(
+        self,
+        stdout: str = "",
+        returncode: int = 0,
+        error: Exception | None = None,
+    ) -> None:
+        self.calls: list[tuple[list[str], dict[str, Any]]] = []
+        self._out, self._rc, self._error = stdout, returncode, error
+
+    def __call__(self, cmd: list[str], **kwargs: Any) -> Any:
+        self.calls.append((cmd, kwargs))
+        if self._error:
+            raise self._error
+        return SimpleNamespace(stdout=self._out, stderr="", returncode=self._rc)
+
+
+def _envelope(out: LLMOutput | str | None, **over: Any) -> str:
+    """A Claude Code JSON envelope; `out` goes into `result` as JSON text (str is used as is)."""
+    result = out if isinstance(out, str) else (out.model_dump_json() if out else "")
+    env: dict[str, Any] = {
+        "type": "result", "subtype": "success", "is_error": False, "result": result,
+        "total_cost_usd": 0.0123, "usage": {"input_tokens": 25000, "output_tokens": 8000},
+    }  # fmt: skip
+    return json.dumps(env | over)
 
 
 class FakeClient:
@@ -227,3 +275,129 @@ def test_other_models_do_not_get_fallback_beta(cfg: Config) -> None:
     client = FakeClient(_response(_llm_output(items)))
     analyze(items, cfg, day=DAY, now=NOW, client=client)
     assert client.beta_calls == [] and len(client.calls) == 1
+
+
+# --- Claude Code CLI backend ---------------------------------------------------------------
+
+
+def test_cli_success(cli_cfg: Config, repo_root: Path) -> None:
+    items = [_item(i, score=i) for i in range(4)]
+    runner = FakeRunner(_envelope(_llm_output(items)))
+    d = analyze(items, cli_cfg, day=DAY, now=NOW, known_tech=["Llama 4"], runner=runner)
+    [(cmd, kw)] = runner.calls  # exactly one subprocess call
+    assert cmd[0] == "claude" and "--print" in cmd
+    assert cmd[cmd.index("--model") + 1] == "claude-haiku-5-5"
+    assert cmd[cmd.index("--tools") + 1] == ""  # no built-in tools
+    assert "--strict-mcp-config" in cmd and "--mcp-config" not in cmd
+    assert cmd[cmd.index("--output-format") + 1] == "json"
+    assert json.loads(cmd[cmd.index("--json-schema") + 1])["properties"]["nutshell"]
+    assert "Llama 4" in kw["input"] and kw["input"] not in cmd  # prompt on stdin, not argv
+    assert "Story 0" not in " ".join(cmd)
+    assert kw["timeout"] == 600
+    assert Path(kw["cwd"]).resolve() != repo_root
+    assert repo_root not in Path(kw["cwd"]).resolve().parents
+    assert d.analyzer == "claude-haiku-5-5" and d.nutshell == "One. Two. Three."
+    assert d.items[0].technologies == ["Llama 4", "PyTorch"]
+
+
+def test_cli_structured_output_field_and_fenced_text(cli_cfg: Config) -> None:
+    items = [_item(1)]
+    out = _llm_output(items)
+    structured = _envelope("", structured_output=out.model_dump(mode="json"))
+    d = analyze(items, cli_cfg, day=DAY, now=NOW, runner=FakeRunner(structured))
+    assert d.analyzer == "claude-haiku-5-5"
+    fenced = _envelope(f"```json\n{out.model_dump_json()}\n```")
+    d = analyze(items, cli_cfg, day=DAY, now=NOW, runner=FakeRunner(fenced))
+    assert d.analyzer == "claude-haiku-5-5"
+
+
+def test_cli_logs_usage(cli_cfg: Config, caplog: pytest.LogCaptureFixture) -> None:
+    items = [_item(1)]
+    caplog.set_level("INFO")
+    analyze(items, cli_cfg, day=DAY, now=NOW, runner=FakeRunner(_envelope(_llm_output(items))))
+    assert "25000 input + 8000 output" in caplog.text and "0.0123" in caplog.text
+
+
+@pytest.mark.parametrize(
+    "runner",
+    [
+        FakeRunner(_envelope("Not logged in", is_error=True, subtype="error")),
+        FakeRunner(_envelope("Not logged in"), returncode=1),
+        FakeRunner(error=subprocess.TimeoutExpired("claude", 600)),
+        FakeRunner(error=FileNotFoundError("claude")),
+        FakeRunner("not json at all"),
+        FakeRunner(_envelope("this is not json")),
+        FakeRunner(_envelope('{"nutshell": "x"}')),  # schema-invalid
+        FakeRunner(""),
+    ],
+    ids=[
+        "is_error",
+        "exit1",
+        "timeout",
+        "no-binary",
+        "bad-envelope",
+        "bad-result",
+        "schema",
+        "empty",
+    ],
+)
+def test_cli_failures_fall_back(cli_cfg: Config, runner: FakeRunner) -> None:
+    items = [_item(i) for i in range(3)]
+    d = analyze(items, cli_cfg, day=DAY, now=NOW, runner=runner)
+    assert d.analyzer == KEYWORD_ANALYZER and len(d.items) == 3
+    assert len(runner.calls) == 1
+
+
+def test_cli_not_called_without_llm_or_items(cli_cfg: Config) -> None:
+    runner = FakeRunner(_envelope(None))
+    analyze([_item(1)], cli_cfg, day=DAY, now=NOW, use_llm=False, runner=runner)
+    analyze([], cli_cfg, day=DAY, now=NOW, runner=runner)
+    assert runner.calls == []
+
+
+def test_cli_backend_ignores_sdk_client(cli_cfg: Config) -> None:
+    items = [_item(1)]
+    client = FakeClient(_response(_llm_output(items)))
+    runner = FakeRunner(_envelope(_llm_output(items)))
+    analyze(items, cli_cfg, day=DAY, now=NOW, client=client, runner=runner)
+    assert client.calls == [] and client.beta_calls == [] and len(runner.calls) == 1
+
+
+def test_cli_env_drops_api_credentials_and_has_max_turns(
+    cli_cfg: Config, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-x")
+    monkeypatch.setenv("ANTHROPIC_AUTH_TOKEN", "tok")
+    monkeypatch.setenv("CLAUDE_CODE_OAUTH_TOKEN", "oauth")
+    items = [_item(1)]
+    runner = FakeRunner(_envelope(_llm_output(items)))
+    analyze(items, cli_cfg, day=DAY, now=NOW, runner=runner)
+    [(cmd, kw)] = runner.calls
+    assert "ANTHROPIC_API_KEY" not in kw["env"] and "ANTHROPIC_AUTH_TOKEN" not in kw["env"]
+    assert kw["env"]["CLAUDE_CODE_OAUTH_TOKEN"] == "oauth"
+    assert cmd[cmd.index("--max-turns") + 1] == "3"
+
+
+def test_cli_failure_logs_stderr_tail_and_ci_annotation(
+    cli_cfg: Config,
+    caplog: pytest.LogCaptureFixture,
+    capsys: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class Runner(FakeRunner):
+        def __call__(self, cmd: list[str], **kwargs: Any) -> Any:
+            proc = super().__call__(cmd, **kwargs)
+            proc.stderr = "x" * 600 + "AUTH-FAILED"
+            return proc
+
+    items = [_item(1)]
+    monkeypatch.setenv("GITHUB_ACTIONS", "true")
+    for out in ("garbage", _envelope("nope", is_error=True)):
+        caplog.clear()
+        d = analyze(items, cli_cfg, day=DAY, now=NOW, runner=Runner(out))
+        assert d.analyzer == KEYWORD_ANALYZER
+        assert "AUTH-FAILED" in caplog.text and "x" * 600 not in caplog.text
+    assert "::warning::Claude call failed" in capsys.readouterr().out
+    monkeypatch.delenv("GITHUB_ACTIONS")
+    analyze(items, cli_cfg, day=DAY, now=NOW, runner=Runner("garbage"))
+    assert "::warning::" not in capsys.readouterr().out

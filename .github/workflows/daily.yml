@@ -69,11 +69,21 @@ jobs:
       - name: Install
         run: pip install .
 
+      # The daily call runs through the Claude Code CLI on the user's subscription (pinned version).
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install the Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code@2.1.325
+
       - name: Run the digest
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           FORCE: ${{ inputs.force }}
           NO_LLM: ${{ inputs.no_llm }}
+          DISABLE_AUTOUPDATER: "1"
+          CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1"
         run: |
           args=()
           if [ "$FORCE" != "true" ]; then args+=(--scheduled); fi

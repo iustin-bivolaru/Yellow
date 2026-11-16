@@ -1,10 +1,13 @@
 """Turn collected items into a Digest: one Claude call, or a keyword-only fallback.
 
-Rules (see CLAUDE.md): exactly one Claude call per run, model from config.yaml, structured output
-(Pydantic `output_format`), `stop_reason` checked before the output is used, and on refusal or any
-error the keyword fallback runs so the site still builds.
+Rules (see CLAUDE.md): exactly one Claude call per run, model from config.yaml, structured output,
+and on refusal or any error the keyword fallback runs so the site still builds.
 
-The call streams (`messages.stream` + `get_final_message`) because ~150 items need a large
+Two backends (`llm.backend`). "claude-code" (default) runs the Claude Code CLI once, headless, on
+the user's subscription, with every tool and MCP server disabled (feed text is untrusted). "api"
+uses the Anthropic SDK with a Pydantic `output_format` and checks `stop_reason`.
+
+The api call streams (`messages.stream` + `get_final_message`) because ~150 items need a large
 `max_tokens`, and the SDK refuses long non-streaming requests. The result is the same parsed
 message.
 """
@@ -13,9 +16,12 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import re
+import subprocess
+import tempfile
 from collections import defaultdict
-from collections.abc import Iterable, Sequence
+from collections.abc import Callable, Iterable, Sequence
 from datetime import date, datetime
 from typing import Annotated, Any
 
@@ -306,6 +312,129 @@ def call_claude(client: Any, cfg: Config, system: str, user: str) -> LLMOutput |
     return parsed
 
 
+CLI_TIMEOUT_SECONDS = 600
+CLI_BINARY = "claude"
+CLI_MAX_TURNS = 3  # one request normally; bounds structured-output validation retries
+API_CREDENTIAL_VARS = ("ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN")  # never bill the API
+
+
+def _stderr_tail(proc: Any) -> str:
+    """Last 500 characters of the CLI's stderr (never the env or the prompt)."""
+    err = proc.stderr if isinstance(getattr(proc, "stderr", None), str) else ""
+    return err.strip()[-500:]
+
+
+def cli_command(cfg: Config, system: str) -> list[str]:
+    """Build the `claude` argv: headless, one turn, JSON envelope, no tools, no MCP, no skills.
+
+    The prompt itself goes to stdin, never argv. `--tools ""` removes every built-in tool,
+    `--strict-mcp-config` without `--mcp-config` loads no MCP server, and `--setting-sources ""`
+    skips user/project/local settings (hooks, permissions).
+    """
+    return [
+        CLI_BINARY,
+        "--print",
+        "--output-format", "json",
+        "--json-schema", json.dumps(LLMOutput.model_json_schema()),
+        "--model", cfg.llm.model,
+        "--effort", cfg.llm.effort,
+        "--system-prompt", system,
+        "--tools", "",
+        "--strict-mcp-config",
+        "--setting-sources", "",
+        "--disable-slash-commands",
+        "--no-session-persistence",
+        "--max-turns", str(CLI_MAX_TURNS),
+    ]  # fmt: skip
+
+
+def _log_cli_usage(model: str, envelope: dict[str, Any]) -> None:
+    """Log token counts and cost from the CLI's JSON envelope, when present."""
+    usage = envelope.get("usage")
+    usage = usage if isinstance(usage, dict) else {}
+    log.info(
+        "claude-code %s: %s input + %s output tokens, reported cost %s",
+        model,
+        usage.get("input_tokens", "?"),
+        usage.get("output_tokens", "?"),
+        envelope.get("total_cost_usd", "unknown"),
+    )
+
+
+def _extract_json(text: str) -> Any:
+    """Parse JSON from model text, tolerating a surrounding code fence or prose."""
+    text = text.strip()
+    try:
+        return json.loads(text)
+    except ValueError:
+        start, end = text.find("{"), text.rfind("}")
+        if start < 0 or end <= start:
+            raise
+        return json.loads(text[start : end + 1])
+
+
+def call_claude_cli(
+    cfg: Config,
+    system: str,
+    user: str,
+    runner: Callable[..., Any] = subprocess.run,
+) -> LLMOutput | None:
+    """Make the one Claude call through the Claude Code CLI; None on any failure.
+
+    Runs in a fresh temp directory so the repo's CLAUDE.md, hooks and skills are not loaded.
+    """
+    env = {k: v for k, v in os.environ.items() if k not in API_CREDENTIAL_VARS}
+    env["CLAUDE_CODE_MAX_OUTPUT_TOKENS"] = str(cfg.llm.max_tokens)
+    try:
+        with tempfile.TemporaryDirectory(prefix="yellow-claude-") as cwd:
+            proc = runner(
+                cli_command(cfg, system),
+                input=user,
+                capture_output=True,
+                text=True,
+                timeout=CLI_TIMEOUT_SECONDS,
+                cwd=cwd,
+                env=env,
+                check=False,
+            )
+    except subprocess.TimeoutExpired:
+        log.warning("claude CLI timed out after %d s", CLI_TIMEOUT_SECONDS)
+        return None
+    except Exception as e:  # missing binary, OS error...: the site must still build
+        log.warning("claude CLI could not run: %s: %s", type(e).__name__, e)
+        return None
+    try:
+        envelope = json.loads(proc.stdout or "")
+    except ValueError:
+        envelope = None
+    if not isinstance(envelope, dict):
+        log.warning(
+            "claude CLI exit %s, no JSON envelope on stdout; stderr: %s",
+            proc.returncode,
+            _stderr_tail(proc),
+        )
+        return None
+    _log_cli_usage(cfg.llm.model, envelope)
+    if proc.returncode != 0 or envelope.get("is_error"):
+        # The envelope's `result` is an error message (auth, limits...), never the prompt.
+        log.warning(
+            "claude CLI failed (exit %s, subtype %s): %s; stderr: %s",
+            proc.returncode,
+            envelope.get("subtype"),
+            str(envelope.get("result", ""))[:200],
+            _stderr_tail(proc),
+        )
+        return None
+    try:
+        payload = envelope.get("structured_output")
+        if not isinstance(payload, dict):
+            payload = _extract_json(str(envelope.get("result", "")))
+        return LLMOutput.model_validate(payload)
+    except ValueError as e:  # includes json errors and pydantic.ValidationError
+        log.warning("claude CLI output is not valid LLMOutput: %s", type(e).__name__)
+        return None
+
+
 def _make_client() -> Any:
     """Create the Anthropic client (credentials come from the environment)."""
     import anthropic
@@ -399,6 +528,7 @@ def analyze(
     known_tech: Sequence[str] = (),
     use_llm: bool = True,
     client: Any = None,
+    runner: Callable[..., Any] = subprocess.run,
 ) -> Digest:
     """Build the day's digest. With `use_llm`, makes exactly one Claude call; else keywords only.
 
@@ -409,7 +539,8 @@ def analyze(
         now: Build time (UTC), stored as `generated_at`.
         known_tech: Technology names from the registry, for normalization.
         use_llm: False for `--no-llm` runs (no API cost).
-        client: Anthropic client to use; created from the environment when None.
+        client: Anthropic client for the "api" backend; created from the environment when None.
+        runner: Process runner for the "claude-code" backend (injectable for tests).
     """
     selected = select_items(items, cfg.llm.max_items)
     if len(selected) < len(items):
@@ -419,17 +550,26 @@ def analyze(
 
     result: LLMOutput | None = None
     if use_llm and selected:
-        try:
-            client = client or _make_client()
-        except Exception as e:
-            log.warning("could not create Anthropic client: %s: %s", type(e).__name__, e)
+        system, user = build_request(selected, cfg, known_tech)
+        if cfg.llm.backend == "claude-code":
+            result = call_claude_cli(cfg, system, user, runner)
         else:
-            system, user = build_request(selected, cfg, known_tech)
-            result = call_claude(client, cfg, system, user)
+            try:
+                client = client or _make_client()
+            except Exception as e:
+                log.warning("could not create Anthropic client: %s: %s", type(e).__name__, e)
+            else:
+                result = call_claude(client, cfg, system, user)
 
     if result is None:
         if use_llm and selected:
             log.warning("using the keyword-only digest")
+            if os.environ.get("GITHUB_ACTIONS"):
+                print(
+                    "::warning::Claude call failed; published the keyword-only digest. "
+                    "Check the CLAUDE_CODE_OAUTH_TOKEN secret and the log.",
+                    flush=True,
+                )
         return build_digest(
             selected,
             {},

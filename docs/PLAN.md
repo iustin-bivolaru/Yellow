@@ -17,6 +17,7 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 - [x] Build step 7: `render.py` (save/load digests, `render_site`: index, `day/`, `tech/<slug>`, PWA files, stdlib PNG icons) + `templates/` (yellow-ui), tests. Relative links (Pages subpath); SW cache id = digest time + templates hash; offline navigation to an uncached page redirects home. **Not checked by eye yet at 390×844 / dark mode**: the user previews `site/` (`python3 -m http.server -d site 8000`).
 - [x] Build step 8: `main.py` CLI (`run --dry-run --no-llm --scheduled --data-dir --site-dir`); state (digest, registry, seen) saved only after render and never on `--dry-run`; empty collection keeps an existing digest; 9 AM gate. Live dry run: 197 collected, 192 new, 150 analyzed, no source warnings.
 - [x] Build step 9: `.github/workflows/daily.yml` (crons 06/07/09 UTC + `workflow_dispatch` with `force`/`no_llm`; state on the orphan `data` branch checked out at `./data`; build job then Pages deploy only if `site/index.html` exists), `tests/test_workflows.py`. **Not run on GitHub yet** (can't be tested locally).
+- [x] Subscription LLM (2026-11-16): `llm.backend` (`claude-code` default, `api` kept); `analyze.py` runs the Claude Code CLI headless with no tools, prompt on stdin, temp cwd; `daily.yml` installs a pinned CLI and uses `CLAUDE_CODE_OAUTH_TOKEN`. Tested with a fake runner; **not yet run against the real CLI**.
 - [ ] **Next: Deployment setup with the user** (walk through "Deployment setup"), then add a `main` ruleset: require PR + `CI` check, block force push/deletion.
 - [ ] One-time setup by the user, after the code works (see "Deployment setup")
 
@@ -48,7 +49,8 @@ An app that delivers **IT news every morning at 9 AM**, with a strong focus on *
 | X / Twitter | **Skip for now** (decided). Its read API is paid. Keep `sources/x.py` as a disabled stub, to be enabled later with an `X_BEARER_TOKEN`. The user has an X account (made with a dedicated Google account) for later. |
 | Delivery | **Static installable web app (PWA) on GitHub Pages** (decided). The user opens it on their phone from the home screen. |
 | Scheduler | **GitHub Actions** cron, so it runs even when the Mac is off (decided). |
-| Summarizing | **Claude API, one call per run** (decided). Not the Claude Agent SDK, whose agent loop would use 10–50× more tokens. |
+| Summarizing | **One Claude call per run** (decided). Not the Claude Agent SDK, whose agent loop would use 10–50× more tokens. |
+| LLM billing | **User's Claude subscription, no separate API billing** (decided 2026-11-16). `analyze.py` runs the Claude Code CLI in headless mode (`llm.backend: claude-code`, the default); CI authenticates with a long-lived token from `claude setup-token`, stored as the secret `CLAUDE_CODE_OAUTH_TOKEN`. All tools and MCP are disabled (untrusted feed text). The SDK path stays available as `llm.backend: api` (needs `ANTHROPIC_API_KEY` added to the workflow). Usage counts toward the subscription's limits (one call per day). |
 | Model | **`claude-haiku-5-5` by default**, switchable to `claude-sonnet-5-5` via `config.yaml` `llm.model` (decided, to keep costs low). Don't use Opus. |
 | State storage | **Orphan `data` branch** (decided 2026-11-13). The daily bot pushes `seen.json`, `tech_registry.json` and `digests/` to `data` (checked out at `./data` during the run) and never commits to `main`. `main` stays code-only, so a ruleset (PR + passing `CI`, no bypass) can protect it. The local no-commit-on-main hook stays too: it catches mistakes before a commit, the ruleset is the server-side lock. `data/` is gitignored on `main`. |
 | Language | Python 3.12+ (the project has a `.venv` and is opened in PyCharm) |
@@ -105,7 +107,8 @@ Rules: a failing source logs a warning and returns `[]`. Use a generic User-Agen
 
 ## Claude analysis (`analyze.py`)
 
-- `anthropic` SDK, `client.messages.stream(model=cfg.llm.model, max_tokens=32000, output_config={"effort": "low"}, output_format=LLMOutput, ...)` + `get_final_message()` (streamed: 150 items need ~15-20k output tokens, too long for a non-streaming call).
+- **Backend `claude-code` (default):** one `claude --print --output-format json --json-schema <LLMOutput schema> --model <llm.model> --effort <llm.effort> --system-prompt <prompt> --tools "" --strict-mcp-config --setting-sources "" --disable-slash-commands --no-session-persistence --max-turns 3` run (one request normally, at most 3 with schema-validation retries; the subprocess env drops `ANTHROPIC_API_KEY`/`ANTHROPIC_AUTH_TOKEN` so it can't bill the API; in CI a fallback prints a `::warning::` annotation), prompt on stdin, 600 s timeout, cwd = fresh temp dir (repo CLAUDE.md/hooks not loaded). The JSON envelope is parsed (`structured_output`, else `result` text); `is_error`, non-zero exit, timeout, missing binary/auth or invalid output means keyword fallback. Cost and tokens are logged from the envelope.
+- **Backend `api`:** `anthropic` SDK, `client.messages.stream(model=cfg.llm.model, max_tokens=32000, output_config={"effort": "low"}, output_format=LLMOutput, ...)` + `get_final_message()` (streamed: 150 items need ~15-20k output tokens, too long for a non-streaming call).
 - With `claude-sonnet-5-5`, also send `betas=["server-side-fallback-2026-07-01"]` and `fallbacks="default"`. Haiku 5.5 has no server-side fallback.
 - Check `stop_reason` (`refusal`, `max_tokens`) before using `parsed_output`. On any failure, build the keyword-only digest so the site still builds.
 - Input: up to about 150 items, each with id, title, source, snippet (truncated) and score. Pass the existing tech-registry names so Claude normalizes them (for example "Llama-4" → "Llama 4").
@@ -132,14 +135,14 @@ Rules: a failing source logs a warning and returns `[]`. Use a generic User-Agen
 - Steps: checkout → setup Python 3.12 → `pip install .` → `python -m yellow run` → commit and push `data/` to the `data` branch (as the github-actions bot, only if it changed) → `actions/upload-pages-artifact` with `site/` (only if `site/index.html` exists; a scheduled skip renders nothing) → `actions/deploy-pages` in a separate job.
 - Three jobs keep the write token away from code that parses feeds: `build` (read-only; reads the `data` branch via `git archive`, runs the CLI without `GITHUB_TOKEN`, uploads the `data-state` artifact and the Pages artifact), `persist` (only `contents: write`; runs no project code, copies the artifact onto the `data` branch and pushes), `deploy` (Pages).
 - Before the first run the `data` branch doesn't exist; the workflow creates it as an orphan branch.
-- Permissions: top-level `contents: read`; build job `contents: read`; persist job `contents: write` (pushes `data` only); deploy job `pages: write`, `id-token: write`. `workflow_dispatch` inputs: `force` (skip the gate), `no_llm`. Secret: `ANTHROPIC_API_KEY`.
+- Permissions: top-level `contents: read`; build job `contents: read`; persist job `contents: write` (pushes `data` only); deploy job `pages: write`, `id-token: write`. `workflow_dispatch` inputs: `force` (skip the gate), `no_llm`. Secret: `CLAUDE_CODE_OAUTH_TOKEN`. The build job installs Node and `@anthropic-ai/claude-code` at a pinned version.
 
 ## Deployment setup (the user does this once; walk them through it)
 
-1. Create an API key at console.anthropic.com, add credit, and set a monthly spend limit.
+1. In your own terminal, with your personal account, run `claude setup-token` and copy the token it prints. No API billing is needed; the daily call counts toward your subscription's limits (one call per day).
 2. Create a GitHub repo and push this project. Pages on a free account needs a **public** repo; the content is public news anyway, and the key stays in Secrets.
 3. Repo Settings → Pages → Source: **GitHub Actions**.
-4. Repo Settings → Secrets → Actions: add `ANTHROPIC_API_KEY`.
+4. Set the secret: `gh secret set CLAUDE_CODE_OAUTH_TOKEN -R iustin-bivolaru/Yellow` (paste the token when prompted).
 5. Run the workflow manually (Actions → Daily digest → Run workflow, tick `force`; the first run creates the `data` branch), open the Pages URL on the phone, then choose **Add to Home Screen**.
 6. Add a `main` ruleset: require a PR and the `CI` check, block force push and deletion (no bypass needed, the bot only pushes to `data`).
 

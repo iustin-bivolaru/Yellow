@@ -64,6 +64,9 @@ def _llm_out(items: list[Item], cfg: Config) -> LLMOutput:
 def _run(tmp_path: Path, cfg: Config, items: list[Item] | None = None, **kw: Any) -> int:
     kw.setdefault("use_llm", False)
     kw.setdefault("now", NOW)
+    if "client" in kw:  # fake Anthropic client: use the SDK backend
+        cfg = cfg.model_copy(deep=True)
+        cfg.llm.backend = "api"
     return run(
         data_dir=tmp_path / "data",
         site_dir=tmp_path / "site",
