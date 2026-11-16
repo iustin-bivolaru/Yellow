@@ -1,0 +1,2382 @@
+{
+ "date": "2026-11-16",
+ "generated_at": "2026-11-16T09:45:28.067508Z",
+ "analyzer": "claude-haiku-5-5",
+ "nutshell": "Today's items point to open-weight models proliferating fast, with Qwen, MiniMax and GLM variants, quantizations and local-inference tooling dominating community feeds. Agents are moving into real workflows, from Claude Code's review pipeline and Uber's agent governance framework to a flood of Blender MCP copilots, while security concerns about agents and AI-generated code grow. Research is leaning toward using models to improve models (weight editing, RSI in pre-training), and the industry story is dominated by Nvidia leadership turmoil and U.S. chip export restrictions.",
+ "top5": [
+  "8468cd1c9400",
+  "87d7014c15ee",
+  "658768f772c7",
+  "0ae485d0fe26",
+  "024802442c5a"
+ ],
+ "items": [
+  {
+   "id": "498022c4a5fa",
+   "title": "hitkeeen/blender-ai-mcp-addon: AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with ChatGPT/GPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon, copilot for 3D, bpy Python scripting, MCP integration.",
+   "url": "https://github.com/hitkeeen/blender-ai-mcp-addon",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-12T14:32:15Z",
+   "snippet": "ai-agents, ai-assistant, blender, blender-addon, blender-ai, blender-automation, blender-mcp, blender-plugin, blender-scripting, bpy, chatgpt, claude, gemini, llm, mcp, mcp-for-blender, mcp-server, mo",
+   "score": 1877,
+   "discussion_url": null,
+   "category": "AI Agents & Tools",
+   "summary": "A GitHub project offering an AI assistant and MCP server add-on for Blender with chat, scene tools and multi-agent workflows.",
+   "importance": 2,
+   "technologies": [
+    "Blender",
+    "MCP"
+   ]
+  },
+  {
+   "id": "de1b04aef218",
+   "title": "All AI-generated code should be Open Source",
+   "url": "https://jakub.jankiewicz.org/blog/ai-code-open-source/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T14:46:58Z",
+   "snippet": null,
+   "score": 1166,
+   "discussion_url": "https://news.ycombinator.com/item?id=50507303",
+   "category": "Open Source",
+   "summary": "A Hacker News discussion argues that AI-generated code should be released as open source.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "1f1dbabb56c4",
+   "title": "New trending model: MiniMaxAI/MiniMax-H3-Image",
+   "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3-Image",
+   "source": "huggingface",
+   "source_name": "HF Models",
+   "published": "2026-11-03T06:34:36Z",
+   "snippet": "text-to-image · minimax-h3 · 1234 likes · 571067 downloads",
+   "score": 1234,
+   "discussion_url": null,
+   "category": "AI Models & Releases",
+   "summary": "MiniMax released a trending text-to-image model on Hugging Face that is drawing heavy downloads.",
+   "importance": 3,
+   "technologies": [
+    "MiniMax-H3-Image"
+   ]
+  },
+  {
+   "id": "81dddff09c62",
+   "title": "New AA ranking Qwen3.8-FN better than GLM-5.3-Flash?",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xxibeh/new_aa_ranking_qwen38fn_better_than_glm53flash/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-16T06:32:08Z",
+   "snippet": "Thoughts on Qwen3.8-Flash-Next scoring better than GLM-5.3-flash? I've always experienced GLM5.3-Flash to give better responses",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xxibeh/new_aa_ranking_qwen38fn_better_than_glm53flash/",
+   "category": "AI Models & Releases",
+   "summary": "A community thread debates whether Qwen3.8-Flash-Next outscores GLM-5.3-Flash on an Artificial Analysis ranking.",
+   "importance": 2,
+   "technologies": [
+    "Qwen3.8-Flash-Next",
+    "GLM-5.3-Flash"
+   ]
+  },
+  {
+   "id": "09862cd7036c",
+   "title": "Apple launches new app to study how people use AI for health",
+   "url": "https://techcrunch.com/2026/11/15/apple-launches-new-app-to-study-how-people-use-ai-for-health/",
+   "source": "rss",
+   "source_name": "TechCrunch AI",
+   "published": "2026-11-16T01:30:00Z",
+   "snippet": "Apple's new app for a study will answer everyday medical questions",
+   "score": null,
+   "discussion_url": null,
+   "category": "Industry & Funding",
+   "summary": "Apple launched an app to study how people use AI for answering everyday health questions.",
+   "importance": 3,
+   "technologies": []
+  },
+  {
+   "id": "f6b29b4e2ab3",
+   "title": "FrigadeHQ/yogurt: Private AI meeting notes that stay on your computer. A free, open-source alternative to Granola for Mac, Windows and Linux.",
+   "url": "https://github.com/FrigadeHQ/yogurt",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-10T20:01:01Z",
+   "snippet": "TypeScript · ai-meeting-assistant, ai-notetaker, electron, granola-alternative, linux, llama-cpp, local-ai, local-first, macos, mcp, meeting-minutes, meeting-notes, offline-first, open-source, privacy, speech-to-t",
+   "score": 1735,
+   "discussion_url": null,
+   "category": "Open Source",
+   "summary": "Yogurt is an open-source, local-first meeting notes app for desktop, positioned as an alternative to Granola.",
+   "importance": 2,
+   "technologies": [
+    "llama.cpp",
+    "MCP",
+    "Electron"
+   ]
+  },
+  {
+   "id": "357c9f3ea7ee",
+   "title": "Microsoft 365 outage leads to chlorine gas poisoning of 15 hotel guests",
+   "url": "https://www1.wdr.de/nrw/rheinland/rhein-erft-kreis/technischer-defekt-chlor-phantasialand-100.html",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T18:36:10Z",
+   "snippet": null,
+   "score": 532,
+   "discussion_url": "https://news.ycombinator.com/item?id=50509411",
+   "category": "Cloud & Infra",
+   "summary": "A Microsoft 365 outage was linked to a chlorine gas poisoning incident affecting hotel guests.",
+   "importance": 2,
+   "technologies": [
+    "Microsoft 365"
+   ]
+  },
+  {
+   "id": "55ffe1fba5ed",
+   "title": "New trending model: NousResearch/Arete-27B",
+   "url": "https://huggingface.co/NousResearch/Arete-27B",
+   "source": "huggingface",
+   "source_name": "HF Models",
+   "published": "2026-11-06T19:31:28Z",
+   "snippet": "text-generation · 622 likes · 7497 downloads",
+   "score": 622,
+   "discussion_url": null,
+   "category": "AI Models & Releases",
+   "summary": "NousResearch published a trending 27B text-generation model, Arete-27B, on Hugging Face.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "b7059d23fb76",
+   "title": "[Release] Qwen3.8-27B-Perplexing-Pegasus-Heretic: Unified vision + typed decider + abliterated weights for local agent stacks (GGUF, AutoRound, NVFP4)",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xxg12n/release_qwen3827bperplexingpegasusheretic_unified/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-16T04:22:20Z",
+   "snippet": "Hey everyone, While building and testing WebBrain with local models, getting reliable agent performance usually required keeping two or three separate models in memory at once: * A vision model to inspect and parse browser/UI state * A fast typed-decision model for structured routing and scoring * An abliterated / uncensored model so realistic web workflows do not randomly choke on false-positive refusals Juggling multiple 20B+ weights on consumer hardware is brutal on both VRAM and response times. To solve this for our setup, we merged and published a single unified 27B model: Qwen3.8-27B-Perplexing-Pegasus-Heretic Here is what is packed into the checkpoint: * Multimodal Vision + Chat + Thinking (<think>) + Tool Calling (based on Qwen3.8-27B) * Perplexity pplx-decider typed-decision readout (decision/ head alongside intact lm_head) * Heretic ARA abliteration: 0/8 benchmark refusal probes while keeping 100% (30/30) typed-decision agreement against the base Pegasus model * Multi-Token…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xxg12n/release_qwen3827bperplexingpegasusheretic_unified/",
+   "category": "AI Models & Releases",
+   "summary": "A community release of an abliterated Qwen3.8-27B variant with unified vision and in GGUF, AutoRound and NVFP4 formats.",
+   "importance": 2,
+   "technologies": [
+    "Qwen3.8-27B",
+    "GGUF",
+    "NVFP4"
+   ]
+  },
+  {
+   "id": "327577bff892",
+   "title": "Apple’s new study looks to improve the effectiveness of AI health tools",
+   "url": "https://www.theverge.com/tech/1033355/apples-new-study-looks-to-improve-the-effectiveness-of-ai-health-tools",
+   "source": "rss",
+   "source_name": "The Verge AI",
+   "published": "2026-11-16T01:26:56Z",
+   "snippet": "Apple announced a new study today with the goal of better understanding how people interact with conversational AI health tools and how useful their responses actually are. The company is conducting the Apple Health AI Usage Study in collaboration with OpenEvidence, a clinical AI platform used by healthcare professionals that generates answers based on medical […]",
+   "score": null,
+   "discussion_url": null,
+   "category": "Industry & Funding",
+   "summary": "Apple announced the Apple Health AI Usage Study with OpenEvidence to measure how useful conversational AI health tools are.",
+   "importance": 3,
+   "technologies": [
+    "OpenEvidence"
+   ]
+  },
+  {
+   "id": "2c38e03ddc94",
+   "title": "duwqijlk/muse-protocol: muse.ai 注册与邀请码兑换协议研究（纯 HTTP Python 实现）",
+   "url": "https://github.com/duwqijlk/muse-protocol",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-14T01:24:58Z",
+   "snippet": "Python",
+   "score": 1253,
+   "discussion_url": null,
+   "category": "Other Tech",
+   "summary": "A GitHub repository documents a pure-HTTP Python implementation for muse.ai registration and invite code redemption.",
+   "importance": 1,
+   "technologies": [
+    "Python"
+   ]
+  },
+  {
+   "id": "2f54d572a5b4",
+   "title": "Lutnick Pushed to Weaken Chip Rules That Overlap with His Family Business",
+   "url": "https://www.nytimes.com/2026/11/15/us/politics/lutnick-pushed-to-weaken-chip-rules-that-overlap-with-his-family-business.html",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T11:40:51Z",
+   "snippet": "https://wallhop.io/https://www.nytimes.com/2026/11/15/us/pol...",
+   "score": 496,
+   "discussion_url": "https://news.ycombinator.com/item?id=50506180",
+   "category": "Industry & Funding",
+   "summary": "Reporting says Commerce Secretary Lutnick pushed to weaken chip rules that overlap with his family's business interests.",
+   "importance": 3,
+   "technologies": []
+  },
+  {
+   "id": "14e5a7f70a2a",
+   "title": "New trending model: Comfy-Org/MiniMax-H3-Image",
+   "url": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image",
+   "source": "huggingface",
+   "source_name": "HF Models",
+   "published": "2026-11-08T20:37:23Z",
+   "snippet": "text-to-image · diffusion-single-file · 434 likes · 1973388 downloads",
+   "score": 434,
+   "discussion_url": null,
+   "category": "AI Models & Releases",
+   "summary": "Comfy-Org published a single-file diffusion version of MiniMax-H3-Image that is seeing very high downloads.",
+   "importance": 2,
+   "technologies": [
+    "MiniMax-H3-Image"
+   ]
+  },
+  {
+   "id": "73da86d2fb4a",
+   "title": "I'm starting to think a specialized 4B is enough for most of the tasks I'd use an LLM for",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xxfv69/im_starting_to_think_a_specialized_4b_is_enough/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-16T04:13:31Z",
+   "snippet": "When I started training Qwen3.5-4B-3D-Coder , I honestly wasn't sure it would work. Now, after that model and the GLB asset version, I'm starting to think I underestimated how much these smaller models can actually learn. My impression is that a 4B model might be enough for most practical tasks if you train it specifically for the job. Generating 3D assets, building and orchestrating complex scenes, webdev, backend development, reverse engineering, etc. I'm also working on a coding model using a fixed harness, which I mentioned in another post. Not necessarily one model doing all of this equally well, but different specialized versions. I haven't tested all those domains yet. The 3D results are what made me want to explore the others. Right now I'm working on a new dataset to complement ThreeJS-3D-Scenes , with more complex scenes covering history, geography, physics, biology, mathematics, games and many other domains. The idea is to connect knowledge from different areas through work…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xxfv69/im_starting_to_think_a_specialized_4b_is_enough/",
+   "category": "AI Models & Releases",
+   "summary": "A hobbyist shares results from a specialized 4B coding model and argues small specialized models may suffice for many tasks.",
+   "importance": 1,
+   "technologies": [
+    "Qwen3.5-4B"
+   ]
+  },
+  {
+   "id": "fc91828979fb",
+   "title": "Indian chip startup Bharat Semi lands $24M seed round as it eyes global AI sensor market",
+   "url": "https://techcrunch.com/2026/11/15/indian-chip-startup-bharat-semi-lands-24m-seed-round-as-it-eyes-global-ai-sensor-market/",
+   "source": "rss",
+   "source_name": "TechCrunch AI",
+   "published": "2026-11-15T23:30:00Z",
+   "snippet": "Bharat Semi says it has secured design wins for its AI-enabled sensor technology with companies including General Atomics.",
+   "score": null,
+   "discussion_url": null,
+   "category": "Industry & Funding",
+   "summary": "Indian chip startup Bharat Semi raised a $24M seed round and reports design wins for AI-enabled sensors.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "b997a4659ecc",
+   "title": "ZiChuanLan/freebie-radar: 白嫖资源聚合雷达：57 个源定时采集 + AI 二审过滤假福利 + 获取方式分级隔离抽奖/试用/推广 + Telegram 即时推送",
+   "url": "https://github.com/ZiChuanLan/freebie-radar",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-12T09:08:11Z",
+   "snippet": "TypeScript",
+   "score": 963,
+   "discussion_url": null,
+   "category": "Other Tech",
+   "summary": "A GitHub project aggregates free-resource listings from 57 sources and uses AI to filter fake offers, with Telegram alerts.",
+   "importance": 1,
+   "technologies": [
+    "Telegram"
+   ]
+  },
+  {
+   "id": "8468cd1c9400",
+   "title": "Qwen4-Max",
+   "url": "https://qwen.ai/blog?id=qwen4-max",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-16T02:14:44Z",
+   "snippet": null,
+   "score": 483,
+   "discussion_url": "https://news.ycombinator.com/item?id=50513215",
+   "category": "AI Models & Releases",
+   "summary": "A Hacker News post discusses the release of Qwen4-Max, a new flagship model from Alibaba's Qwen line.",
+   "importance": 4,
+   "technologies": [
+    "Qwen4-Max"
+   ]
+  },
+  {
+   "id": "2250172890a0",
+   "title": "New trending model: Zyphra/ZONOS3-Mini",
+   "url": "https://huggingface.co/Zyphra/ZONOS3-Mini",
+   "source": "huggingface",
+   "source_name": "HF Models",
+   "published": "2026-11-09T05:03:57Z",
+   "snippet": "text-to-speech · zonos3 · 420 likes · 39862 downloads",
+   "score": 420,
+   "discussion_url": null,
+   "category": "AI Models & Releases",
+   "summary": "Zyphra released ZONOS3-Mini, a text-to-speech model that is trending on Hugging Face.",
+   "importance": 2,
+   "technologies": [
+    "Zonos3"
+   ]
+  },
+  {
+   "id": "fe083ba92288",
+   "title": "OpenAI Foundation Board Member: \"AI Accidents Will Soon Become the Leading Cause of Death for Humanity\" — BigGo Finance",
+   "url": "https://finance.biggo.com/news/db02d636-ea6b-41c7-8608-44f86caa822c",
+   "source": "reddit",
+   "source_name": "r/artificial",
+   "published": "2026-11-16T01:08:43Z",
+   "snippet": null,
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/artificial/comments/1xxc7ah/openai_foundation_board_member_ai_accidents_will/",
+   "category": "Industry & Funding",
+   "summary": "An OpenAI Foundation board member warned that AI accidents could become a leading cause of death, per a secondary report.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "87d7014c15ee",
+   "title": "A step toward defining the Standard Model on a lattice",
+   "url": "https://openai.com/index/step-toward-defining-the-standard-model",
+   "source": "rss",
+   "source_name": "OpenAI",
+   "published": "2026-11-15T22:00:01Z",
+   "snippet": "Explore a candidate nonperturbative lattice definition of the Standard Model and how GPT-6 Astra helped turn the idea into a detailed proof.",
+   "score": null,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "OpenAI published a candidate nonperturbative lattice definition of the Standard Model, with a detailed proof developed with GPT-6 Astra.",
+   "importance": 4,
+   "technologies": [
+    "GPT-6 Astra"
+   ]
+  },
+  {
+   "id": "42bd6243c268",
+   "title": "linknimiball1974/ai-texture-forge: An AI-powered texture forge for Blender — turn text prompts into seamless PBR materials, concept art and scene-wide projections with local or cloud diffusion models, straight inside the 3D viewport on Windows. · dream textures · dream textures blender · dream textures addon · dream textures ai · dream textures seamless · dream textures pbr",
+   "url": "https://github.com/linknimiball1974/ai-texture-forge",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-11T19:09:18Z",
+   "snippet": "dream-textures, dream-textures-addon, dream-textures-ai, dream-textures-blender, dream-textures-diffusion, dream-textures-generation, dream-textures-gpu, dream-textures-history, dream-textures-inpaint",
+   "score": 682,
+   "discussion_url": null,
+   "category": "AI Agents & Tools",
+   "summary": "A Blender add-on generates seamless PBR textures and projections from text prompts using local or cloud diffusion models.",
+   "importance": 1,
+   "technologies": [
+    "Blender",
+    "Dream Textures"
+   ]
+  },
+  {
+   "id": "57809c39abaa",
+   "title": "The MacBook Pro's OLED PWM problem",
+   "url": "https://macanorak.com/the-macbook-pros-oled-pwm-problem-when-a-better-display-becomes-worse-to-use/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T13:15:22Z",
+   "snippet": null,
+   "score": 483,
+   "discussion_url": "https://news.ycombinator.com/item?id=50506719",
+   "category": "Other Tech",
+   "summary": "A Hacker News thread examines PWM flicker issues in MacBook Pro OLED displays.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "6ae972136210",
+   "title": "New trending model: thinkingmachines/Inkling-2-Small",
+   "url": "https://huggingface.co/thinkingmachines/Inkling-2-Small",
+   "source": "huggingface",
+   "source_name": "HF Models",
+   "published": "2026-11-04T19:51:05Z",
+   "snippet": "image-text-to-text · transformers · 363 likes · 7329 downloads",
+   "score": 363,
+   "discussion_url": null,
+   "category": "AI Models & Releases",
+   "summary": "Thinking Machines published Inkling-2-Small, an image-text-to-text model trending on Hugging Face.",
+   "importance": 2,
+   "technologies": [
+    "Transformers"
+   ]
+  },
+  {
+   "id": "b56dfe64aad2",
+   "title": "Why download abliterated Flash Next models when LoRA exists?",
+   "url": "https://huggingface.co/nazeshinjite/Qwen3.8-Flash-Next-Abliterated-LoRA",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-16T00:06:16Z",
+   "snippet": "TL;DR -- Download LoRA, add --lora HUIHUI-V2-Qwen3.8-Flash-Next-LoRA-F32.gguf to your llama.cpp launch command for ANY FN quant, and boom, you've got an identical huihui v2 abliterated model on demand and you saved 150GB of space. I just wanted to post a kind of PSA for everyone out there downloading hundreds of GB of abliterated models. You don't need to do that -- the vast majority of abliteration techniques are rank-1 ablations, meaning their refusal projection can be encapsulated in a tiny LoRA and applied at runtime to a quant you already have on disk. It can even be applied per-request, so you can run an unmodified model until you hit a refusal, then switch on the LoRA, resend the prompt, and keep going. I wanted to explain briefly how to do that in llama.cpp and share a LoRA I built from the best-performing abliterated Flash Next model in my tests. This basic type of technique (using control vectors instead) also works in Strata ( --experimental-speed-projection is the flag the…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xxawbh/why_download_abliterated_flash_next_models_when/",
+   "category": "AI Models & Releases",
+   "summary": "A post argues users can apply a LoRA adapter to a base Qwen Flash-Next quant in llama.cpp instead of downloading a full abliterated model.",
+   "importance": 1,
+   "technologies": [
+    "llama.cpp",
+    "Qwen3.8-Flash-Next"
+   ]
+  },
+  {
+   "id": "4b0fc5b701ff",
+   "title": "Our new blog for science",
+   "url": "https://openai.com/index/our-new-blog-for-science",
+   "source": "rss",
+   "source_name": "OpenAI",
+   "published": "2026-11-15T22:00:00Z",
+   "snippet": "The OpenAI science blog shares new findings, practical methods, and firsthand accounts from researchers using AI to advance scientific discovery.",
+   "score": null,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "OpenAI launched a science blog covering research findings and methods for using AI in scientific discovery.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "308a8d87de57",
+   "title": "credoksopho1984/blender-ai-copilot-studio: An AI copilot and MCP server for Blender that turns plain-language briefs into scene operations—inside a visual chat studio with multi-agent teams, your choice of AI models, and 27 built-in scene tools. · blender-ai-copilot-studio · blender ai · ai for blender · blender copilot · blender ai copilot · blender ai assistant · blender mcp server",
+   "url": "https://github.com/credoksopho1984/blender-ai-copilot-studio",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-12T19:30:32Z",
+   "snippet": "3d-automation, 3d-modeling, blender, blender-addon, blender-agents, blender-ai, blender-assistant, blender-automation, blender-chatgpt, blender-copilot, blender-extension, blender-llm, blender-mcp, bl",
+   "score": 514,
+   "discussion_url": null,
+   "category": "AI Agents & Tools",
+   "summary": "A GitHub project offers a Blender AI copilot and MCP server with multi-agent teams and 27 scene tools.",
+   "importance": 1,
+   "technologies": [
+    "Blender",
+    "MCP"
+   ]
+  },
+  {
+   "id": "0a2c564cc136",
+   "title": "Universal XSS in uBlock Origin from website-driven element picker",
+   "url": "https://iter.ca/post/ubo-uxss/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-16T02:04:48Z",
+   "snippet": null,
+   "score": 347,
+   "discussion_url": "https://news.ycombinator.com/item?id=50513160",
+   "category": "Security",
+   "summary": "A universal cross-site scripting vulnerability was reported in uBlock Origin's website-driven element picker.",
+   "importance": 3,
+   "technologies": [
+    "uBlock Origin"
+   ]
+  },
+  {
+   "id": "6518fbd35a14",
+   "title": "New trending model: higurashi-ai/Haru-4B",
+   "url": "https://huggingface.co/higurashi-ai/Haru-4B",
+   "source": "huggingface",
+   "source_name": "HF Models",
+   "published": "2026-11-12T11:05:59Z",
+   "snippet": "audio-to-audio · 354 likes · 2098 downloads",
+   "score": 354,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xww5o2/higurashiaiharu4b_hugging_face/",
+   "category": "AI Models & Releases",
+   "summary": "A Haru-4B audio-to-audio model was posted and is trending on Hugging Face.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "af206fb2ed9b",
+   "title": "Someone should do an analysis on the rate of Self-promo here.",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx85mw/someone_should_do_an_analysis_on_the_rate_of/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T22:05:21Z",
+   "snippet": "I think the last 3 posts from here that showed up on my feed were barely veiled self-promos. I was here when huggingface first started getting popular, and the level of support for running local models here was incredible. Now I am debating whether or not to leave the sub. Why isn’t there more attention to moderation to this? Take a user’s post, and type their username with quotes into google and then type whatever obscure tool they’re asking a question or talking about and you’ll see the absurd rate or Astro-turfing and shilling. They will post here and 6 other LLM places, but this place used to be awesome, so I only care about this sub.",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx85mw/someone_should_do_an_analysis_on_the_rate_of/",
+   "category": "Other Tech",
+   "summary": "A r/LocalLLaMA user complains about rising self-promotion posts in the subreddit.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "2cb612de9116",
+   "title": "Is bad news for Jensen Huang also bad news for the AI industry?",
+   "url": "https://techcrunch.com/2026/11/15/is-bad-news-for-jensen-huang-also-bad-news-for-the-ai-industry/",
+   "source": "rss",
+   "source_name": "TechCrunch AI",
+   "published": "2026-11-15T21:56:35Z",
+   "snippet": "\"Jensen is Nvidia, right? And so much of this economy is riding on Nvidia.\"",
+   "score": null,
+   "discussion_url": null,
+   "category": "Industry & Funding",
+   "summary": "TechCrunch analyzes whether turmoil around Nvidia's Jensen Huang threatens the broader AI economy.",
+   "importance": 3,
+   "technologies": []
+  },
+  {
+   "id": "44b701950cb6",
+   "title": "tiobeharxi1987/blender-ai-copilot-flow: A controlled AI workflow for Blender: every copilot edit is a supervised tool call—proposed, approved, executed in sequence, cancellable after the current step and undoable by name—inside a visual studio with a built-in MCP server. · blender-ai-copilot-flow · blender · blender 3d · blender addon · blender plugin · blender extension",
+   "url": "https://github.com/tiobeharxi1987/blender-ai-copilot-flow",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-12T19:38:53Z",
+   "snippet": "3d-automation, 3d-modeling, blender, blender-addon, blender-agents, blender-ai, blender-assistant, blender-automation, blender-chatgpt, blender-copilot, blender-extension, blender-llm, blender-mcp, bl",
+   "score": 512,
+   "discussion_url": null,
+   "category": "AI Agents & Tools",
+   "summary": "A Blender copilot project makes each AI edit a supervised, cancellable, undoable tool call with a built-in MCP server.",
+   "importance": 1,
+   "technologies": [
+    "Blender",
+    "MCP"
+   ]
+  },
+  {
+   "id": "966523945edb",
+   "title": "Protomaps: Self-hosting map tiles has gotten cheap and easy",
+   "url": "https://bruceroettgers.eu/blog/protomaps/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T19:26:22Z",
+   "snippet": null,
+   "score": 329,
+   "discussion_url": "https://news.ycombinator.com/item?id=50509837",
+   "category": "Cloud & Infra",
+   "summary": "A Hacker News post argues self-hosting map tiles with Protomaps has become cheap and easy.",
+   "importance": 2,
+   "technologies": [
+    "Protomaps"
+   ]
+  },
+  {
+   "id": "7e8ec09429d0",
+   "title": "New trending model: chatrlabs/Qwen-Image-2.1-Uncensored-Omni-Quantized",
+   "url": "https://huggingface.co/chatrlabs/Qwen-Image-2.1-Uncensored-Omni-Quantized",
+   "source": "huggingface",
+   "source_name": "HF Models",
+   "published": "2026-11-03T16:13:25Z",
+   "snippet": "text-to-image · diffusers · 334 likes · 120618 downloads",
+   "score": 334,
+   "discussion_url": null,
+   "category": "AI Models & Releases",
+   "summary": "An uncensored, quantized Qwen-Image-2.1 variant is trending on Hugging Face.",
+   "importance": 2,
+   "technologies": [
+    "Qwen-Image-2.1"
+   ]
+  },
+  {
+   "id": "1d62aa49050e",
+   "title": "I have created a tool to observe what happens inside an LLM. Also allows for the comparison of two quantizations of the same model to see at what point they diverge, token by token",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx7qbf/i_have_created_a_tool_to_observe_what_happens/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T21:46:56Z",
+   "snippet": "What changes between different quantizations of the same model? And what if you could SEE what actually sets them apart? To help answer that question, I’ve created a small project called inside-llm—an open-source tool that loads one or two GGUF models using llama.cpp and displays, right in your browser, what the model is doing as it generates text. What it shows Stream: the text, one column per model, brightness = probability of each token. A magenta mark wherever A and B would pick differently. Two modes: lockstep (both models read the same text, so you get a clean per-position comparison) and free (each follows its own picks until they split). Candidates: the full distribution behind each pick, mirrored bars for A and B, entropy, effective number of options, Jensen-Shannon divergence and KL in both directions. Gates: the sampler chain (penalties, top-k, top-p, min-p, temperature, GBNF grammar) traced stage by stage and very visual: how many candidates survive each one, and the distr…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx7qbf/i_have_created_a_tool_to_observe_what_happens/",
+   "category": "Dev Tools & Frameworks",
+   "summary": "inside-llm is an open-source tool that visualizes LLM internals and compares token-level divergence between GGUF quantizations.",
+   "importance": 2,
+   "technologies": [
+    "llama.cpp",
+    "GGUF"
+   ]
+  },
+  {
+   "id": "0ae485d0fe26",
+   "title": "Jensen Huang might be plotting a return and more of the latest Nvidia drama",
+   "url": "https://www.theverge.com/tech/1033999/jensen-huang-return-nvidia-megaspeed",
+   "source": "rss",
+   "source_name": "The Verge AI",
+   "published": "2026-11-15T20:43:49Z",
+   "snippet": "The drama around Nvidia co-founder and former CEO Jensen Huang is evolving quickly. The latest edition of our Stepback newsletter should get you up to speed, but there have already been a number of new developments since this morning. That includes rumors that Jensen Huang might be trying to find a path back to CEO, […]",
+   "score": null,
+   "discussion_url": null,
+   "category": "Industry & Funding",
+   "summary": "Reports say former Nvidia CEO Jensen Huang may be seeking a return, amid ongoing leadership drama at the company.",
+   "importance": 4,
+   "technologies": []
+  },
+  {
+   "id": "b052cbb42810",
+   "title": "racdeufindurch198812/Blender-AI-MCP-Studio: Blender AI MCP Studio is an AI assistant and built-in Model Context Protocol MCP server for Blender that turns plain-language briefs into inspected, approved and reversible 3D scene operations — with a visual chat workspace, multi-agent teams and your choice of AI models. · blender ai mcp studio · mcp-for-blender · mcp for blender pro",
+   "url": "https://github.com/racdeufindurch198812/Blender-AI-MCP-Studio",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-12T19:28:20Z",
+   "snippet": "3d-automation, 3d-modeling, blender, blender-addon, blender-agents, blender-ai, blender-assistant, blender-automation, blender-chatgpt, blender-copilot, blender-extension, blender-llm, blender-mcp, bl",
+   "score": 512,
+   "discussion_url": null,
+   "category": "AI Agents & Tools",
+   "summary": "Blender AI MCP Studio is a Blender assistant with a built-in MCP server offering approvals, reversible operations and multi-agent teams.",
+   "importance": 1,
+   "technologies": [
+    "Blender",
+    "MCP"
+   ]
+  },
+  {
+   "id": "8b7dc9abe9cc",
+   "title": "Handwriting, as a Font",
+   "url": "https://ductus.sorenblank.com",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T19:42:13Z",
+   "snippet": null,
+   "score": 281,
+   "discussion_url": "https://news.ycombinator.com/item?id=50509972",
+   "category": "Other Tech",
+   "summary": "A Hacker News post shares a project that turns handwriting into a usable font.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "68431e57dcdc",
+   "title": "New trending model: Edge0/Edge0-145B-NVFP4",
+   "url": "https://huggingface.co/Edge0/Edge0-145B-NVFP4",
+   "source": "huggingface",
+   "source_name": "HF Models",
+   "published": "2026-11-11T05:22:51Z",
+   "snippet": "text-generation · edge0 · 329 likes · 41606 downloads",
+   "score": 329,
+   "discussion_url": null,
+   "category": "AI Models & Releases",
+   "summary": "Edge0-145B-NVFP4, a 145B text-generation model in NVFP4 format, is trending on Hugging Face.",
+   "importance": 2,
+   "technologies": [
+    "NVFP4"
+   ]
+  },
+  {
+   "id": "eb675a228a01",
+   "title": "Best direction to go for my setup EPYC 32core + 512GB DDR4 + 44GB GPU ?",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx6dpd/best_direction_to_go_for_my_setup_epyc_32core/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T20:50:14Z",
+   "snippet": "Just looking for some advice on what is possble with my setup and speeds I should be gettingI know it won't be super fast tps but I was more after getting the bigger models to run. This is my spec: Epyc 7502p - 32 Core Gigabyte MZ32-AR0 - 8 channel memory 512GB DDR4 1x 4070 12GB 2x 4060 16GB quite a few implementations I see which can be confusing. Is this build even useful now? that we have Project Maya which you can stream from the NVME drive? Anyone have similar setups and what to expect, what software best to use",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx6dpd/best_direction_to_go_for_my_setup_epyc_32core/",
+   "category": "Other Tech",
+   "summary": "A user asks which local LLM directions suit an EPYC workstation with 512GB DDR4 and mixed consumer GPUs.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "1a811a22b701",
+   "title": "SNL gathers all the tech tycoons for a lesson in dating and spycraft",
+   "url": "https://techcrunch.com/2026/11/15/snl-gathers-all-the-tech-tycoons-for-a-lesson-in-dating-and-spycraft/",
+   "source": "rss",
+   "source_name": "TechCrunch AI",
+   "published": "2026-11-15T20:20:57Z",
+   "snippet": "While awkward, creepy tech executives have become a recurring theme on Saturday Night Live, this week’s episode gave the cast a chance to show off all their impressions at once.",
+   "score": null,
+   "discussion_url": null,
+   "category": "Other Tech",
+   "summary": "A recap of a Saturday Night Live sketch parodying tech executives.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "4fb62acd74c1",
+   "title": "zovulrira1974/blender-ai-copilot-assets: An asset-savvy AI copilot for Blender—search Poly Haven, Sketchfab and Poly Pizza mid-conversation, check what fits, import after your confirmation, with 27 scene tools and a built-in MCP server alongside. · blender-ai-copilot-assets · blender · blender 3d · blender addon · blender plugin · blender extension · blender scripting · blender automation",
+   "url": "https://github.com/zovulrira1974/blender-ai-copilot-assets",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-12T19:39:54Z",
+   "snippet": "3d-automation, 3d-modeling, blender, blender-addon, blender-agents, blender-ai, blender-assistant, blender-automation, blender-chatgpt, blender-copilot, blender-extension, blender-llm, blender-mcp, bl",
+   "score": 508,
+   "discussion_url": null,
+   "category": "AI Agents & Tools",
+   "summary": "A Blender copilot can search asset libraries like Poly Haven and Sketchfab mid-conversation and import assets after confirmation.",
+   "importance": 1,
+   "technologies": [
+    "Blender",
+    "MCP",
+    "Poly Haven",
+    "Sketchfab"
+   ]
+  },
+  {
+   "id": "286313831039",
+   "title": "Old Bitly links are being hijacked",
+   "url": "https://ransomnews.com/burger-king-tweet-bitly-link-hijack-2026/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T22:11:43Z",
+   "snippet": null,
+   "score": 279,
+   "discussion_url": "https://news.ycombinator.com/item?id=50511395",
+   "category": "Security",
+   "summary": "Reports indicate old Bitly short links are being hijacked.",
+   "importance": 3,
+   "technologies": [
+    "Bitly"
+   ]
+  },
+  {
+   "id": "b7127390e008",
+   "title": "New trending model: mradermacher/gemma-4-31B-it-ARA-heretic-GGUF",
+   "url": "https://huggingface.co/mradermacher/gemma-4-31B-it-ARA-heretic-GGUF",
+   "source": "huggingface",
+   "source_name": "HF Models",
+   "published": "2026-11-07T05:50:30Z",
+   "snippet": "transformers · 306 likes · 149532 downloads",
+   "score": 306,
+   "discussion_url": null,
+   "category": "AI Models & Releases",
+   "summary": "A heretic-tuned Gemma 4 31B model in GGUF format is trending on Hugging Face.",
+   "importance": 2,
+   "technologies": [
+    "Gemma 4",
+    "GGUF"
+   ]
+  },
+  {
+   "id": "11c0f4326c33",
+   "title": "Llama.cpp performance improvement over time (Gemma4 models)",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx607x/llamacpp_performance_improvement_over_time_gemma4/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T20:34:44Z",
+   "snippet": "Few months ago - after Ninfer came out - I started a little hobby project to vibe-code my own engine for my hardware (RTX 5080 16GB Laptop) and check if it could beat llama.cpp - since at the time llama.cpp was kinda slow in comparison to something like vLLM, but vLLM is using VRAM very wastefully. Back then it was quite easy to actually get something up and running faster than llama.cpp. Today I just benchmarked llama.cpp again, and it caught up / surpassed my vibe-coded engine. I prefer using a stable engine with proper features than all the vibe-coded ones, including my own. So it is really nice to see that the project - while a bit slower - lands significant performance improvements over time. I put together a little chart of benchmarks I had laying around which visualizes this quite nicely. It is by no means scientific - it's always a fixed 16k prefill 1k output over Wikipedia text with the optimal settings for each engine. The 12B model is the same checkpoint, for the 26B model…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx607x/llamacpp_performance_improvement_over_time_gemma4/",
+   "category": "Dev Tools & Frameworks",
+   "summary": "A developer benchmarks a custom inference engine against llama.cpp on Gemma 4 models and reports llama.cpp speed gains over time.",
+   "importance": 2,
+   "technologies": [
+    "llama.cpp",
+    "Gemma 4",
+    "vLLM"
+   ]
+  },
+  {
+   "id": "be65df09c87f",
+   "title": "Uber's Secure AI Framework Governs Autonomous AI Agents across Their Lifecycle",
+   "url": "https://www.infoq.com/news/2026/11/uber-secure-ai-framework/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=AI%2C+ML+%26+Data+Engineering",
+   "source": "rss",
+   "source_name": "InfoQ AI",
+   "published": "2026-11-15T20:00:00Z",
+   "snippet": "In a recent article, Uber Engineering highlights the limitations of traditional identity and API controls in securing AI agents that dynamically reason over external content and take real-world actions. Uber developed a framework to determine whether an agent's action is appropriate given the user's request, the agent's intended purpose, its permissions, and the context of the interaction. By Sergio De Simone",
+   "score": null,
+   "discussion_url": null,
+   "category": "Security",
+   "summary": "Uber Engineering described a framework that governs AI agent actions across their lifecycle using identity and authorization checks.",
+   "importance": 3,
+   "technologies": []
+  },
+  {
+   "id": "4170bd017fe6",
+   "title": "Doug-218/blender-ai-copilot-forge: A scene-forging AI copilot for Blender—describe the layout and watch primitives, cameras, lights, materials and parenting assemble in ordered steps, with approvals, named undo and a built-in MCP server. · blender-ai-copilot-forge · blender · blender 3d · blender addon · blender plugin · blender extension · blender scripting · blender automation",
+   "url": "https://github.com/Doug-218/blender-ai-copilot-forge",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-12T19:35:10Z",
+   "snippet": "3d-automation, 3d-modeling, blender, blender-addon, blender-agents, blender-ai, blender-assistant, blender-automation, blender-chatgpt, blender-copilot, blender-extension, blender-llm, blender-mcp, bl",
+   "score": 508,
+   "discussion_url": null,
+   "category": "AI Agents & Tools",
+   "summary": "A Blender copilot assembles scenes in ordered steps with approvals, named undo and a built-in MCP server.",
+   "importance": 1,
+   "technologies": [
+    "Blender",
+    "MCP"
+   ]
+  },
+  {
+   "id": "70fcd4b516bd",
+   "title": "What's Next for Nvidia?",
+   "url": "https://steveblank.com/2026/11/15/whats-next-for-nvidia/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T23:55:55Z",
+   "snippet": null,
+   "score": 254,
+   "discussion_url": "https://news.ycombinator.com/item?id=50512235",
+   "category": "Industry & Funding",
+   "summary": "A Hacker News discussion asks what comes next for Nvidia after its leadership changes.",
+   "importance": 3,
+   "technologies": []
+  },
+  {
+   "id": "93958f67012a",
+   "title": "New trending model: meituan-longcat/LongCat-2.5",
+   "url": "https://huggingface.co/meituan-longcat/LongCat-2.5",
+   "source": "huggingface",
+   "source_name": "HF Models",
+   "published": "2026-11-04T11:48:50Z",
+   "snippet": "image-text-to-text · 289 likes · 1573 downloads",
+   "score": 289,
+   "discussion_url": null,
+   "category": "AI Models & Releases",
+   "summary": "Meituan released LongCat-2.5, an image-text-to-text model trending on Hugging Face.",
+   "importance": 3,
+   "technologies": [
+    "LongCat-2.5"
+   ]
+  },
+  {
+   "id": "371daa6c48bb",
+   "title": "BigMoeOnEdge outperforms Strata and colibri on 8-16 GB cards and Mac and you can run any model",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx5fng/bigmoeonedge_outperforms_strata_and_colibri_on/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T20:11:18Z",
+   "snippet": "Hi! for those who might not know the solution: it takes any MoE GGUF llama.cpp can load, whatever the quant. No repacking, no special format it runs on whatever you have: NVIDIA, AMD, Intel, Mac, a phone, or just the CPU Windows, Linux, macOS, Android, iOS output is the same as llama.cpp, don't cut corners on quality you start it with --auto and it works out the settings for your machine Below is a brief overview of the benchmark: 8 GB card, Qwen3.6-35B: I get about 35 tok/s. colibri around 23. Strata wouldn't start at 16k context 12 GB card, same model: about 45 for bmoe, about 30 for Strata long prompt on the 8 GB card: bmoe 5 s to the first token. Strata 14 s, colibri close to 2 minutes Basalt needs an RTX 50, so I couldn't run it on these 16 GB MacBook, Qwen3.6-35B: about 20 tok/s for bmoe, colibri's release 3.5 same Mac, Qwen3.8-Flash-Next 125B: 10 tok/s, Strata about 7 On the cards Strata is tuned for it's still ahead but only by a little. On two 5060 Ti with Qwen3.8-Flash-Next…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx5fng/bigmoeonedge_outperforms_strata_and_colibri_on/",
+   "category": "Open Source",
+   "summary": "BigMoeOnEdge is an open-source approach that runs any llama.cpp-loadable MoE GGUF on consumer hardware and phones.",
+   "importance": 2,
+   "technologies": [
+    "llama.cpp",
+    "GGUF"
+   ]
+  },
+  {
+   "id": "024802442c5a",
+   "title": "Congress wants to tighten export rules on AI chips after Nvidia spy scandal",
+   "url": "https://www.theverge.com/ai-artificial-intelligence/1033984/congress-export-rules-ai-chips-china",
+   "source": "rss",
+   "source_name": "The Verge AI",
+   "published": "2026-11-15T19:15:43Z",
+   "snippet": "Unsurprisingly, following the scandal involving now-former Nvidia CEO Jensen Huang and a suspected Chinese spy, Congress is looking to further restrict exports of AI chips. Both Democrats and Republicans have voiced support for various measures and bills that would tighten rules and have demanded that Huang and other Nvidia leaders testify before Congress. Senate Minority […]",
+   "score": null,
+   "discussion_url": null,
+   "category": "Industry & Funding",
+   "summary": "Members of Congress from both parties are pushing to tighten export rules on AI chips after a suspected spying scandal involving Nvidia.",
+   "importance": 3,
+   "technologies": []
+  },
+  {
+   "id": "db266b9ed87d",
+   "title": "precygtrucqui1981/blender-ai-copilot-lab: An AI lab for Blender where manager–worker–reviewer agent teams run multi-step scene briefs as supervised experiments—a live task board, review findings, one correction attempt per blocked task, named undo, and a built-in MCP server. · blender-ai-copilot-lab · blender · blender 3d · blender addon · blender plugin · blender extension",
+   "url": "https://github.com/precygtrucqui1981/blender-ai-copilot-lab",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-12T19:33:16Z",
+   "snippet": "3d-automation, 3d-modeling, blender, blender-addon, blender-agents, blender-ai, blender-assistant, blender-automation, blender-chatgpt, blender-copilot, blender-extension, blender-llm, blender-mcp, bl",
+   "score": 506,
+   "discussion_url": null,
+   "category": "AI Agents & Tools",
+   "summary": "A Blender AI lab runs manager, worker and reviewer agent teams with a live task board and a built-in MCP server.",
+   "importance": 1,
+   "technologies": [
+    "Blender",
+    "MCP"
+   ]
+  },
+  {
+   "id": "d9a15b4078d3",
+   "title": "How to make almost anything",
+   "url": "https://pub.cba.mit.edu/863.26/site/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-16T05:50:37Z",
+   "snippet": null,
+   "score": 252,
+   "discussion_url": "https://news.ycombinator.com/item?id=50514470",
+   "category": "Other Tech",
+   "summary": "A Hacker News essay discusses how to make almost anything.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "19becf065be4",
+   "title": "VibePrevisBench: Evaluating Agentic Coding for 4D Scene Generation in Blender",
+   "url": "https://huggingface.co/papers/2611.15789",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "Controllable real-world video generation models can condition on a rendered graybox proxy video, which fixes layout, motion and camera. Coding agents can build such videos by reconstructing a 4D scene in Blender, yet no benchmark checks both these videos and the long, multi-shot scenes behind them. We introduce VibePrevisBench, a benchmark for 4D scene reconstruction: an agent turns a brief into an executable 4D scene and renders its proxy video. Its 242 tasks span four input kinds, including s…",
+   "score": 62,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "VibePrevisBench is a benchmark for coding agents that reconstruct 4D scenes in Blender for controllable video generation.",
+   "importance": 2,
+   "technologies": [
+    "Blender"
+   ]
+  },
+  {
+   "id": "f17748102e2c",
+   "title": "Export-banned Nvidia chips are behind China's most powerful AI models — uh-oh, Jensen! | TechCrunch",
+   "url": "https://techcrunch.com/2026/11/13/export-banned-nvidia-chips-are-behind-chinas-most-powerful-ai-models-uh-oh-jensen/",
+   "source": "reddit",
+   "source_name": "r/artificial",
+   "published": "2026-11-15T19:46:39Z",
+   "snippet": null,
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/artificial/comments/1xx4t46/exportbanned_nvidia_chips_are_behind_chinas_most/",
+   "category": "Industry & Funding",
+   "summary": "Reporting says export-banned Nvidia chips are behind some of China's most powerful AI models.",
+   "importance": 3,
+   "technologies": []
+  },
+  {
+   "id": "6fdb9cf64c8f",
+   "title": "An overview of Jensen Huang’s messy days",
+   "url": "https://www.theverge.com/column/1033943/jensen-huang-nvidia-china-spying-scandal-resignation",
+   "source": "rss",
+   "source_name": "The Verge AI",
+   "published": "2026-11-15T13:00:00Z",
+   "snippet": "This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on Jensen Huang's resignation and the fallout from Nvidia's leadership crisis, follow Terrence O'Brien. The Stepback arrives in our subscribers' inboxes on Sunday at 8AM ET. Opt in for The Stepback here. How it started On October […]",
+   "score": null,
+   "discussion_url": null,
+   "category": "Industry & Funding",
+   "summary": "The Verge's Stepback newsletter summarizes the messy fallout from Jensen Huang's resignation and Nvidia's leadership crisis.",
+   "importance": 3,
+   "technologies": []
+  },
+  {
+   "id": "e05cb3b1495b",
+   "title": "fumbdendade19718/blender-ai-copilot-desk: A visual AI desk for Blender—chat, scene objects, viewport snapshots, approvals and a live task board in one companion window, backed by your choice of models and a built-in MCP server. · blender-ai-copilot-desk · blender · blender 3d · blender addon · blender plugin · blender extension · blender scripting · blender automation · blender mcp",
+   "url": "https://github.com/fumbdendade19718/blender-ai-copilot-desk",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-12T19:37:25Z",
+   "snippet": "3d-automation, 3d-modeling, blender, blender-addon, blender-agents, blender-ai, blender-assistant, blender-automation, blender-chatgpt, blender-copilot, blender-extension, blender-llm, blender-mcp, bl",
+   "score": 503,
+   "discussion_url": null,
+   "category": "AI Agents & Tools",
+   "summary": "A visual AI desk for Blender combines chat, viewport snapshots, approvals and a task board with a built-in MCP server.",
+   "importance": 1,
+   "technologies": [
+    "Blender",
+    "MCP"
+   ]
+  },
+  {
+   "id": "91e375cc559d",
+   "title": "Why did some Apollo missions carry a grenade launcher? (2019)",
+   "url": "https://space.stackexchange.com/questions/37775",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T09:06:43Z",
+   "snippet": null,
+   "score": 242,
+   "discussion_url": "https://news.ycombinator.com/item?id=50505271",
+   "category": "Other Tech",
+   "summary": "A Hacker News post explains why some Apollo missions carried a grenade launcher.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "1e29d1d9344d",
+   "title": "Envisioning Agentic Robotics: A New Era of Robotic Systems",
+   "url": "https://huggingface.co/papers/2611.18359",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "Agentic robotics, centered on an Embodied System 2 formed by a foundation model and embodied harness, requires a shared evaluation framework and research roadmap to achieve reliable physical autonomy.",
+   "score": 62,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "A position paper proposes an Embodied System 2 framework and roadmap for agentic robotics with shared evaluation.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "658768f772c7",
+   "title": "Weight-space programming: an LLM edited another model's weights directly and lifted its math score from 7.9% to 48.1%",
+   "url": "https://www.reddit.com/r/artificial/comments/1xx4kit/weightspace_programming_an_llm_edited_another/",
+   "source": "reddit",
+   "source_name": "r/artificial",
+   "published": "2026-11-15T19:37:03Z",
+   "snippet": "MIT researchers (Rikiya Takehi, Jayden Teoh, Alex Zhang, Omar Khattab) had OpenAI's GPT-6 Astra edit the weights of a small Qwen model directly -- no gradient descent, no training data. Astra found the pattern behind the model's habit of repeating itself until it ran out of context, and removed it. The edit touched about 0.016% of the weights; the model's math score went from 7.9% to 48.1%. Three papers on the method landed on arXiv on November 6 (e.g. arXiv:2611.09382). Other demonstrations from the same batch: editing only 1,023 parameters improved an LLM by 29.45 points on MATH-500; Astra debugged robot policies by editing 65 token-embedding rows; and a Breakout-playing network built from the game's rules, with no training at all, outscored one trained for 500 million steps (517.4 vs 25.3). Some important caveats: the gain came mostly from fixing a bad habit, not from adding math knowledge -- before the edit 93% of the model's math answers hit the length limit, after it 33.1%. On a…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/artificial/comments/1xx4kit/weightspace_programming_an_llm_edited_another/",
+   "category": "AI Research",
+   "summary": "MIT researchers had GPT-6 Astra directly edit the weights of a small Qwen model, raising its math score from 7.9% to 48.1% without training.",
+   "importance": 4,
+   "technologies": [
+    "GPT-6 Astra",
+    "Qwen"
+   ]
+  },
+  {
+   "id": "c9133540fb04",
+   "title": "Anthropic Outlines its AI-Powered Code Review Process for Claude Code",
+   "url": "https://www.infoq.com/news/2026/11/claude-code-review/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=AI%2C+ML+%26+Data+Engineering",
+   "source": "rss",
+   "source_name": "InfoQ AI",
+   "published": "2026-11-15T09:55:00Z",
+   "snippet": "Anthropic has outlined how the Claude Code team handles code reviews as AI agents increasingly contribute to its codebase. The approach relies on multiple layers of automated verification, AI-powered reviews, and risk-based human approval, aiming to reduce manual review time without increasing regressions or production incidents. By Robert Krzaczyński",
+   "score": null,
+   "discussion_url": null,
+   "category": "AI Agents & Tools",
+   "summary": "Anthropic described how the Claude Code team uses layered automated checks, AI reviews and risk-based human approval for code review.",
+   "importance": 3,
+   "technologies": [
+    "Claude Code"
+   ]
+  },
+  {
+   "id": "d9006d3b1f35",
+   "title": "baiblinocun1986/blender-ai-copilot-hub: A multi-provider AI copilot hub for Blender—bring OpenAI, Anthropic Claude, Google Gemini, OpenRouter, OpenCode Zen, Ollama and custom endpoints into one hub of saved connections, with 27 supervised scene tools and a built-in MCP server. · blender-ai-copilot-hub · blender · blender 3d · blender addon · blender plugin · blender extension",
+   "url": "https://github.com/baiblinocun1986/blender-ai-copilot-hub",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-12T19:32:22Z",
+   "snippet": "3d-automation, 3d-modeling, blender, blender-addon, blender-agents, blender-ai, blender-assistant, blender-automation, blender-chatgpt, blender-copilot, blender-extension, blender-llm, blender-mcp, bl",
+   "score": 501,
+   "discussion_url": null,
+   "category": "AI Agents & Tools",
+   "summary": "A Blender copilot hub connects multiple model providers including Ollama and custom endpoints, with 27 tools and an MCP server.",
+   "importance": 1,
+   "technologies": [
+    "Blender",
+    "MCP",
+    "Ollama"
+   ]
+  },
+  {
+   "id": "dc388aee58ab",
+   "title": "Things That Turbo Pascal Is Smaller Than (2011)",
+   "url": "https://prog21.dadgum.com/116.html",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T13:44:16Z",
+   "snippet": null,
+   "score": 238,
+   "discussion_url": "https://news.ycombinator.com/item?id=50506894",
+   "category": "Other Tech",
+   "summary": "A Hacker News post compares Turbo Pascal's size against other software.",
+   "importance": 1,
+   "technologies": [
+    "Turbo Pascal"
+   ]
+  },
+  {
+   "id": "1711dfbcefcd",
+   "title": "Gamer: A Generalist Vision-Language-Action Foundation Model for Long-Horizon Real-Time Game Agent",
+   "url": "https://huggingface.co/papers/2611.18397",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "Gamer is a generalist agent framework that integrates perception, memory, and multi-step reasoning, trained through continued pre-training, sparse-thinking instruction tuning, and multi-turn reinforcement learning to interact efficiently in 2D and 3D environments.",
+   "score": 61,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "Gamer is a generalist vision-language-action model for long-horizon real-time game agents trained with RL.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "7421d0b88afe",
+   "title": "[audio.cpp] SoulX-FlashHead + LFM3-Audio + OWSM v4 = Real-Time Local Avatar Chat",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx2vi0/audiocpp_soulxflashhead_lfm3audio_owsm_v4/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T18:29:39Z",
+   "snippet": "In audio.cpp 0.9.5 you can try this new avatar voice chat \"app\" in the WebUI. The pipeline combines 3 models: SoulX-FlashHead for real-time talking head generation, OWSM v4 for transcribing speech input to text, and LFM3-Audio for conversational responses and TTS. LFM3-Audio is actually called twice. The speech-to-speech path only provides one voice. We use the LFM3-Audio TTS to synthesize the S2S response in a different voice. One caveat: the video generation stage is still GPU-intensive. For SoulX, using RTX 4090 or better GPUs. cuDNN is a must for real-time performance. Without it inference is 2× slower and VRAM usage doubles. ~850ms between submission a question and avatar speaks on an RTX 5090. ASR runs in parallel. As mentioned LFM3-Audio is called twice, which can be optimized. There’s also some overhead from the prototype UI. A native app with a more optimized implementation could further reduce latency.",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx2vi0/audiocpp_soulxflashhead_lfm3audio_owsm_v4/",
+   "category": "Open Source",
+   "summary": "audio.cpp 0.9.5 adds a local real-time avatar voice chat pipeline combining three audio models.",
+   "importance": 2,
+   "technologies": [
+    "audio.cpp",
+    "LFM3-Audio",
+    "OWSM v4",
+    "SoulX-FlashHead"
+   ]
+  },
+  {
+   "id": "4ea895ebe95b",
+   "title": "haziqahmedqasmi/PeakCut: AI clipping for long videos and live streams. Self-hosted, bring your own AI key.",
+   "url": "https://github.com/haziqahmedqasmi/PeakCut",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-14T07:38:20Z",
+   "snippet": "Python",
+   "score": 500,
+   "discussion_url": null,
+   "category": "AI Agents & Tools",
+   "summary": "PeakCut is a self-hosted AI tool that clips long videos and live streams using a user-supplied AI key.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "0add1fe02352",
+   "title": "Crows make decisions faster than we can",
+   "url": "https://www.nytimes.com/2026/11/15/science/birdbrain-crows-birds-research-decision.html",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T17:53:31Z",
+   "snippet": null,
+   "score": 237,
+   "discussion_url": "https://news.ycombinator.com/item?id=50509023",
+   "category": "Other Tech",
+   "summary": "A Hacker News post discusses research showing crows make decisions faster than humans.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "ef27ea114317",
+   "title": "MMFlash: Faster Speculative Decoding for Vision-Language Models",
+   "url": "https://huggingface.co/papers/2611.18482",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "MMFlash improves multimodal speculative decoding by adaptively upweighting visually dependent tokens and using sparse attention for long video, yielding up to 3.58× lossless speedup.",
+   "score": 25,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "MMFlash improves speculative decoding for vision-language models, reporting up to 3.58x lossless speedup.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "743df5f4d175",
+   "title": "Making cudaMemcpy 5x faster on a B300 [P]",
+   "url": "https://www.reddit.com/r/MachineLearning/comments/1xx2n25/making_cudamemcpy_5x_faster_on_a_b300_p/",
+   "source": "reddit",
+   "source_name": "r/MachineLearning",
+   "published": "2026-11-15T18:20:27Z",
+   "snippet": "https://preview.redd.it/cjz9xy3rht1i1.png?width=1600&format=png&auto=webp&s=0eea8a5d9e53d5ea4593ce1a629bc7342a049ffa Hi everyone, I made a tool that can speed up pageable transfers for cudaMemcpy. For example: # B300, copying a 1 GB tensor to the GPU and back: import time, torch x = torch.ones(1 << 30, dtype=torch.uint8) y = x.to(\"cuda\"); y.cpu() for name, copy in [(\"CPU -> GPU\", lambda: (x.to(\"cuda\"), torch.cuda.synchronize()))]: t = time.perf_counter() for _ in range(5): copy() print(f\"{name}: {5 * x.nbytes / (time.perf_counter() - t) / 1e9:.1f} GB/s\") $ python bench.py CPU -> GPU: 10.2 GB/s $ cmt tune -- python bench.py CPU -> GPU: 51.5 GB/s blog: https://maknee.github.io/blog/2026/CudaMemcpy/ code: https://github.com/Maknee/cudamemcpy-tuner",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/MachineLearning/comments/1xx2n25/making_cudamemcpy_5x_faster_on_a_b300_p/",
+   "category": "Dev Tools & Frameworks",
+   "summary": "A tool speeds up pageable cudaMemcpy transfers on a B300 GPU, reportedly about 5x faster for a 1GB copy.",
+   "importance": 2,
+   "technologies": [
+    "CUDA",
+    "PyTorch"
+   ]
+  },
+  {
+   "id": "1e2e1314ac11",
+   "title": "berkantay/gpucanvas: Put thousands of live DOM nodes on an infinite canvas: the GPU draws them, an editor selects, moves and resizes them, shaders and transitions run on them, and an AI agent can read them and point at them.",
+   "url": "https://github.com/berkantay/gpucanvas",
+   "source": "github_trending",
+   "source_name": "GitHub",
+   "published": "2026-11-12T23:19:42Z",
+   "snippet": "TypeScript · ai-agents, canvas, design-tools, editor, html-in-canvas, infinite-canvas, react, shaders, transitions, typescript, webgpu, wgsl",
+   "score": 498,
+   "discussion_url": null,
+   "category": "Dev Tools & Frameworks",
+   "summary": "gpucanvas draws thousands of live DOM nodes on a WebGPU infinite canvas and lets AI agents read and point at them.",
+   "importance": 2,
+   "technologies": [
+    "WebGPU",
+    "WGSL",
+    "React"
+   ]
+  },
+  {
+   "id": "6e3a86feb66b",
+   "title": "A short explainer on how El Niño works [video]",
+   "url": "https://www.youtube.com/watch?v=7_JF3etiAv8",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T18:23:21Z",
+   "snippet": null,
+   "score": 235,
+   "discussion_url": "https://news.ycombinator.com/item?id=50509308",
+   "category": "Other Tech",
+   "summary": "A short video explains how El Niño works.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "bc15f7248029",
+   "title": "V-JEPA-LM: Video-Language Models That Read Dynamics Beyond Static, Text-Aligned Representations",
+   "url": "https://huggingface.co/papers/2611.17831",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "Counterfactual supervision over pixel transformations enables language models to read motion dynamics from frozen predictive video encoders, yielding V-JEPA-LM models that outperform open video LLMs across benchmarks.",
+   "score": 15,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "V-JEPA-LM uses counterfactual supervision to let language models read motion dynamics from frozen video encoders, beating open video LLMs.",
+   "importance": 2,
+   "technologies": [
+    "V-JEPA"
+   ]
+  },
+  {
+   "id": "af763b2ec7ed",
+   "title": "1Cat-vLLM vs Strata",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx1u9y/1catvllm_vs_strata/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T17:49:18Z",
+   "snippet": "Edit: 1Cat-vLLM is a Tesla V100 focused fork of vLLM, and the expert caching work is 1Cat's original work, which may or may not one day make it to vLLM. Everyday we see posts about speeds on Strata and its forks, but just recently I came to know that 1Cat has added support for expert caching recently, like a month ago. So I did (asked claude) a comparison of speeds on a Qwen3.8-Flash-Next UD-IQ3_XXS quant. My rig is 4x 16gb Tesla V100 on PCIe 3 x16 links, with 8 channel 3200 mt/s ddr4 ram, Epyc 7543 CPU. Now, for numbers: Single stream Median of 3 runs, except the 97k tokens one which I asked to run only once to save time. Prompt (tokens) Prefill tok/s, Strata Prefill tok/s, 1Cat Decode tok/s, Strata Decode tok/s, 1Cat MTP acceptance, Strata / 1Cat 2,654 861 1,850 74.8 124.9 0.61 / 0.45 8,674 1,146 2,483 79.3 140.8 0.67 / 0.66 30,299 2,480 2,776 76.4 139.3 0.63 / 0.58 96,588 3,384 2,649 77.2 142.6 0.72 / 0.62 Strata has better draft acceptance and still 1cat beats it, imagine if 1cat…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx1u9y/1catvllm_vs_strata/",
+   "category": "Dev Tools & Frameworks",
+   "summary": "A comparison of 1Cat-vLLM, a Tesla V100-focused vLLM fork with expert caching, against the Strata inference stack.",
+   "importance": 2,
+   "technologies": [
+    "vLLM",
+    "Strata"
+   ]
+  },
+  {
+   "id": "950ac38f23f2",
+   "title": "Understanding Positional Embeddings in Modern LLMs",
+   "url": "https://magazine.sebastianraschka.com/p/understanding-positional-embeddings",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T12:14:06Z",
+   "snippet": null,
+   "score": 228,
+   "discussion_url": "https://news.ycombinator.com/item?id=50506376",
+   "category": "AI Research",
+   "summary": "A Hacker News post explains positional embeddings in modern LLMs.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "59c578bf213c",
+   "title": "JVT: Just Video Transformer makes pixel-space video diffusion simple",
+   "url": "https://huggingface.co/papers/2611.18549",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "JVT, a simple large-patch DiT-style Transformer, enables pixel-space video diffusion without pretrained autoencoders or U-Net skip connections, achieving competitive quality and supporting joint camera-conditioned RGB-disparity generation.",
+   "score": 15,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "JVT is a large-patch DiT-style transformer that enables pixel-space video diffusion without pretrained autoencoders.",
+   "importance": 2,
+   "technologies": [
+    "DiT"
+   ]
+  },
+  {
+   "id": "625434c3add8",
+   "title": "Villanova2 - a VillanovaAI Collection",
+   "url": "https://huggingface.co/collections/VillanovaAI/villanova2",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T17:46:04Z",
+   "snippet": "Villanova2 family , for English, Italian, German, Spanish and French. Built in EU, for EU. The family Villanova2-15B-A3B-Base · sparse mixture of experts, 15.5B total / 3.9B active Villanova2-15B-A3B · instruction-tuned Villanova2-15B-A3B-VL · vision-language Villanova2-2B-Base · dense, 2.4B Villanova2-2B · instruction-tuned Villanova2-2B-VL · vision-language GGUFs available in same collection. License : Apache-2.0",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx1rbk/villanova2_a_villanovaai_collection/",
+   "category": "AI Models & Releases",
+   "summary": "VillanovaAI released the Villanova2 family of EU-built multilingual models, including MoE, instruct and vision-language variants.",
+   "importance": 2,
+   "technologies": [
+    "Villanova2"
+   ]
+  },
+  {
+   "id": "6390c6b231f0",
+   "title": "Emacs Is My Browser",
+   "url": "https://joshblais.com/blog/emacs-as-my-browser/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T15:21:21Z",
+   "snippet": null,
+   "score": 206,
+   "discussion_url": "https://news.ycombinator.com/item?id=50507553",
+   "category": "Other Tech",
+   "summary": "A Hacker News post describes using Emacs as a web browser.",
+   "importance": 1,
+   "technologies": [
+    "Emacs"
+   ]
+  },
+  {
+   "id": "2ecd977eeb15",
+   "title": "Loopback Transformer: Towards a Unified View of Residual Looped Transformers",
+   "url": "https://huggingface.co/papers/2611.07226",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "A looped Transformer that separately controls input strength, total update weight, and per-update allocation achieves lower validation loss and higher downstream accuracy than standard and looped residual baselines while using fewer parameters.",
+   "score": 14,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "A looped Transformer design separately controls input strength and update allocation, reporting lower loss with fewer parameters.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "fcdc7db4b4da",
+   "title": "MoE offload on a 3090: prefill 345 -> 466 t/s by tuning cudaMemcpy (Qwen3.6 35B-A3B)",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx1owx/moe_offload_on_a_3090_prefill_345_466_ts_by/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T17:43:31Z",
+   "snippet": "https://i.redd.it/5dlnj6wict1i1.gif I made a tool that tunes copies that speeds up CPU offloading. 1 3090 + 7800X3D llama-bench -m Qwen3.6-35B-A3B-Q8_0.gguf -ngl 99 -fa 1 -ot exps=CPU -p 2048 -n 0 -r 3 cmt tune -- llama-bench -m Qwen3.6-35B-A3B-Q8_0.gguf -ngl 99 -fa 1 -ot exps=CPU -p 2048 -n 0 -r 3 before: prefill 345 t/s after: prefill 466 t/s blog: https://maknee.github.io/blog/2026/CudaMemcpy/ code: https://github.com/Maknee/cudamemcpy-tuner",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx1owx/moe_offload_on_a_3090_prefill_345_466_ts_by/",
+   "category": "Dev Tools & Frameworks",
+   "summary": "A tuning tool for cudaMemcpy raises prefill speed for MoE CPU offload of Qwen3.6-35B-A3B on a 3090.",
+   "importance": 1,
+   "technologies": [
+    "CUDA",
+    "llama.cpp",
+    "Qwen3.6-35B-A3B"
+   ]
+  },
+  {
+   "id": "47b57b00d835",
+   "title": "Ask HN: Stripe closed us after one $1,500 invoice and never asked for evidence",
+   "url": "https://news.ycombinator.com/item?id=50510042",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T19:49:28Z",
+   "snippet": "We're a small business that sells pre-booked appointments with homeowners to local contractors, billed per appointment that actually happens. Our first client agreed to this on a recorded call and saved his card through a $1 Stripe payment link, which we planned to use for billing later. That $1 payment went through. A few weeks later we invoiced him $1,500 for 3 completed appointments and charged the saved card. Stripe blocked the payment. Two days after that the account was closed with this wording: payments \"don't appear to have been authorized by the customer.\" What happened next: - We appealed through the Dashboard with an appeal letter, our company documents and the invoice. It was rejected the next day as an \"unacceptable level of risk.\" - Support told us our \"business model presents a level of risk we're unable to support\" and that the decision is final. - After a Stripe employee escalated it internally, we got a short email saying Stripe still won't accept payments for our bu…",
+   "score": 170,
+   "discussion_url": "https://news.ycombinator.com/item?id=50510042",
+   "category": "Industry & Funding",
+   "summary": "A small business says Stripe closed its account after a $1,500 invoice without asking for evidence.",
+   "importance": 1,
+   "technologies": [
+    "Stripe"
+   ]
+  },
+  {
+   "id": "f9b2c6d1b672",
+   "title": "MEM-SQL: Memory-Empowered Text-to-SQL",
+   "url": "https://huggingface.co/papers/2611.18338",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "A history-aware benchmark and memory-powered method improve Text-to-SQL accuracy and reduce cost by reusing verified SQL components and consulting schemas on demand.",
+   "score": 13,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "MEM-SQL introduces a history-aware Text-to-SQL benchmark and memory-based method that reduces cost.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "cea3f174f4c6",
+   "title": "[Meta FAIR + NYU] Unbundling Multimodal Vision Encoding: training 200+ MLLMs to find encoder pretraining is optional but vision-only parameters are not [R]",
+   "url": "https://www.reddit.com/r/MachineLearning/comments/1xx1k2o/meta_fair_nyu_unbundling_multimodal_vision/",
+   "source": "reddit",
+   "source_name": "r/MachineLearning",
+   "published": "2026-11-15T17:38:16Z",
+   "snippet": "X threads (with videos!): https://x.com/choang333/status/2121335484236386574 https://x.com/_ellisbrown/status/2121335477244428419 Paper: https://www.alphaxiv.org/abs/2611.17334 Blog and FAQ: https://unbundling.github.io Labs disagree on vision encoders right now. Gemma 4 12B dropped the encoder, Kimi K3 trains its encoder from scratch, and Inkling 2 Small brought an encoder back. Published models can't settle this, because they differ in data and compute and rarely account for encoder pretraining. A standard encoder also bundles three choices: separate pretraining, parameters that only vision tokens use, and placement before the LLM. We tested each choice separately. Setup: 200+ models, all trained from scratch (LLM included) on the same data. Lifetime compute: encoder pretraining counts against the same budget as multimodal training. Main comparisons use Qwen3-1.7B and 4B configurations with 0.4B parameters of vision capacity. A scaling ladder covers 0.6B to 6.4B backbone sizes. Eval…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/MachineLearning/comments/1xx1k2o/meta_fair_nyu_unbundling_multimodal_vision/",
+   "category": "AI Research",
+   "summary": "Meta FAIR and NYU trained over 200 MLLMs and found encoder pretraining is optional while vision-only parameters are not.",
+   "importance": 2,
+   "technologies": [
+    "Gemma 4"
+   ]
+  },
+  {
+   "id": "733031d07a95",
+   "title": "Jensen Huang might return to Nvidia as CEO",
+   "url": "https://www.reuters.com/world/china/jensen-huang-discusses-comeback-nvidia-ceo-with-allies-ft-reports-2026-11-15/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T23:24:53Z",
+   "snippet": null,
+   "score": 166,
+   "discussion_url": "https://news.ycombinator.com/item?id=50511982",
+   "category": "Industry & Funding",
+   "summary": "A Hacker News post reports that Jensen Huang might return to Nvidia as CEO.",
+   "importance": 3,
+   "technologies": []
+  },
+  {
+   "id": "3e2b76e4617c",
+   "title": "Rethinking in Spikes: Mitigating Hallucinations in MDLMs with Step-Aware Decoding",
+   "url": "https://huggingface.co/papers/2611.12901",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "StepRefine, a plug-and-play decoding strategy, mitigates hallucinations in multimodal diffusion language models by switching between discrete denoising and latent refinement based on entropy spikes and distributional stability.",
+   "score": 11,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "StepRefine reduces hallucinations in multimodal diffusion language models by switching decoding modes on entropy spikes.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "bfce57e293c4",
+   "title": "Basalt 0.4.0: More models, still as fast - Qwen 27B up to 770 tok/s on a 5090",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx1cu9/basalt_040_more_models_still_as_fast_qwen_27b_up/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T17:30:31Z",
+   "snippet": "Hi everyone! I wanted to post a quick update on Basalt . Since last I posted, multi model and router support was implemented, starting with DeepSeek V4.1 Flash (IQ1_M 90 tok/s conv, 246 tok/s struct on a 5090 + 5060 Ti). Also new: video support, files in chats, and a bunch of fixes and improvements. Now 0.4.0 is out featuring Basalt's first dense model, Qwen 3.8 27B NVFP4. It's fast and accurate, top-1 92.8% vs the full BF16 model. This, in preparation for Qwen 4, so we had a headstart on the dense kernels. The numbers: Up to 776 tok/s on structured output, 262 conversation, 194 on prose. Single stream. Prefill, 12,000 tok/s at 4k (slower as context grows) 92.8% top-1 vs BF16 (0.0262 KLD) Chat, tools, thinking, images and video, up to 262K context Links: GitHub: https://github.com/jesdga95/basalt Site: https://basalt.jgulfo.com 27B quant: https://huggingface.co/jesdga/Qwen3.8-27B-Basalt Thanks to everyone who has filed issues, sent PRs or posted benchmark rows, special thanks to the s…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx1cu9/basalt_040_more_models_still_as_fast_qwen_27b_up/",
+   "category": "Dev Tools & Frameworks",
+   "summary": "Basalt 0.4.0 adds multi-model routing, DeepSeek V4.1 Flash support and video in chats, with throughput figures on a 5090.",
+   "importance": 2,
+   "technologies": [
+    "DeepSeek V4.1 Flash",
+    "Qwen 27B"
+   ]
+  },
+  {
+   "id": "69e5f0d03d19",
+   "title": "Clice v1.0 Released: Welcome to Modern C++",
+   "url": "https://ykiko.me/en/articles/2105384023094834022/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T17:22:32Z",
+   "snippet": null,
+   "score": 156,
+   "discussion_url": "https://news.ycombinator.com/item?id=50508715",
+   "category": "Dev Tools & Frameworks",
+   "summary": "Clice v1.0 releases a modern C++ language tooling project.",
+   "importance": 1,
+   "technologies": [
+    "Clice"
+   ]
+  },
+  {
+   "id": "bdde1efbe4cc",
+   "title": "HALO: Human-Aligned Data Collection for WhoLe-body MObile Manipulation",
+   "url": "https://huggingface.co/papers/2611.16439",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "Learning whole-body mobile manipulation requires demonstrations that coordinate bimanual actions with locomotion across extended workspaces. However, existing interfaces trade off direct robot control, perception and action alignment, and natural operator mobility, making such demonstrations difficult to collect. We introduce HALO, a human-aligned data collection system for whole-body mobile manipulation. The system aligns the operator's perception and action space with the robot while preservi…",
+   "score": 11,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "HALO is a human-aligned data collection interface for whole-body mobile manipulation demonstrations.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "4bbbb83bfcb1",
+   "title": "Asked local models to generate the same website and compared the results",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx1chl/asked_local_models_to_generate_the_same_website/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T17:30:11Z",
+   "snippet": "Hello. Almost everything is in the title, but here is more details: I'm benchmarking local model/harness combinations in various scenarios. For this one the question is, how good is a model/harness to generate a website? IMO Qwen FN with opencode is best, but you can look at all the results (and play with the websites here: https://airbench.ai/gallery/airbench-frontend-v1?run=37e47127-3a20-4318-a6f2-48c3f7f5eaa6&c=settle-the-trip&k=poL",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx1chl/asked_local_models_to_generate_the_same_website/",
+   "category": "AI Models & Releases",
+   "summary": "A user benchmarks local model and harness combinations by generating the same website, finding Qwen with opencode performs well.",
+   "importance": 1,
+   "technologies": [
+    "opencode",
+    "Qwen"
+   ]
+  },
+  {
+   "id": "64748288ec24",
+   "title": "Vulcan rocket fails during return-to-flight launch, 40 Amazon satellites lost",
+   "url": "https://www.space.com/space-exploration/launches-spacecraft/ula-vulcan-centaur-return-to-flight-amazon-leo-internet-satellite-launch",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T20:37:28Z",
+   "snippet": null,
+   "score": 155,
+   "discussion_url": "https://news.ycombinator.com/item?id=50510442",
+   "category": "Other Tech",
+   "summary": "A Vulcan rocket failed during a return-to-flight launch, losing 40 Amazon satellites.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "f3f48383e04d",
+   "title": "Do Underwater Image Quality Metrics Agree with Human Perception? A Benchmark with Human Choices, Simple Edits and Generative Drift",
+   "url": "https://huggingface.co/papers/2611.18429",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "Underwater image enhancement is challenging to evaluate due to the lack of clean reference images, so researchers rely on no-reference image quality assessment (NR-IQA) metrics. However, it remains unclear whether these metrics agree with human judgments. We evaluate 73 handcrafted underwater, learned underwater, vision-language and general-purpose metrics against human preferences on five references: four published opinion-score sets and a new paired-comparison study. For each metric, we measu…",
+   "score": 10,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "A benchmark tests whether 73 underwater image quality metrics agree with human judgments.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "fbbeb6508fe4",
+   "title": "Many Tiles, One Space, Two Worlds -- At Last, a Use for Bubble Sort",
+   "url": "https://meatfighter.com/many-tiles-one-space-two-worlds/",
+   "source": "reddit",
+   "source_name": "r/programming",
+   "published": "2026-11-15T16:59:57Z",
+   "snippet": null,
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/programming/comments/1xx0jyi/many_tiles_one_space_two_worlds_at_last_a_use_for/",
+   "category": "Other Tech",
+   "summary": "A Reddit post presents a programming curiosity about using bubble sort on tile layouts.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "27fdb397828c",
+   "title": "'Duffy Lied': Controllers Refute Transportation Secretary's Ground Stop Story",
+   "url": "https://www.commondreams.org/news/duffy-ground-stop-explanation",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T15:45:42Z",
+   "snippet": null,
+   "score": 154,
+   "discussion_url": "https://news.ycombinator.com/item?id=50507791",
+   "category": "Other Tech",
+   "summary": "Air traffic controllers dispute the Transportation Secretary's account of a ground stop.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "8c2b2d63712a",
+   "title": "AI Reviews Are Biased Towards the Appendix",
+   "url": "https://huggingface.co/papers/2611.17811",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "Large language models used for peer review draw about half or more of their identified weaknesses from paper appendices, whereas human reviewers draw only 8.4% and focus on presentation and core ideas.",
+   "score": 10,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "A study finds LLM peer reviewers draw about half their weaknesses from appendices, unlike human reviewers.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "c011574b8baa",
+   "title": "CPU-only boost for Q2_0 on AVX-VNNI · Pull Request #26348 · ggml-org/llama.cpp",
+   "url": "https://github.com/ggml-org/llama.cpp/pull/26348",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T16:55:21Z",
+   "snippet": "Measurements: mean ± sample standard deviation in tok/s, 3 runs after normal warmup (16GB of RAM on the AMD EPYC 9645 using eight CPU cores) Model Test Upstream master VNNI + VBMI Speedup Bonsai 1.7B pp512 142.517 ± 0.589 186.373 ± 1.582 1.31× Bonsai 1.7B tg128 70.435 ± 2.061 68.422 ± 9.055 0.97× Bonsai 4B pp512 53.430 ± 2.266 71.247 ± 1.925 1.33× Bonsai 4B tg128 31.655 ± 2.652 38.523 ± 3.820 1.22× Bonsai 8B pp512 30.010 ± 0.512 39.396 ± 0.424 1.31× Bonsai 8B tg128 20.630 ± 0.302 23.770 ± 0.209 1.15× Bonsai 27B pp128 8.502 ± 0.042 11.029 ± 0.073 1.30× Bonsai 27B tg32 5.340 ± 0.117 5.812 ± 0.324 1.09× But noticed few surprising things there. I assumed the boost is only for Ternary models, but it's not. This makes CPU kernels a lot faster, raising IQ1_S/IQ2_XXS DeepSeek v4.1 decode speed End to end, a 66 GB Q2_0 MoE ( Qwen3.8-Flash-Next GSQ-RCO Q2_0 ) with --cpu-moe, so all routed experts run through this kernel on the CPU. RTX 4070 Laptop for the rest, 10 threads, MTP on, generation t/…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xx0fqn/cpuonly_boost_for_q2_0_on_avxvnni_pull_request/",
+   "category": "Dev Tools & Frameworks",
+   "summary": "A llama.cpp pull request adds a CPU speedup for Q2_0 models on AVX-VNNI hardware, with prompt processing gains up to 1.31x.",
+   "importance": 2,
+   "technologies": [
+    "llama.cpp",
+    "Bonsai 1.7B"
+   ]
+  },
+  {
+   "id": "28b10992cceb",
+   "title": "Preserving 30 years of Salon journalism",
+   "url": "https://blog.archive.org/2026/11/12/preserving-30-years-of-salon-journalism/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T23:00:11Z",
+   "snippet": null,
+   "score": 147,
+   "discussion_url": "https://news.ycombinator.com/item?id=50511806",
+   "category": "Other Tech",
+   "summary": "A Hacker News post describes an effort to preserve 30 years of Salon journalism.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "b20060722a6f",
+   "title": "GH-AWTrace: A Large-Scale Dataset of GitHub Agentic Workflow Execution Logs",
+   "url": "https://huggingface.co/papers/2611.06866",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "Agentic workflows enable AI agents to perform recurring repository tasks on schedules or in response to repository events. Existing studies examine workflow definitions and outputs, but provide limited evidence of what happens during execution. We present GH-AWTrace, a dataset linking 25,014 verified GitHub Agentic Workflows across 5,051 repositories to 4,112,526 run records and 562,877 nonempty execution log archives. The dataset preserves execution evidence subject to GitHub's log-retention l…",
+   "score": 10,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "GH-AWTrace is a dataset of 25,014 GitHub agentic workflow execution logs.",
+   "importance": 2,
+   "technologies": [
+    "GitHub Agentic Workflows"
+   ]
+  },
+  {
+   "id": "a0d383191b10",
+   "title": "X3Guard: A 150M parameter prompt guard",
+   "url": "https://huggingface.co/AxiomicLabs/X3Guard-150M",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T15:46:17Z",
+   "snippet": "At Axiomic Labs we have just released X3Guard-150M, a prompt guard model trained on our high-performing base model, GPT-X3. For any given prompt, X3Guard flags whether it is Harmful, and whether it is Adversarial, in one go. It outperforms models that are many times its size, and can run entirely on edge devices, within the browser, with response times in the tens of milliseconds on iPhone. The model card is here You can use an in-browser demo here",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwyp7w/x3guard_a_150m_parameter_prompt_guard/",
+   "category": "AI Models & Releases",
+   "summary": "Axiomic Labs released X3Guard-150M, a small prompt guard model that flags harmful and adversarial prompts.",
+   "importance": 2,
+   "technologies": [
+    "X3Guard-150M",
+    "GPT-X3"
+   ]
+  },
+  {
+   "id": "83b3b2200438",
+   "title": "Tor Project Issues Rapid-Response DoS-Defense Fix Amid Sustained DDoS Attack",
+   "url": "https://forum.torproject.org/t/security-release-0-4-9-17/22454",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-16T00:21:54Z",
+   "snippet": null,
+   "score": 145,
+   "discussion_url": "https://news.ycombinator.com/item?id=50512441",
+   "category": "Security",
+   "summary": "The Tor Project shipped a rapid-response fix for DoS defenses during a sustained DDoS attack.",
+   "importance": 3,
+   "technologies": [
+    "Tor"
+   ]
+  },
+  {
+   "id": "5453ce56b48e",
+   "title": "Emergent Biological Capabilities in a Foundation Model for Molecular Interactions",
+   "url": "https://huggingface.co/papers/2611.14504",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "Foundation models trained on large unlabeled corpora develop emergent capabilities, tasks that go beyond the training objective. We extend this paradigm to multimodal biology with Bonbon, a foundation model for molecular interactions trained on approximately 3.2 trillion tokens of paired protein-ligand sequences. From a single representation space, Bonbon exhibits three zero-shot emergent capabilities at hierarchical levels of resolution: functional (mechanism of action), residue (binding site…",
+   "score": 10,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "Bonbon is a foundation model for molecular interactions trained on about 3.2 trillion tokens, showing emergent biology capabilities.",
+   "importance": 2,
+   "technologies": [
+    "Bonbon"
+   ]
+  },
+  {
+   "id": "6f30a5c0ffe7",
+   "title": "544 unmaintained PyPI packages with imports that fail on Python 3.12+ still get 100M+ downloads a month",
+   "url": "https://py-code.org/blog/removed-stdlib-modules-pypi/",
+   "source": "reddit",
+   "source_name": "r/programming",
+   "published": "2026-11-15T15:37:40Z",
+   "snippet": "Python 3.12 and 3.13 dropped 25 stdlib modules (distutils, imp, cgi, pipes, telnetlib...). This scan of PyPI found 1,623 projects that still import one of them outside a try/except. 852 of those are in the 60k most downloaded packages, and 544 of the 852 haven't had a release in two years. Index covers last year's releases plus the top 60k by downloads, so the real number is higher. Download numbers are from ClickHouse's public PyPI dataset (ClickPy).",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/programming/comments/1xwyhpm/544_unmaintained_pypi_packages_with_imports_that/",
+   "category": "Dev Tools & Frameworks",
+   "summary": "A scan finds 544 unmaintained PyPI packages that fail on Python 3.12+ due to removed stdlib modules yet get over 100M monthly downloads.",
+   "importance": 2,
+   "technologies": [
+    "Python",
+    "PyPI"
+   ]
+  },
+  {
+   "id": "102e09f7e3f8",
+   "title": "WebGL Flight Simulator with seed generated terrain",
+   "url": "https://baron.by.dai.studio/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T20:20:05Z",
+   "snippet": null,
+   "score": 144,
+   "discussion_url": "https://news.ycombinator.com/item?id=50510296",
+   "category": "Other Tech",
+   "summary": "A WebGL flight simulator with seed-generated terrain is shared on Hacker News.",
+   "importance": 1,
+   "technologies": [
+    "WebGL"
+   ]
+  },
+  {
+   "id": "a34d7316442f",
+   "title": "Evidence-Governed Adoption of Self-Generated Updates in Autonomous AI Agents",
+   "url": "https://huggingface.co/papers/2611.16378",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "A governance framework separates generation from adoption of self-modifying autonomous-agent changes, using fresh paired audits, non-inferiority checks, and calibrated statistical bounds to confirm improvements before bounded deployment.",
+   "score": 9,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "A governance framework separates generation from adoption of self-modifying agent updates, requiring statistical confirmation before deployment.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "81d388bb70bd",
+   "title": "Is there a community about finetuning and training models?",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwyfr8/is_there_a_community_about_finetuning_and/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T15:35:22Z",
+   "snippet": "There seems to be a lot of discussion here about inference and using the models, but is there anywhere where discussion about making them is more common?",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwyfr8/is_there_a_community_about_finetuning_and/",
+   "category": "Other Tech",
+   "summary": "A user asks whether a community exists focused on fine-tuning and training models.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "a0f134886e82",
+   "title": "Jensen Huang discusses comeback as Nvidia CEO with allies",
+   "url": "https://www.ft.com/content/45383d86-33c4-4d99-86e5-5e058d3567c1",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T19:31:11Z",
+   "snippet": null,
+   "score": 124,
+   "discussion_url": "https://news.ycombinator.com/item?id=50509883",
+   "category": "Industry & Funding",
+   "summary": "Reports say Jensen Huang is discussing a comeback as Nvidia CEO with allies.",
+   "importance": 3,
+   "technologies": []
+  },
+  {
+   "id": "758d12d47041",
+   "title": "JFinBench: A Continuously Refreshable Japanese Financial Benchmark from the Latest Certification Exams",
+   "url": "https://huggingface.co/papers/2611.18130",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "Large language models (LLMs) are increasingly applied to finance, creating a need for benchmarks that evaluate their capabilities across financial systems with different regulations and practices. However, existing financial benchmarks provide limited coverage of country-specific financial systems, and they are difficult to keep up to date as released questions leak into training data. We introduce JFinBench, a Japanese financial benchmark comprising 321 examples from the 2026 editions of six r…",
+   "score": 9,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "JFinBench is a refreshable Japanese financial benchmark built from recent certification exams.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "fa6009f8b1e8",
+   "title": "Probable GLM model",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwy3ka/probable_glm_model/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T15:21:11Z",
+   "snippet": "https://preview.redd.it/k7ife2j2ms1i1.png?width=591&format=png&auto=webp&s=e8dd29b327ac46e7634a5faf48454ec1beb7aa0b Because of Theo gg tweet of all people, I Launch QFN DeepResearch swarm agent to find anything about this. THREE model names, blurred out, sitting at 59.4% / 57.1% / 54.0%. The blurred names are most likely [GLM-Nano or GLM-Name or GLM-Next (suggestion from Silver-Theme7151)] Pro, Med, and Small. One community experiment reconstructed the suspected text, applied Gaussian blur (σx ≈ 6.9px), and achieved an RMSE of just 1.254/255 against the original. AICodeKing track record. Someone compared his previous GLM statements against official release dates: GLM-4.6 (same day), GLM-5 (1 day), GLM-5.1 (11 days), GLM-5.2 (3 days), and GLM-5.3 (4 days). Antrhopic timing. The leaderboard surfaced on November 12 vs AICodeKing timing, while Anthropic IPO on Nov 18. If Z.ai releases GLM-Nano this week, the timing would make for quite a coincidence https://linux.do/t/topic/3166447 Anothe…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwy3ka/probable_glm_model/",
+   "category": "AI Models & Releases",
+   "summary": "Speculation circulates about an unreleased GLM model, based on blurred benchmark scores from a research swarm.",
+   "importance": 1,
+   "technologies": [
+    "GLM"
+   ]
+  },
+  {
+   "id": "96e1a1a80255",
+   "title": "A NES emulator written in Odin",
+   "url": "https://lucypero.com/lucynes.html",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T12:51:47Z",
+   "snippet": null,
+   "score": 116,
+   "discussion_url": "https://news.ycombinator.com/item?id=50506588",
+   "category": "Other Tech",
+   "summary": "A NES emulator written in the Odin language is shared on Hacker News.",
+   "importance": 1,
+   "technologies": [
+    "Odin"
+   ]
+  },
+  {
+   "id": "a479640393b6",
+   "title": "eDIAR: Training-Free Open-Speaker Streaming Diarization for Long Meetings and Large Archives via e-means",
+   "url": "https://huggingface.co/papers/2611.18529",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "A streaming speaker-diarization method removes the fixed speaker-slot limit by clustering speaker embeddings within slots after all slots are used, allowing unlimited speakers and efficient large-scale linking.",
+   "score": 9,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "eDIAR is a training-free streaming speaker diarization method that removes the fixed speaker limit.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "244834c21866",
+   "title": "I finally succeed the CMP 170HX voltage glitch and get 80GB VRAM + 126sm! !",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwxzgj/i_finally_succeed_the_cmp_170hx_voltage_glitch/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T15:16:24Z",
+   "snippet": "Ever since the information surfaced five days ago, I had intended to implement it right away. Having confirmed that it could be executed using 'pico,' I carried it out today. I had Astra write the script for the restricted write-access portion, and after nearly 15 hours of work, I finally managed to complete the task. I also plan to handle the second CMP later on.",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwxzgj/i_finally_succeed_the_cmp_170hx_voltage_glitch/",
+   "category": "Other Tech",
+   "summary": "A hobbyist reports a voltage glitch on a CMP 170HX that unlocks 80GB VRAM and 126 SMs.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "363403846a59",
+   "title": "Do House members' stock trades beat the market? A test of 8,900 trades",
+   "url": "https://arkanumdata.com/research/house-trades",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T19:46:02Z",
+   "snippet": null,
+   "score": 114,
+   "discussion_url": "https://news.ycombinator.com/item?id=50510005",
+   "category": "Other Tech",
+   "summary": "An analysis of 8,900 trades tests whether House members' stock trades beat the market.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "0aae5f17459b",
+   "title": "Disen-Forcing: Disentangling Semantic Anchoring from Motion for Autoregressive Video Diffusion",
+   "url": "https://huggingface.co/papers/2611.02822",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "Disen-Forcing is a distillation-time method for autoregressive video diffusion models that disentangles attention-head specialization to improve long-range consistency and motion dynamics in long-horizon video generation.",
+   "score": 9,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "Disen-Forcing is a distillation method that improves long-range consistency in autoregressive video diffusion.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "1ac50ba6c216",
+   "title": "Memory management in 40 major C projects, a survey",
+   "url": "https://theconsensus.dev/p/2026/11/08/c-memory-management-survey.html",
+   "source": "reddit",
+   "source_name": "r/programming",
+   "published": "2026-11-15T14:55:39Z",
+   "snippet": null,
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/programming/comments/1xwxhbp/memory_management_in_40_major_c_projects_a_survey/",
+   "category": "Other Tech",
+   "summary": "A survey examines memory management practices across 40 major C projects.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "c650c89a876a",
+   "title": "Coles hit by a cybersecurity incident",
+   "url": "https://www.colesgroup.com.au/updates/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-16T01:14:35Z",
+   "snippet": null,
+   "score": 103,
+   "discussion_url": "https://news.ycombinator.com/item?id=50512824",
+   "category": "Security",
+   "summary": "Coles, the Australian retailer, disclosed a cybersecurity incident.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "499976ca057b",
+   "title": "Aligning AI Teams",
+   "url": "https://huggingface.co/papers/2611.17820",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "Alignment training on individual LLM agents often fails to transfer to multi-agent teams, but designating a safety lead and having a coordinator publish safety specifications can restore single-agent alignment.",
+   "score": 9,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "Research finds single-agent alignment often fails to transfer to multi-agent teams, and a designated safety lead can restore it.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "e6c323ceba46",
+   "title": "Spotted a very interesting detail about Intel's upcoming CPU platform (LGA 1954)",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwxbjk/spotted_a_very_interesting_detail_about_intels/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T14:49:02Z",
+   "snippet": "I was doing some research about the the platform for Intel's next generations of CPUs. If we look closely at the PCIe 5.0 configuration for Z990/W980, it specifies x16 (or x8/x8 ) x8 (or x4/x4) \"Storage\" So, it is plausible we might see motherboards with 3 PCIe 5.0 x8 slots directly wired into the CPU. The best we can currently do on consumer hardware is PCI 5.0 x8/x8/x4 without risers and there are only two boards that can do it and neither is in production anymore (MSI MEG/Godlike X670E). In practice the best is x8/x8. TP=3 is fairly easy for your agent to patch into inference engines. These boards will have 2x Thunderbolt (Wiki says 4, but it may be 5?). So, possibly options for high-speed networking here. Let's make RDMA over Thunderbolt happen! The desktop CPUs will have Low-Power-Ecores, which should help with idle power-draw and on the other hand they will have full AVX512 again (yay). Asrock and MSI are the most likely ones to color outside lines. I hope the x8/x8/x8 is \"allow…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwxbjk/spotted_a_very_interesting_detail_about_intels/",
+   "category": "Other Tech",
+   "summary": "A speculative analysis of Intel's upcoming LGA 1954 platform and PCIe 5.0 lane configuration.",
+   "importance": 1,
+   "technologies": [
+    "PCIe 5.0"
+   ]
+  },
+  {
+   "id": "7c17e587ee6a",
+   "title": "Eclipse Mosquitto – An open source MQTT broker",
+   "url": "https://github.com/eclipse-mosquitto/mosquitto",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T18:36:40Z",
+   "snippet": null,
+   "score": 93,
+   "discussion_url": "https://news.ycombinator.com/item?id=50509416",
+   "category": "Open Source",
+   "summary": "Eclipse Mosquitto, an open-source MQTT broker, is shared on Hacker News.",
+   "importance": 1,
+   "technologies": [
+    "Mosquitto",
+    "MQTT"
+   ]
+  },
+  {
+   "id": "9b1fe3a51eec",
+   "title": "CANTraj: Recovering Vehicle Trajectories from CAN Signals in Naturalistic Driving",
+   "url": "https://huggingface.co/papers/2611.18442",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "Open driving releases and usage-based insurance programs often claim to prevent privacy breaches by omitting GPS records when sharing or collecting vehicle data. However, removing GPS coordinates from driving logs does not erase the location information carried by vehicle signals. While prior route-inference attacks have demonstrated that speed, steering, and driving events can be matched to road networks to reconstruct trajectories, existing studies rely on inconsistent prior assumptions and e…",
+   "score": 9,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "CANTraj shows vehicle trajectories can be recovered from CAN signals even when GPS is removed from driving data.",
+   "importance": 1,
+   "technologies": [
+    "CAN bus"
+   ]
+  },
+  {
+   "id": "e0005697e10d",
+   "title": "Are AI leaderboards even worth taking seriously anymore?",
+   "url": "https://www.reddit.com/r/artificial/comments/1xwwdhv/are_ai_leaderboards_even_worth_taking_seriously/",
+   "source": "reddit",
+   "source_name": "r/artificial",
+   "published": "2026-11-15T14:07:58Z",
+   "snippet": "Every time a new AI leaderboard drops theres suddenly a different model being called the best in the world and then you check another benchmark and the rankings are completely different. Gemini has been doing well in general chat rankings while Claude has been strong in coding, so apparently the best AI depends on which website you happen to open that morning. Kalshi even has a market on which AI model finishes November at number one and it got me thinking about how much these rankings actually reflect what people use every day. I mean a model can score high on some benchmark and still give you a garbage answer to a basic question. At this point I’d rather hear from people who use these tools for actual work instead of another company announcing it beat everyone by three points on some test. Has anyone here switched their main AI because of these rankings or are we just watching companies fight over numbers that barely change the experience?",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/artificial/comments/1xwwdhv/are_ai_leaderboards_even_worth_taking_seriously/",
+   "category": "AI Research",
+   "summary": "A discussion questions whether AI leaderboards are reliable, since rankings differ across benchmarks.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "0907fbf8de48",
+   "title": "Tell HN: HN is being scraped for emails to scam",
+   "url": "https://news.ycombinator.com/item?id=50513451",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-16T02:53:30Z",
+   "snippet": "I know that many folks here post their personal emails in the Who's for Hire monthly pages and other places, and want to remind you that this public site gets views from folks with ill intent (or their bots/agents) as well. I use unique emails for every site, so I immediately knew that the late AWS payments email sent to my HN email were fake. There were other tells, but I want to remind everyone to be vigilant! HN is public but even social media sites where you supposedly can make your page private I've had some of those emails suddenly have spam sent to as well. Please be safe everyone! My favorite tells that an email is a scam: - Before opening a surprising/suspicious email, hover over the sender name to see the domain the sender came from (don't open the email if it's strange). - _If_ you already opened the email, before clicking any links in the email, hover over them to see the domain that the link sends you to. There are dozens more tips but a full article would be required, an…",
+   "score": 92,
+   "discussion_url": "https://news.ycombinator.com/item?id=50513451",
+   "category": "Security",
+   "summary": "A Hacker News warning says the site is being scraped for emails to use in scams.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "890b3b5545c8",
+   "title": "Mobile AI Factory: Building Specialized Language Models for Your Mobile Device",
+   "url": "https://huggingface.co/papers/2611.13509",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "Mobile AI Factory is an agentic system that automatically builds task- and phone-specific fine-tuned quantized small language models, using an orchestrator LLM, real device measurements, and adaptive search to match or outperform larger models with much less GPU time.",
+   "score": 4,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "Mobile AI Factory is an agentic system that builds task-specific quantized small language models for phones.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "7e4a9fc0b12e",
+   "title": "meituan-longcat/LongCat-Video-Avatar-1.6 · Hugging Face",
+   "url": "https://huggingface.co/meituan-longcat/LongCat-Video-Avatar-1.6",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T13:41:06Z",
+   "snippet": "🚀 Model Introduction We are excited to announce the release of LongCat-Video-Avatar 1.6, the latest upgrade to our open-source framework for audio-driven human video generation. Building upon LongCat-Video-Avatar 1.5, 1.6 improves expressive naturalness, lip–audio synchronization, coordinated facial and body motion, and visual consistency during long-form generation. It also introduces comprehensive inference optimizations for faster and more efficient deployment. Key Features 🌟 More Natural and Stable Lip Animation: : Reduces exaggerated or strained mouth movements, overly red lip coloration, and temporal instability in the mouth region. 🌟 Stable Long-Video Generation : Mitigates error accumulation during autoregressive video continuation, enabling videos exceeding 10 minutes while preserving visual quality, identity consistency, and temporal coherence. 🌟 Faster End-to-End Inference : Accelerates video generation through end-to-end pipeline and model execution optimizations, enabling…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwvrri/meituanlongcatlongcatvideoavatar16_hugging_face/",
+   "category": "AI Models & Releases",
+   "summary": "Meituan released LongCat-Video-Avatar 1.6, an open audio-driven human video generation model with improved lip sync.",
+   "importance": 2,
+   "technologies": [
+    "LongCat-Video-Avatar"
+   ]
+  },
+  {
+   "id": "10f839c1e887",
+   "title": "Boeing-Lockheed rocket fails mid-flight, destroys payload of Amazon satellites",
+   "url": "https://www.reuters.com/business/aerospace-defense/us-rocket-fails-after-launch-payload-amazon-internet-satellites-destroyed-2026-11-15/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T21:38:11Z",
+   "snippet": null,
+   "score": 92,
+   "discussion_url": "https://news.ycombinator.com/item?id=50511072",
+   "category": "Other Tech",
+   "summary": "A Boeing-Lockheed rocket failed mid-flight and destroyed an Amazon satellite payload.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "979c445d2a85",
+   "title": "MIRIX-2.0: Multi-Agent Memory System",
+   "url": "https://huggingface.co/papers/2611.12068",
+   "source": "huggingface",
+   "source_name": "HF Papers",
+   "published": "2026-11-16T00:00:00Z",
+   "snippet": "MIRIX-2.0 is a multi-agent memory system for LLM agents that achieves high accuracy and efficiency across QA and procedural benchmarks without fine-tuning.",
+   "score": 3,
+   "discussion_url": null,
+   "category": "AI Research",
+   "summary": "MIRIX-2.0 is a multi-agent memory system achieving strong results on QA benchmarks without fine-tuning.",
+   "importance": 1,
+   "technologies": [
+    "MIRIX"
+   ]
+  },
+  {
+   "id": "5f2eea2e01a3",
+   "title": "I used local Gemma 4 to moderate a community and it was it is promising",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwvnfr/i_used_local_gemma_4_to_moderate_a_community_and/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T13:35:35Z",
+   "snippet": "I run a couple of small communities and it's becoming difficult to moderate them all. So today I built a script on top of my existing app which I use to track the content on those communities. The script does a few things based on where I am. So I store the general notes of my communities in a dedicated place I can easily query. And in the moderation panel I go through each of the item which needs moderation and I run them through my notes and let Gemma 4 decide whether the item is following community notes or not. If Gemma thinks it's not, then my script will remove the content from public and add a reason as well. At first I had tried GPT oss 20b model which was really faster but the results were not really good. Then I ran the same process through Gemma 4 with thinking enabled. Results were good but speed was extremely slow. So I tried with thinking disabled and I did not see any noticable drop in the results. Now soon I will try to run the same thing at scale and see if the result…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwvnfr/i_used_local_gemma_4_to_moderate_a_community_and/",
+   "category": "AI Agents & Tools",
+   "summary": "A community moderator describes using local Gemma 4 to help moderate communities via a custom script.",
+   "importance": 1,
+   "technologies": [
+    "Gemma 4"
+   ]
+  },
+  {
+   "id": "8be804d03e5a",
+   "title": "Debian Becomes Unresponsive after 6.1.0-55 Kernel Update",
+   "url": "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1154101",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-16T04:53:06Z",
+   "snippet": null,
+   "score": 85,
+   "discussion_url": "https://news.ycombinator.com/item?id=50514180",
+   "category": "Other Tech",
+   "summary": "Debian systems become unresponsive after a 6.1.0-55 kernel update.",
+   "importance": 2,
+   "technologies": [
+    "Debian"
+   ]
+  },
+  {
+   "id": "1b79e94f80ad",
+   "title": "I don't think double-blind review systems work [D]",
+   "url": "https://www.reddit.com/r/MachineLearning/comments/1xwuwqd/i_dont_think_doubleblind_review_systems_work_d/",
+   "source": "reddit",
+   "source_name": "r/MachineLearning",
+   "published": "2026-11-15T13:00:15Z",
+   "snippet": "Reviewers can see the authors’ names and affiliations in many cases, making this system closer to single-blind review than double-blind review. I have personally witnessed cases where student reviewers rejected other researchers’ papers in an attempt to increase the chances of their own papers being accepted. Furthermore, can we really expect fair and unbiased evaluations of papers from well-connected research labs with extensive academic networks? https://www.reddit.com/r/MachineLearning/s/HCRotptdP7 https://x.com/c1arelab/status/2121674375367901292?a=ibLPTwDSfWfGt4yf2ok&s=46",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/MachineLearning/comments/1xwuwqd/i_dont_think_doubleblind_review_systems_work_d/",
+   "category": "Other Tech",
+   "summary": "A researcher argues double-blind peer review is ineffective because reviewers can often identify authors.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "3b862515bade",
+   "title": "\"Who is Hiring?\" postings stuck near 12-year lows as AI reaches half of all jobs",
+   "url": "https://www.hntrends.com/2026/november.html",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-16T01:31:30Z",
+   "snippet": null,
+   "score": 83,
+   "discussion_url": "https://news.ycombinator.com/item?id=50512950",
+   "category": "Industry & Funding",
+   "summary": "Hacker News 'Who is Hiring' postings remain near 12-year lows as AI reaches half of all jobs.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "9e0f1b4bc4e9",
+   "title": "Agnes-AI/Agnes-2.5-Pro-Theta • HuggingFace",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwu5jt/agnesaiagnes25protheta_huggingface/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T12:20:50Z",
+   "snippet": "https://preview.redd.it/zizl51m0rr1i1.png?width=2400&format=png&auto=webp&s=d3271483929d9e4d92024eadcf286a9247602578 https://huggingface.co/Agnes-AI/Agnes-2.5-Pro-Theta",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwu5jt/agnesaiagnes25protheta_huggingface/",
+   "category": "AI Models & Releases",
+   "summary": "Agnes-AI published Agnes-2.5-Pro-Theta on Hugging Face.",
+   "importance": 2,
+   "technologies": [
+    "Agnes-2.5-Pro-Theta"
+   ]
+  },
+  {
+   "id": "294a13221fad",
+   "title": "Your Agent Will Pick the Hackable One",
+   "url": "https://geoffstearns.com/blog/your-agent-will-pick-the-hackable-one/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T21:10:39Z",
+   "snippet": null,
+   "score": 75,
+   "discussion_url": "https://news.ycombinator.com/item?id=50510799",
+   "category": "Security",
+   "summary": "A Hacker News post argues that AI agents will tend to pick the most hackable targets.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "566e0aa6e9c6",
+   "title": "Latest version of strata made my Qwen3.8-Flash-Next dumb and useless",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwttcw/latest_version_of_strata_made_my_qwen38flashnext/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T12:02:35Z",
+   "snippet": "I updated the strata to the latest version from v0.1.42.0, so I can try the latest unsloths models and see how they fare against the iq3_s variant I have been using. Upon updating it, I noticed it messed up the whole thing, It got faster, but it got way dumber! previously it would only take 15~30 minutes to create the pagoda , 50 mins to an hour if I used xhigh. But when I siwtched to the latest version, not only it takes at least an hour and half to come up with something, its not even done! and it has many issues! 0.1.42.0 is the last version that seems to work decently. I noticed, when im using the latest model, it always tries to go for something grandiose and failing. unlike the older version which seems to take a more modest path! whats going on? Do any of you have this problem? here are example outputs I did to make sure its not a one time thing! my prompt : Design and create a very creative, elaborate, and detailed voxel art scene of a pagoda in a beautiful garden with trees,…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwttcw/latest_version_of_strata_made_my_qwen38flashnext/",
+   "category": "Dev Tools & Frameworks",
+   "summary": "A user reports that Strata v0.1.42.0 made Qwen3.8-Flash-Next noticeably worse while speeding it up.",
+   "importance": 1,
+   "technologies": [
+    "Strata",
+    "Qwen3.8-Flash-Next"
+   ]
+  },
+  {
+   "id": "87316fec60d2",
+   "title": "The Hypertext Transfer Protocol Status Code 483 (I'm Not a Freezer)",
+   "url": "https://datatracker.ietf.org/doc/draft-banffy-httpbis-not-a-freezer/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T14:31:52Z",
+   "snippet": null,
+   "score": 75,
+   "discussion_url": "https://news.ycombinator.com/item?id=50507206",
+   "category": "Other Tech",
+   "summary": "A Hacker News post covers the HTTP 483 status code joke proposal.",
+   "importance": 1,
+   "technologies": [
+    "HTTP"
+   ]
+  },
+  {
+   "id": "bfdeac82b5ba",
+   "title": "What Go 1.27’s generic methods made possible for ORMs. Compile-checked columns with no generated code",
+   "url": "https://skudra.net/blog/field-pointers-as-column-names",
+   "source": "reddit",
+   "source_name": "r/programming",
+   "published": "2026-11-15T11:41:01Z",
+   "snippet": null,
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/programming/comments/1xwtfmr/what_go_127s_generic_methods_made_possible_for/",
+   "category": "Dev Tools & Frameworks",
+   "summary": "A post explains how Go 1.27 generic methods enable compile-checked ORM columns without code generation.",
+   "importance": 1,
+   "technologies": [
+    "Go"
+   ]
+  },
+  {
+   "id": "6ed6cc620334",
+   "title": "Show HN: The Last Complication, a Zachtronics-style watchmaking puzzle game",
+   "url": "https://lastcomplication.com/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T22:48:52Z",
+   "snippet": null,
+   "score": 72,
+   "discussion_url": "https://news.ycombinator.com/item?id=50511718",
+   "category": "Other Tech",
+   "summary": "A Zachtronics-style watchmaking puzzle game is shared on Hacker News.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "e082643fcc69",
+   "title": "[Paper] No Second Run: Does RSI Stop at Frontier Pre-training? - 801-30B-A3B-Base Coming Soon",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwt3ri/paper_no_second_run_does_rsi_stop_at_frontier/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T11:21:12Z",
+   "snippet": "Pre-training is where every foundation model begins; bringing recursive self-improvement (RSI) there would let AI improve the process that creates AI. Yet public RSI work has so far targeted only post-training, which starts from an existing base model, runs trials costing GPU-hours, and returns verifiable scores. Pre-training breaks all three conditions at orders-of-magnitude higher cost: a run consumes hundreds of thousands of GPU-hours over months and cannot be repeated; its objective, post-training headroom, cannot be read off any single score; and what must improve is not a model but the whole production system, from data pipelines and training infrastructure to the teams that run them. To our knowledge, we are the first to apply RSI to an entire frontier pre-training run from scratch and to report it in detail. RSI does not stop at frontier pre-training, but it changes form: since no end-to-end loop can close over a single unrepeatable run, we decompose it into smaller loops that…",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwt3ri/paper_no_second_run_does_rsi_stop_at_frontier/",
+   "category": "AI Research",
+   "summary": "A paper studies whether recursive self-improvement can extend to frontier pre-training, with an 801-30B-A3B base model announced.",
+   "importance": 2,
+   "technologies": [
+    "801-30B-A3B"
+   ]
+  },
+  {
+   "id": "0c7c1f4d0fdc",
+   "title": "Mini.nvim Is Now on Tangled",
+   "url": "https://tangled.org/nvim-mini.org/mini.nvim",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T23:55:41Z",
+   "snippet": null,
+   "score": 65,
+   "discussion_url": "https://news.ycombinator.com/item?id=50512231",
+   "category": "Open Source",
+   "summary": "The mini.nvim Neovim plugin collection is now hosted on Tangled.",
+   "importance": 1,
+   "technologies": [
+    "Neovim",
+    "mini.nvim"
+   ]
+  },
+  {
+   "id": "a80fe1a36270",
+   "title": "Placing an implant into AI brain with Lazarus: Anatomy of a trojan",
+   "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwsrp1/placing_an_implant_into_ai_brain_with_lazarus/",
+   "source": "reddit",
+   "source_name": "r/LocalLLaMA",
+   "published": "2026-11-15T11:01:09Z",
+   "snippet": "hello there, I recently got a bit fascinated about Lazarus from Microsoft (even tho it is probably old technique) and I wrote a blog post showing a thought process I had while researching it - maybe it is helpful to anyone https://int8.io/implanting-ai-with-lazarus/ https://preview.redd.it/pt7hjyffcr1i1.png?width=1377&format=png&auto=webp&s=d145d68d94931d256ae2cd50466bdb524d3e84a5",
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/LocalLLaMA/comments/1xwsrp1/placing_an_implant_into_ai_brain_with_lazarus/",
+   "category": "Security",
+   "summary": "A blog post analyzes a trojan-style implant technique applied to an AI system, drawing on the Lazarus group's methods.",
+   "importance": 2,
+   "technologies": []
+  },
+  {
+   "id": "da5a45ac447a",
+   "title": "Parents pay $75k for Alpha's AI school. Half of its students missed math target",
+   "url": "https://fortune.com/2026/11/14/alpha-school-ai-students-tuition-learning-goals/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T19:39:46Z",
+   "snippet": null,
+   "score": 65,
+   "discussion_url": "https://news.ycombinator.com/item?id=50509953",
+   "category": "Other Tech",
+   "summary": "Parents paying $75k for Alpha's AI school learn half its students missed a math target.",
+   "importance": 1,
+   "technologies": []
+  },
+  {
+   "id": "3e72e74be79a",
+   "title": "Slack’s Migration to a Cellular Architecture",
+   "url": "https://slack.engineering/slacks-migration-to-a-cellular-architecture/",
+   "source": "reddit",
+   "source_name": "r/programming",
+   "published": "2026-11-15T10:33:28Z",
+   "snippet": null,
+   "score": null,
+   "discussion_url": "https://www.reddit.com/r/programming/comments/1xwsbxo/slacks_migration_to_a_cellular_architecture/",
+   "category": "Cloud & Infra",
+   "summary": "Slack describes its migration to a cellular architecture for its infrastructure.",
+   "importance": 2,
+   "technologies": [
+    "Slack"
+   ]
+  },
+  {
+   "id": "7158251edd2a",
+   "title": "Jensen Huang allegedly manufactured the GPU shortage",
+   "url": "https://wccftech.com/jensen-huang-financed-ai-startups-absorb-excess-silicon/",
+   "source": "hackernews",
+   "source_name": "Hacker News",
+   "published": "2026-11-15T10:53:50Z",
+   "snippet": null,
+   "score": 63,
+   "discussion_url": "https://news.ycombinator.com/item?id=50505905",
+   "category": "Industry & Funding",
+   "summary": "A Hacker News post alleges Jensen Huang deliberately manufactured the GPU shortage.",
+   "importance": 2,
+   "technologies": []
+  }
+ ],
+ "new_tech": [
+  {
+   "name": "Blender",
+   "slug": "blender",
+   "count_today": 11
+  },
+  {
+   "name": "MCP",
+   "slug": "mcp",
+   "count_today": 10
+  },
+  {
+   "name": "llama.cpp",
+   "slug": "llama-cpp",
+   "count_today": 7
+  },
+  {
+   "name": "Gemma 4",
+   "slug": "gemma-4",
+   "count_today": 4
+  },
+  {
+   "name": "GGUF",
+   "slug": "gguf",
+   "count_today": 4
+  },
+  {
+   "name": "Qwen3.8-Flash-Next",
+   "slug": "qwen3-8-flash-next",
+   "count_today": 3
+  },
+  {
+   "name": "CUDA",
+   "slug": "cuda",
+   "count_today": 2
+  },
+  {
+   "name": "GPT-6 Astra",
+   "slug": "gpt-6-astra",
+   "count_today": 2
+  },
+  {
+   "name": "MiniMax-H3-Image",
+   "slug": "minimax-h3-image",
+   "count_today": 2
+  },
+  {
+   "name": "NVFP4",
+   "slug": "nvfp4",
+   "count_today": 2
+  },
+  {
+   "name": "Python",
+   "slug": "python",
+   "count_today": 2
+  },
+  {
+   "name": "Qwen",
+   "slug": "qwen",
+   "count_today": 2
+  },
+  {
+   "name": "Strata",
+   "slug": "strata",
+   "count_today": 2
+  },
+  {
+   "name": "vLLM",
+   "slug": "vllm",
+   "count_today": 2
+  },
+  {
+   "name": "801-30B-A3B",
+   "slug": "801-30b-a3b",
+   "count_today": 1
+  },
+  {
+   "name": "Agnes-2.5-Pro-Theta",
+   "slug": "agnes-2-5-pro-theta",
+   "count_today": 1
+  },
+  {
+   "name": "audio.cpp",
+   "slug": "audio-cpp",
+   "count_today": 1
+  },
+  {
+   "name": "Bitly",
+   "slug": "bitly",
+   "count_today": 1
+  },
+  {
+   "name": "Bonbon",
+   "slug": "bonbon",
+   "count_today": 1
+  },
+  {
+   "name": "Bonsai 1.7B",
+   "slug": "bonsai-1-7b",
+   "count_today": 1
+  }
+ ],
+ "trending_tech": []
+}

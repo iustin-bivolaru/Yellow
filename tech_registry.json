@@ -1,0 +1,1121 @@
+{
+ "801-30b-a3b": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "e082643fcc69"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "801-30B-A3B",
+  "slug": "801-30b-a3b"
+ },
+ "agnes-2-5-pro-theta": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "9e0f1b4bc4e9"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Agnes-2.5-Pro-Theta",
+  "slug": "agnes-2-5-pro-theta"
+ },
+ "audio-cpp": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "7421d0b88afe"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "audio.cpp",
+  "slug": "audio-cpp"
+ },
+ "bitly": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "286313831039"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Bitly",
+  "slug": "bitly"
+ },
+ "blender": {
+  "counts": {
+   "2026-11-16": 11
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "498022c4a5fa",
+    "42bd6243c268",
+    "308a8d87de57",
+    "44b701950cb6",
+    "b052cbb42810",
+    "4fb62acd74c1",
+    "4170bd017fe6",
+    "db266b9ed87d",
+    "19becf065be4",
+    "e05cb3b1495b",
+    "d9006d3b1f35"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Blender",
+  "slug": "blender"
+ },
+ "bonbon": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "5453ce56b48e"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Bonbon",
+  "slug": "bonbon"
+ },
+ "bonsai-1-7b": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "c011574b8baa"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Bonsai 1.7B",
+  "slug": "bonsai-1-7b"
+ },
+ "can-bus": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "9b1fe3a51eec"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "CAN bus",
+  "slug": "can-bus"
+ },
+ "claude-code": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "c9133540fb04"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Claude Code",
+  "slug": "claude-code"
+ },
+ "clice": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "69e5f0d03d19"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Clice",
+  "slug": "clice"
+ },
+ "cuda": {
+  "counts": {
+   "2026-11-16": 2
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "743df5f4d175",
+    "fcdc7db4b4da"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "CUDA",
+  "slug": "cuda"
+ },
+ "debian": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "8be804d03e5a"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Debian",
+  "slug": "debian"
+ },
+ "deepseek-v4-1-flash": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "bfce57e293c4"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "DeepSeek V4.1 Flash",
+  "slug": "deepseek-v4-1-flash"
+ },
+ "dit": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "59c578bf213c"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "DiT",
+  "slug": "dit"
+ },
+ "dream-textures": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "42bd6243c268"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Dream Textures",
+  "slug": "dream-textures"
+ },
+ "electron": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "f6b29b4e2ab3"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Electron",
+  "slug": "electron"
+ },
+ "emacs": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "6390c6b231f0"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Emacs",
+  "slug": "emacs"
+ },
+ "gemma-4": {
+  "counts": {
+   "2026-11-16": 4
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "b7127390e008",
+    "11c0f4326c33",
+    "cea3f174f4c6",
+    "5f2eea2e01a3"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Gemma 4",
+  "slug": "gemma-4"
+ },
+ "gguf": {
+  "counts": {
+   "2026-11-16": 4
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "b7059d23fb76",
+    "1d62aa49050e",
+    "b7127390e008",
+    "371daa6c48bb"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "GGUF",
+  "slug": "gguf"
+ },
+ "github-agentic-workflows": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "b20060722a6f"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "GitHub Agentic Workflows",
+  "slug": "github-agentic-workflows"
+ },
+ "glm": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "fa6009f8b1e8"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "GLM",
+  "slug": "glm"
+ },
+ "glm-5-3-flash": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "81dddff09c62"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "GLM-5.3-Flash",
+  "slug": "glm-5-3-flash"
+ },
+ "go": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "bfdeac82b5ba"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Go",
+  "slug": "go"
+ },
+ "gpt-6-astra": {
+  "counts": {
+   "2026-11-16": 2
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "87d7014c15ee",
+    "658768f772c7"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "GPT-6 Astra",
+  "slug": "gpt-6-astra"
+ },
+ "gpt-x3": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "a0d383191b10"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "GPT-X3",
+  "slug": "gpt-x3"
+ },
+ "http": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "87316fec60d2"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "HTTP",
+  "slug": "http"
+ },
+ "lfm3-audio": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "7421d0b88afe"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "LFM3-Audio",
+  "slug": "lfm3-audio"
+ },
+ "llama-cpp": {
+  "counts": {
+   "2026-11-16": 7
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "f6b29b4e2ab3",
+    "b56dfe64aad2",
+    "1d62aa49050e",
+    "11c0f4326c33",
+    "371daa6c48bb",
+    "fcdc7db4b4da",
+    "c011574b8baa"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "llama.cpp",
+  "slug": "llama-cpp"
+ },
+ "longcat-2-5": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "93958f67012a"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "LongCat-2.5",
+  "slug": "longcat-2-5"
+ },
+ "longcat-video-avatar": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "7e4a9fc0b12e"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "LongCat-Video-Avatar",
+  "slug": "longcat-video-avatar"
+ },
+ "mcp": {
+  "counts": {
+   "2026-11-16": 10
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "498022c4a5fa",
+    "f6b29b4e2ab3",
+    "308a8d87de57",
+    "44b701950cb6",
+    "b052cbb42810",
+    "4fb62acd74c1",
+    "4170bd017fe6",
+    "db266b9ed87d",
+    "e05cb3b1495b",
+    "d9006d3b1f35"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "MCP",
+  "slug": "mcp"
+ },
+ "microsoft-365": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "357c9f3ea7ee"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Microsoft 365",
+  "slug": "microsoft-365"
+ },
+ "mini-nvim": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "0c7c1f4d0fdc"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "mini.nvim",
+  "slug": "mini-nvim"
+ },
+ "minimax-h3-image": {
+  "counts": {
+   "2026-11-16": 2
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "1f1dbabb56c4",
+    "14e5a7f70a2a"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "MiniMax-H3-Image",
+  "slug": "minimax-h3-image"
+ },
+ "mirix": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "979c445d2a85"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "MIRIX",
+  "slug": "mirix"
+ },
+ "mosquitto": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "7c17e587ee6a"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Mosquitto",
+  "slug": "mosquitto"
+ },
+ "mqtt": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "7c17e587ee6a"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "MQTT",
+  "slug": "mqtt"
+ },
+ "neovim": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "0c7c1f4d0fdc"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Neovim",
+  "slug": "neovim"
+ },
+ "nvfp4": {
+  "counts": {
+   "2026-11-16": 2
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "b7059d23fb76",
+    "68431e57dcdc"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "NVFP4",
+  "slug": "nvfp4"
+ },
+ "odin": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "96e1a1a80255"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Odin",
+  "slug": "odin"
+ },
+ "ollama": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "d9006d3b1f35"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Ollama",
+  "slug": "ollama"
+ },
+ "opencode": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "4bbbb83bfcb1"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "opencode",
+  "slug": "opencode"
+ },
+ "openevidence": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "327577bff892"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "OpenEvidence",
+  "slug": "openevidence"
+ },
+ "owsm-v4": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "7421d0b88afe"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "OWSM v4",
+  "slug": "owsm-v4"
+ },
+ "pcie-5-0": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "e6c323ceba46"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "PCIe 5.0",
+  "slug": "pcie-5-0"
+ },
+ "poly-haven": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "4fb62acd74c1"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Poly Haven",
+  "slug": "poly-haven"
+ },
+ "protomaps": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "966523945edb"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Protomaps",
+  "slug": "protomaps"
+ },
+ "pypi": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "6f30a5c0ffe7"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "PyPI",
+  "slug": "pypi"
+ },
+ "python": {
+  "counts": {
+   "2026-11-16": 2
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "2c38e03ddc94",
+    "6f30a5c0ffe7"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Python",
+  "slug": "python"
+ },
+ "pytorch": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "743df5f4d175"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "PyTorch",
+  "slug": "pytorch"
+ },
+ "qwen": {
+  "counts": {
+   "2026-11-16": 2
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "658768f772c7",
+    "4bbbb83bfcb1"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Qwen",
+  "slug": "qwen"
+ },
+ "qwen-27b": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "bfce57e293c4"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Qwen 27B",
+  "slug": "qwen-27b"
+ },
+ "qwen-image-2-1": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "7e8ec09429d0"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Qwen-Image-2.1",
+  "slug": "qwen-image-2-1"
+ },
+ "qwen3-5-4b": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "73da86d2fb4a"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Qwen3.5-4B",
+  "slug": "qwen3-5-4b"
+ },
+ "qwen3-6-35b-a3b": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "fcdc7db4b4da"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Qwen3.6-35B-A3B",
+  "slug": "qwen3-6-35b-a3b"
+ },
+ "qwen3-8-27b": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "b7059d23fb76"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Qwen3.8-27B",
+  "slug": "qwen3-8-27b"
+ },
+ "qwen3-8-flash-next": {
+  "counts": {
+   "2026-11-16": 3
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "81dddff09c62",
+    "b56dfe64aad2",
+    "566e0aa6e9c6"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Qwen3.8-Flash-Next",
+  "slug": "qwen3-8-flash-next"
+ },
+ "qwen4-max": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "8468cd1c9400"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Qwen4-Max",
+  "slug": "qwen4-max"
+ },
+ "react": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "1e2e1314ac11"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "React",
+  "slug": "react"
+ },
+ "sketchfab": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "4fb62acd74c1"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Sketchfab",
+  "slug": "sketchfab"
+ },
+ "slack": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "3e72e74be79a"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Slack",
+  "slug": "slack"
+ },
+ "soulx-flashhead": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "7421d0b88afe"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "SoulX-FlashHead",
+  "slug": "soulx-flashhead"
+ },
+ "strata": {
+  "counts": {
+   "2026-11-16": 2
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "af763b2ec7ed",
+    "566e0aa6e9c6"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Strata",
+  "slug": "strata"
+ },
+ "stripe": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "47b57b00d835"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Stripe",
+  "slug": "stripe"
+ },
+ "telegram": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "b997a4659ecc"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Telegram",
+  "slug": "telegram"
+ },
+ "tor": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "83b3b2200438"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Tor",
+  "slug": "tor"
+ },
+ "transformers": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "6ae972136210"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Transformers",
+  "slug": "transformers"
+ },
+ "turbo-pascal": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "dc388aee58ab"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Turbo Pascal",
+  "slug": "turbo-pascal"
+ },
+ "ublock-origin": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "0a2c564cc136"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "uBlock Origin",
+  "slug": "ublock-origin"
+ },
+ "v-jepa": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "bc15f7248029"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "V-JEPA",
+  "slug": "v-jepa"
+ },
+ "villanova2": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "625434c3add8"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Villanova2",
+  "slug": "villanova2"
+ },
+ "vllm": {
+  "counts": {
+   "2026-11-16": 2
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "11c0f4326c33",
+    "af763b2ec7ed"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "vLLM",
+  "slug": "vllm"
+ },
+ "webgl": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "102e09f7e3f8"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "WebGL",
+  "slug": "webgl"
+ },
+ "webgpu": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "1e2e1314ac11"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "WebGPU",
+  "slug": "webgpu"
+ },
+ "wgsl": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "1e2e1314ac11"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "WGSL",
+  "slug": "wgsl"
+ },
+ "x3guard-150m": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "a0d383191b10"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "X3Guard-150M",
+  "slug": "x3guard-150m"
+ },
+ "zonos3": {
+  "counts": {
+   "2026-11-16": 1
+  },
+  "first_seen": "2026-11-16",
+  "items": {
+   "2026-11-16": [
+    "2250172890a0"
+   ]
+  },
+  "last_seen": "2026-11-16",
+  "name": "Zonos3",
+  "slug": "zonos3"
+ }
+}
