@@ -72,7 +72,7 @@ def run(
         cfg: Config; loaded from config.yaml when None.
         now: Current UTC time (injectable for tests).
         sources: Sources to use; the enabled ones from config when None.
-        client: Anthropic client passed to `analyze`.
+        client: Anthropic client passed to `analyze` (api backend only).
     """
     cfg = cfg or load_config()
     now = now or datetime.now(UTC)

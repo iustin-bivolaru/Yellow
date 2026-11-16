@@ -55,6 +55,14 @@ class HttpConfig(_Strict):
 class LLMConfig(_Strict):
     """Settings for the single Claude call made by analyze.py."""
 
+    backend: Annotated[
+        Literal["claude-code", "api"],
+        Field(
+            description="How the call is made: the Claude Code CLI on the user's subscription "
+            '("claude-code", needs CLAUDE_CODE_OAUTH_TOKEN in CI) or the Anthropic SDK ("api", '
+            "needs ANTHROPIC_API_KEY)."
+        ),
+    ] = "claude-code"
     model: Annotated[
         str, Field(description="Claude model id: claude-haiku-5-5 or claude-sonnet-5-5.")
     ] = "claude-haiku-5-5"

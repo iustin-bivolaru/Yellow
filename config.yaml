@@ -1,4 +1,4 @@
-# Yellow configuration. No secrets here: ANTHROPIC_API_KEY / GITHUB_TOKEN come from the environment.
+# Yellow configuration. No secrets here: CLAUDE_CODE_OAUTH_TOKEN (or ANTHROPIC_API_KEY for the api backend) / GITHUB_TOKEN come from the environment.
 
 timezone: Europe/Bucharest   # used for display and the 9 AM gate; all stored times are UTC
 run_hour: 9                  # local hour at which the scheduled run is allowed to publish
@@ -13,6 +13,7 @@ http:
   timeout_seconds: 20
 
 llm:
+  backend: claude-code      # Claude Code CLI on the subscription; "api" = Anthropic SDK + ANTHROPIC_API_KEY
   model: claude-haiku-5-5    # alternative: claude-sonnet-5-5 (never Opus)
   effort: low
   max_tokens: 32000          # ceiling, not spend: ~100-130 output tokens/item + thinking

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -101,7 +102,18 @@ def test_build_job_is_read_only_and_keeps_no_credentials(wf: dict[str, Any]) -> 
     text = _steps_text(build)
     assert "GITHUB_TOKEN" not in text
     assert text.count("secrets.") == 1
-    assert "secrets.ANTHROPIC_API_KEY" in text
+    assert "secrets.CLAUDE_CODE_OAUTH_TOKEN" in text
+    assert "ANTHROPIC_API_KEY" not in text
+    run = next(s for s in build["steps"] if s.get("name") == "Run the digest")
+    assert run["env"]["DISABLE_AUTOUPDATER"] == "1"
+    assert run["env"]["CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC"] == "1"
+
+
+def test_claude_cli_install_is_version_pinned(wf: dict[str, Any]) -> None:
+    runs = [s.get("run", "") for s in wf["jobs"]["build"]["steps"]]
+    installs = [r for r in runs if "npm install" in r]
+    assert len(installs) == 1
+    assert re.search(r"@anthropic-ai/claude-code@\d+\.\d+\.\d+\b", installs[0])
 
 
 def test_only_persist_can_write_and_runs_no_project_code(wf: dict[str, Any]) -> None:

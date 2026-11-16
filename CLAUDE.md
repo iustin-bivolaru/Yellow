@@ -19,7 +19,7 @@ planned file layout is in `docs/PLAN.md`.
 
 ```bash
 python -m yellow run --dry-run --no-llm     # full pipeline, no API cost, writes site/
-python -m yellow run                        # real run (needs ANTHROPIC_API_KEY); `--scheduled` adds the 9 AM gate
+python -m yellow run                        # real run (needs `CLAUDE_CODE_OAUTH_TOKEN`; locally the CLI's own login); `--scheduled` adds the 9 AM gate
 scripts/new-task.sh <type>/<name>          # after `git fetch origin`: branch from origin/main (--no-track), tidy merged branches
 scripts/ship.sh "type(scope): summary" [body]  # checks, commit, prints the push + `gh pr create` commands to run
 git fetch origin data && git worktree add data data   # optional (move an existing ./data aside first): the daily state (seen, registry, digests) lives on the `data` branch
@@ -28,12 +28,12 @@ python -m http.server -d site 8000          # preview: the sandbox blocks local 
 
 ## Rules
 
-- **LLM cost matters.** Use exactly one Claude call per run, through `analyze.py`. The model comes from `config.yaml` (`llm.model`); the default is `claude-haiku-5-5`, and the alternative is `claude-sonnet-5-5`. Don't hardcode a model, add per-item calls, or add agent loops without asking.
-- Use the official `anthropic` Python SDK with a Pydantic `output_format`, streamed (`client.messages.stream(...)` + `get_final_message()`, which returns the parsed message) because `llm.max_tokens` is 32k and the SDK refuses long non-streaming calls. Always check `stop_reason` before using the output, and fall back to the keyword-only digest on refusal or error so the site still builds.
+- **LLM cost matters.** Use exactly one Claude call per run, through `analyze.py`. The default backend (`llm.backend: claude-code`) runs the Claude Code CLI headless on the user's Claude subscription (`CLAUDE_CODE_OAUTH_TOKEN` in CI), with every tool and MCP server disabled and `--max-turns 3` (one request normally, at most 3 with schema-validation retries) because feed text is untrusted; no separate API billing. The SDK path stays as `llm.backend: api`. The model comes from `config.yaml` (`llm.model`); the default is `claude-haiku-5-5`, and the alternative is `claude-sonnet-5-5`. Don't hardcode a model, add per-item calls, or add agent loops without asking.
+- For the `api` backend, use the official `anthropic` Python SDK with a Pydantic `output_format`, streamed (`client.messages.stream(...)` + `get_final_message()`, which returns the parsed message) because `llm.max_tokens` is 32k and the SDK refuses long non-streaming calls. Always check `stop_reason` before using the output, and fall back to the keyword-only digest on refusal or error so the site still builds.
 - **Git workflow (user's request):** one branch per task (`<type>/<short-name>`), never commit or push to `main` (blocked by the PreToolUse hook `.claude/hooks/no-commit-on-main.py`). Commit messages follow Conventional Commits (`feat(scope): summary`; details in the `ship` skill). Push the branch, open a PR with `gh pr create`; **the user merges**.
 - **No Claude attribution** in git: no `Co-Authored-By: Claude` trailers or "Generated with Claude Code" lines in commits or PRs (the user's request; also set via `attribution` in `.claude/settings.json`).
 - The daily Action never commits to `main`: all state (`seen.json`, `tech_registry.json`, `digests/`) goes to the orphan `data` branch, checked out at `./data` (gitignored on `main`).
-- **Never** commit secrets. `ANTHROPIC_API_KEY` lives in the environment or GitHub Secrets only.
+- **Never** commit secrets. `CLAUDE_CODE_OAUTH_TOKEN` (and `ANTHROPIC_API_KEY` for the `api` backend) live in the environment or GitHub Secrets only.
 - Sources must not throw and break the run. A failing source logs a warning and returns `[]`.
 - Only use public, unauthenticated or free APIs/feeds, and set a descriptive generic User-Agent. No scraping that breaks a site's Terms of Service.
 - Tests never touch the network. Save real responses into `tests/fixtures/` and parse those.
