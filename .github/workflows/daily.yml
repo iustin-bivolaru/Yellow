@@ -8,9 +8,11 @@ on:
   schedule:
     # Bucharest 09:00 is 06:00 UTC in summer and 07:00 UTC in winter. The later crons are
     # retries: the CLI's --scheduled gate makes extra runs no-ops once today's digest exists.
-    - cron: "0 6 * * *"
-    - cron: "0 7 * * *"
-    - cron: "0 9 * * *"
+    # Minute 17, not 0: GitHub delays or drops on-the-hour schedules most (hours late seen).
+    - cron: "17 6 * * *"
+    - cron: "17 7 * * *"
+    - cron: "17 8 * * *"
+    - cron: "17 9 * * *"
   workflow_dispatch:
     inputs:
       force:

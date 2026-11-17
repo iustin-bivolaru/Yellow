@@ -36,7 +36,7 @@ def _cron_hours(wf: dict[str, Any]) -> list[int]:
     hours = []
     for entry in _triggers(wf)["schedule"]:
         minute, hour, *rest = entry["cron"].split()
-        assert minute == "0"
+        assert minute != "0", "on-the-hour crons are the ones GitHub delays most"
         assert rest == ["*", "*", "*"]
         hours.append(int(hour))
     return hours
@@ -44,8 +44,12 @@ def _cron_hours(wf: dict[str, Any]) -> list[int]:
 
 def _local_hour(utc_hour: int, day: str, tz: str) -> int:
     """Local hour in `tz` for `utc_hour` UTC on the ISO date `day`."""
-    y, m, d = map(int, day.split("-"))
-    return datetime(y, m, d, utc_hour, tzinfo=ZoneInfo("UTC")).astimezone(ZoneInfo(tz)).hour
+    year, month, day_of_month = map(int, day.split("-"))
+    return (
+        datetime(year, month, day_of_month, utc_hour, tzinfo=ZoneInfo("UTC"))
+        .astimezone(ZoneInfo(tz))
+        .hour
+    )
 
 
 @pytest.mark.parametrize("day", ["2026-07-01", "2026-01-15"])
@@ -53,9 +57,9 @@ def test_a_cron_hits_run_hour_and_all_are_close(
     wf: dict[str, Any], conf: dict[str, Any], day: str
 ) -> None:
     run_hour, tz = conf["run_hour"], conf["timezone"]
-    local = [_local_hour(h, day, tz) for h in _cron_hours(wf)]
+    local = [_local_hour(utc_hour, day, tz) for utc_hour in _cron_hours(wf)]
     assert run_hour in local
-    assert all(run_hour - 1 <= h <= run_hour + 3 for h in local)
+    assert all(run_hour - 1 <= local_hour <= run_hour + 3 for local_hour in local)
 
 
 def test_dispatch_inputs(wf: dict[str, Any]) -> None:
@@ -104,21 +108,23 @@ def test_build_job_is_read_only_and_keeps_no_credentials(wf: dict[str, Any]) -> 
     assert text.count("secrets.") == 1
     assert "secrets.CLAUDE_CODE_OAUTH_TOKEN" in text
     assert "ANTHROPIC_API_KEY" not in text
-    run = next(s for s in build["steps"] if s.get("name") == "Run the digest")
+    run = next(step for step in build["steps"] if step.get("name") == "Run the digest")
     assert run["env"]["DISABLE_AUTOUPDATER"] == "1"
     assert run["env"]["CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC"] == "1"
 
 
 def test_claude_cli_install_is_version_pinned(wf: dict[str, Any]) -> None:
-    runs = [s.get("run", "") for s in wf["jobs"]["build"]["steps"]]
-    installs = [r for r in runs if "npm install" in r]
+    runs = [step.get("run", "") for step in wf["jobs"]["build"]["steps"]]
+    installs = [run for run in runs if "npm install" in run]
     assert len(installs) == 1
     assert re.search(r"@anthropic-ai/claude-code@\d+\.\d+\.\d+\b", installs[0])
 
 
 def test_only_persist_can_write_and_runs_no_project_code(wf: dict[str, Any]) -> None:
     writers = [
-        n for n, j in wf["jobs"].items() if j.get("permissions", {}).get("contents") == "write"
+        name
+        for name, job in wf["jobs"].items()
+        if job.get("permissions", {}).get("contents") == "write"
     ]
     assert writers == ["persist"]
     persist = wf["jobs"]["persist"]
