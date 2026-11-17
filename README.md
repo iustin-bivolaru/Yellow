@@ -74,7 +74,7 @@ python3 -m http.server -d site 8000                 # preview at http://localhos
 
 ## Schedule and state
 
-A GitHub Actions workflow (`.github/workflows/daily.yml`) runs daily at 9 AM Europe/Bucharest. GitHub crons run in UTC with no daylight-saving support, so there are crons at 06:00, 07:00 and 09:00 UTC: 06:00 is 9 AM in summer and 07:00 in winter; the later ones are retries and do nothing if today's digest exists (the `--scheduled` gate; the digest file is saved last, as the "done" marker).
+A GitHub Actions workflow (`.github/workflows/daily.yml`) runs daily at 9 AM Europe/Bucharest. GitHub crons run in UTC with no daylight-saving support, so there are crons at 06:17, 07:17, 08:17 and 09:17 UTC (off the hour, because GitHub delays on-the-hour schedules most): 06:17 is 9:17 AM in summer and 07:17 in winter; the later ones are retries and do nothing if today's digest exists (the `--scheduled` gate; the digest file is saved last, as the "done" marker).
 
 Its state (seen items, tech registry, digests) is stored on the orphan `data` branch, never on `main`, so `main` stays code-only and can be protected by a ruleset. The branch is created on the first run. To get it locally, see "Run locally".
 
