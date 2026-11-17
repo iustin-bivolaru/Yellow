@@ -71,10 +71,15 @@ python3 -m http.server -d site 8000                 # preview at http://localhos
 4. Set the secret: `gh secret set CLAUDE_CODE_OAUTH_TOKEN -R <owner>/<repo>` and paste the token when prompted.
 5. Run the workflow manually (Actions, Daily digest, Run workflow, tick `force`). The first run creates the `data` branch. Then open the Pages URL on your phone and choose Add to Home Screen.
 6. Recommended: add a `main` ruleset that requires a PR and the `CI` check and blocks force push and deletion. The bot only pushes to `data`, so no bypass is needed.
+7. Recommended: trigger the run on time from outside GitHub. GitHub delays scheduled runs, sometimes by hours, so a free external scheduler such as [cron-job.org](https://cron-job.org) calls the workflow at 9 AM:
+   - Token: a fine-grained GitHub token for `Yellow` only, with **Actions: Read and write** and nothing else; set an expiry (1 year) and a reminder to renew it.
+   - Job: `POST https://api.github.com/repos/<owner>/Yellow/actions/workflows/daily.yml/dispatches`, daily at 09:05 and 09:35 `Europe/Bucharest` (the service handles daylight saving), with headers `Authorization: Bearer <token>`, `Accept: application/vnd.github+json`, `X-GitHub-Api-Version: 2022-11-28`, body `{"ref":"main","inputs":{"force":"false"}}`, and failure notifications on.
+   - Test: a test run returns **204** and a `workflow_dispatch` run appears under Actions (401/403: token or permission wrong; 404: the token can't see the repo). With `force` false the 9 AM gate still applies, so extra calls are no-ops once today's digest exists.
+   - If the token leaks, it can only start, re-run or cancel runs (a `force` run costs one Claude call); revoke it on GitHub. When it expires the calls fail and the GitHub crons remain the fallback.
 
 ## Schedule and state
 
-A GitHub Actions workflow (`.github/workflows/daily.yml`) runs daily at 9 AM Europe/Bucharest. GitHub crons run in UTC with no daylight-saving support, so there are crons at 06:17, 07:17, 08:17 and 09:17 UTC (off the hour, because GitHub delays on-the-hour schedules most): 06:17 is 9:17 AM in summer and 07:17 in winter; the later ones are retries and do nothing if today's digest exists (the `--scheduled` gate; the digest file is saved last, as the "done" marker).
+A GitHub Actions workflow (`.github/workflows/daily.yml`) runs daily at 9 AM Europe/Bucharest. GitHub crons run in UTC with no daylight-saving support, so there are crons at 06:17, 07:17, 08:17 and 09:17 UTC (off the hour, because GitHub delays on-the-hour schedules most): 06:17 is 9:17 AM in summer and 07:17 in winter; the later ones are retries and do nothing if today's digest exists (the `--scheduled` gate; the digest file is saved last, as the "done" marker). GitHub still runs these late at times (hours, on busy days), so an external scheduler can start the workflow on time (step 7 of "Deploy your own copy"); the crons stay as the fallback.
 
 Its state (seen items, tech registry, digests) is stored on the orphan `data` branch, never on `main`, so `main` stays code-only and can be protected by a ruleset. The branch is created on the first run. To get it locally, see "Run locally".
 

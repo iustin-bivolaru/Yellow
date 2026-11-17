@@ -18,6 +18,7 @@ This is the agreed spec for Yellow. Decisions marked **(decided)** were made wit
 - [x] Build step 8: `main.py` CLI (`run --dry-run --no-llm --scheduled --data-dir --site-dir`); state (digest, registry, seen) saved only after render and never on `--dry-run`; empty collection keeps an existing digest; 9 AM gate. Live dry run: 197 collected, 192 new, 150 analyzed, no source warnings.
 - [x] Build step 9: `.github/workflows/daily.yml` (crons 06:17/07:17/08:17/09:17 UTC + `workflow_dispatch` with `force`/`no_llm`; state on the orphan `data` branch checked out at `./data`; build job then Pages deploy only if `site/index.html` exists), `tests/test_workflows.py`. **Not run on GitHub yet** (can't be tested locally).
 - [x] Subscription LLM (2026-11-16): `llm.backend` (`claude-code` default, `api` kept); `analyze.py` runs the Claude Code CLI headless with no tools, prompt on stdin, temp cwd; `daily.yml` installs a pinned CLI and uses `CLAUDE_CODE_OAUTH_TOKEN`. Tested with a fake runner; **not yet run against the real CLI**.
+- [x] Schedule reliability (2026-11-17): crons moved to minute 17 of 06–09 UTC (PR #14); external on-time trigger via cron-job.org documented (Deployment setup step 7).
 - [ ] **Next: Deployment setup with the user** (walk through "Deployment setup"), then add a `main` ruleset: require PR + `CI` check, block force push/deletion.
 - [ ] One-time setup by the user, after the code works (see "Deployment setup")
 
@@ -145,6 +146,11 @@ Rules: a failing source logs a warning and returns `[]`. Use a generic User-Agen
 4. Set the secret: `gh secret set CLAUDE_CODE_OAUTH_TOKEN -R iustin-bivolaru/Yellow` (paste the token when prompted).
 5. Run the workflow manually (Actions → Daily digest → Run workflow, tick `force`; the first run creates the `data` branch), open the Pages URL on the phone, then choose **Add to Home Screen**.
 6. Add a `main` ruleset: require a PR and the `CI` check, block force push and deletion (no bypass needed, the bot only pushes to `data`).
+7. On-time trigger: GitHub ran the on-the-hour crons 9–10 h late on 2026-11-16 and not at all by 09:38 UTC on 2026-11-17, so [cron-job.org](https://cron-job.org) (free) calls `workflow_dispatch` at 9 AM local; the crons stay as the fallback.
+   - Token: a fine-grained GitHub token for `Yellow` only, with **Actions: Read and write** and nothing else; set an expiry (1 year) and a reminder to renew it.
+   - Job: `POST https://api.github.com/repos/<owner>/Yellow/actions/workflows/daily.yml/dispatches`, daily at 09:05 and 09:35 `Europe/Bucharest` (the service handles daylight saving), with headers `Authorization: Bearer <token>`, `Accept: application/vnd.github+json`, `X-GitHub-Api-Version: 2022-11-28`, body `{"ref":"main","inputs":{"force":"false"}}`, and failure notifications on.
+   - Test: a test run returns **204** and a `workflow_dispatch` run appears under Actions (401/403: token or permission wrong; 404: the token can't see the repo). With `force` false the 9 AM gate still applies, so extra calls are no-ops once today's digest exists.
+   - If the token leaks, it can only start, re-run or cancel runs (a `force` run costs one Claude call); revoke it on GitHub. When it expires the calls fail and the GitHub crons remain the fallback.
 
 ## Build order
 
