@@ -123,15 +123,21 @@
  },
  "claude-code": {
   "counts": {
-   "2026-11-16": 1
+   "2026-11-16": 1,
+   "2026-11-18": 3
   },
   "first_seen": "2026-11-16",
   "items": {
    "2026-11-16": [
     "c9133540fb04"
+   ],
+   "2026-11-18": [
+    "a70cae4c16f0",
+    "e9a68a300e49",
+    "069078b2b4e3"
    ]
   },
-  "last_seen": "2026-11-16",
+  "last_seen": "2026-11-18",
   "name": "Claude Code",
   "slug": "claude-code"
  },
@@ -192,17 +198,35 @@
   "name": "DeepSeek V4.1 Flash",
   "slug": "deepseek-v4-1-flash"
  },
+ "dinov3": {
+  "counts": {
+   "2026-11-18": 1
+  },
+  "first_seen": "2026-11-18",
+  "items": {
+   "2026-11-18": [
+    "b24e4321c3ff"
+   ]
+  },
+  "last_seen": "2026-11-18",
+  "name": "DINOv3",
+  "slug": "dinov3"
+ },
  "dit": {
   "counts": {
-   "2026-11-16": 1
+   "2026-11-16": 1,
+   "2026-11-18": 1
   },
   "first_seen": "2026-11-16",
   "items": {
    "2026-11-16": [
     "59c578bf213c"
+   ],
+   "2026-11-18": [
+    "b24e4321c3ff"
    ]
   },
-  "last_seen": "2026-11-16",
+  "last_seen": "2026-11-18",
   "name": "DiT",
   "slug": "dit"
  },
@@ -248,9 +272,24 @@
   "name": "Emacs",
   "slug": "emacs"
  },
+ "gemini-4-hydrogen": {
+  "counts": {
+   "2026-11-18": 1
+  },
+  "first_seen": "2026-11-18",
+  "items": {
+   "2026-11-18": [
+    "0488c951c729"
+   ]
+  },
+  "last_seen": "2026-11-18",
+  "name": "Gemini 4 Hydrogen",
+  "slug": "gemini-4-hydrogen"
+ },
  "gemma-4": {
   "counts": {
-   "2026-11-16": 4
+   "2026-11-16": 4,
+   "2026-11-18": 1
   },
   "first_seen": "2026-11-16",
   "items": {
@@ -259,9 +298,12 @@
     "11c0f4326c33",
     "cea3f174f4c6",
     "5f2eea2e01a3"
+   ],
+   "2026-11-18": [
+    "198c4b155121"
    ]
   },
-  "last_seen": "2026-11-16",
+  "last_seen": "2026-11-18",
   "name": "Gemma 4",
   "slug": "gemma-4"
  },
@@ -340,16 +382,20 @@
  },
  "gpt-6-astra": {
   "counts": {
-   "2026-11-16": 2
+   "2026-11-16": 2,
+   "2026-11-18": 1
   },
   "first_seen": "2026-11-16",
   "items": {
    "2026-11-16": [
     "87d7014c15ee",
     "658768f772c7"
+   ],
+   "2026-11-18": [
+    "549a77347d5e"
    ]
   },
-  "last_seen": "2026-11-16",
+  "last_seen": "2026-11-18",
   "name": "GPT-6 Astra",
   "slug": "gpt-6-astra"
  },
@@ -608,6 +654,20 @@
   "name": "Ollama",
   "slug": "ollama"
  },
+ "onnx-runtime": {
+  "counts": {
+   "2026-11-18": 1
+  },
+  "first_seen": "2026-11-18",
+  "items": {
+   "2026-11-18": [
+    "1f0a78839277"
+   ]
+  },
+  "last_seen": "2026-11-18",
+  "name": "ONNX Runtime",
+  "slug": "onnx-runtime"
+ },
  "opencode": {
   "counts": {
    "2026-11-16": 1
@@ -708,16 +768,21 @@
  },
  "python": {
   "counts": {
-   "2026-11-16": 2
+   "2026-11-16": 2,
+   "2026-11-18": 2
   },
   "first_seen": "2026-11-16",
   "items": {
    "2026-11-16": [
     "2c38e03ddc94",
     "6f30a5c0ffe7"
+   ],
+   "2026-11-18": [
+    "5a68f30213b3",
+    "36a542e12ff7"
    ]
   },
-  "last_seen": "2026-11-16",
+  "last_seen": "2026-11-18",
   "name": "Python",
   "slug": "python"
  },
@@ -734,6 +799,20 @@
   "last_seen": "2026-11-16",
   "name": "PyTorch",
   "slug": "pytorch"
+ },
+ "qlora": {
+  "counts": {
+   "2026-11-18": 1
+  },
+  "first_seen": "2026-11-18",
+  "items": {
+   "2026-11-18": [
+    "198c4b155121"
+   ]
+  },
+  "last_seen": "2026-11-18",
+  "name": "QLoRA",
+  "slug": "qlora"
  },
  "qwen": {
   "counts": {
@@ -808,15 +887,19 @@
  },
  "qwen3-8-27b": {
   "counts": {
-   "2026-11-16": 1
+   "2026-11-16": 1,
+   "2026-11-18": 1
   },
   "first_seen": "2026-11-16",
   "items": {
    "2026-11-16": [
     "b7059d23fb76"
+   ],
+   "2026-11-18": [
+    "dc79824f7494"
    ]
   },
-  "last_seen": "2026-11-16",
+  "last_seen": "2026-11-18",
   "name": "Qwen3.8-27B",
   "slug": "qwen3-8-27b"
  },
@@ -835,6 +918,20 @@
   "last_seen": "2026-11-16",
   "name": "Qwen3.8-Flash-Next",
   "slug": "qwen3-8-flash-next"
+ },
+ "qwen3-asr": {
+  "counts": {
+   "2026-11-18": 1
+  },
+  "first_seen": "2026-11-18",
+  "items": {
+   "2026-11-18": [
+    "11fd24e9327b"
+   ]
+  },
+  "last_seen": "2026-11-18",
+  "name": "Qwen3-ASR",
+  "slug": "qwen3-asr"
  },
  "qwen4-max": {
   "counts": {
@@ -965,15 +1062,22 @@
  },
  "transformers": {
   "counts": {
-   "2026-11-16": 1
+   "2026-11-16": 1,
+   "2026-11-18": 4
   },
   "first_seen": "2026-11-16",
   "items": {
    "2026-11-16": [
     "6ae972136210"
+   ],
+   "2026-11-18": [
+    "4b443d68faa9",
+    "8f07365d378c",
+    "62671662bfc5",
+    "7047e076bcca"
    ]
   },
-  "last_seen": "2026-11-16",
+  "last_seen": "2026-11-18",
   "name": "Transformers",
   "slug": "transformers"
  },
